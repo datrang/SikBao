@@ -1,12 +1,10 @@
-export const foodtypes = [
-  'Meats', 'Vegetables', 'Starch', 'Fruits'
-]
+export const foodtypes = ["Meats", "Vegetables", "Starch", "Fruits"];
 
 export const ingredients = [
   {
-    id: 'Chicken'
+    id: "Chicken"
   },
   {
-    id: 'Beef'
-  },
-]
+    id: "Beef"
+  }
+];
