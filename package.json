@@ -1,16 +1,14 @@
 {
-  "name": "sikbao",
-  "version": "1.0.0",
-  "description": "",
-  "keywords": [],
-  "main": "src/index.js",
+  "name": "dominos",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "material-ui": "1.0.0-beta.44",
-    "react": "16.3.2",
-    "react-dom": "16.3.2",
+    "material-ui": "^1.0.0-beta.44",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-router": "^4.2.0",
     "react-scripts": "1.1.4"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
