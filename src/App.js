@@ -26,7 +26,7 @@ export default class extends Component {
 
   handleCategorySelected = category => {
     this.setState({
-      category 
+      category
     })
   }
 
@@ -37,7 +37,7 @@ export default class extends Component {
   }
 
   render() {
-    const ingredients = this.getIngredientsbyFoodtypes()
+    const ingredients = this.getIngredientsbyFoodtypes(),
     {category, ingredient} = this.state
 
     return (

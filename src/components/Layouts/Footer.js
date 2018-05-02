@@ -2,7 +2,7 @@ import React from "react";
 import { Paper, Tabs } from "material-ui";
 import { Tab } from "material-ui/Tabs";
 
-export default ({foodtypes, category, onSelect}) => (
+export default ({foodtypes, category, onSelect}) => {
   const index = category
     ? foodtypes.findIndex(group => group === category) + 1
     : 0
@@ -24,4 +24,4 @@ const onIndexSelect = (e, index) =>
       )}
     </Tabs>
   </Paper>
-);
+}
