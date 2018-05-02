@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Header from "./components/Layouts/Header";
 import Footer from "./components/Layouts/Footer";
-import Ingredients from "./components/Ingredients";
+// import Ingredients from "./components/Ingredients";
 import { ingredients, foodtypes } from "./store.js";
 
 export default class extends Component {

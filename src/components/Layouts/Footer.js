@@ -10,6 +10,7 @@ export default ({foodtypes, category, onSelect}) => {
 const onIndexSelect = (e, index) =>
   onSelect(index === 0 ? '' : foodtypes[index -1])
 
+return (
   <Paper>
     <Tabs
     value={index}
@@ -24,4 +25,5 @@ const onIndexSelect = (e, index) =>
       )}
     </Tabs>
   </Paper>
+)
 }

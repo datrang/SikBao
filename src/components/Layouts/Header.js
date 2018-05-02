@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Typography } from "material-ui";
-import CreateDialog from '../Exercises/Dialogs/Create'
+import CreateDialog from '../Ingredients/Dialogs/Create'
 
 export default props => (
   <AppBar position="static">
