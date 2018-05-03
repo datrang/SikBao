@@ -19,8 +19,8 @@ const styles = {
 export default ({ ingredients }) =>
   <Grid container>
     <Grid item sm>
-      <Paper style={styles.Paper} >
-        {ingredients.map(([group, ingredients]) =>
+            <Paper style={styles.Paper} >
+                {ingredients.map(([group, ingredients]) =>
           <Fragment>
             <Typography
               variant="headline"
@@ -29,9 +29,9 @@ export default ({ ingredients }) =>
               {group}
             </Typography>
             <List component="ul">
-              {ingredients.map(({ title }) =>
-                <ListItem button>
-                  <ListItemText primary={title} />
+                            {ingredients.map(({ id }) =>
+                                <ListItem button>
+                  <ListItemText primary={id} />
                 </ListItem>
               )}
             </List>
