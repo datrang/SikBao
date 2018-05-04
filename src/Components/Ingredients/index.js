@@ -3,6 +3,7 @@ import { Grid, Paper, Typography, List } from 'material-ui';
 import {ListItem, ListItemText} from 'material-ui/List'
 import LeftPane from './LeftPane'
 import RightPane from './RightPane'
+import Button from "material-ui/Button"
 
 
 
@@ -16,24 +17,25 @@ const styles = {
     }
 };
 
-export default ({ ingredients }) =>
+export default ({ ingredients, foods }) =>
   <Grid container>
     <Grid item sm>
             <Paper style={styles.Paper} >
                 {ingredients.map(([group, ingredients]) =>
-          <Fragment>
-            <Typography
+                    <Fragment>
+                        <Button>
+                        <Typography 
               variant="headline"
-              style={{ textTransform: 'capitalize' }}
-            >
-              {group}
-            </Typography>
+                            style={{ textTransform: 'capitalize' }}
+                        >{group}
+                        </Typography>
+                            </Button>
             <List component="ul">
                             {ingredients.map(({ id }) =>
                                 <ListItem button>
-                  <ListItemText primary={id} />
-                </ListItem>
-              )}
+                                    <ListItemText primary={id} id={id} />
+                                </ListItem>
+                            )}
             </List>
           </Fragment>
         )}
@@ -52,6 +54,9 @@ export default ({ ingredients }) =>
         >
           Please input your ingredients on the left panel
         </Typography>
+        <ul>
+                    {foods.map((foods) => <li>{foods}</li>)}
+                        </ul>
       </Paper>
     </Grid>
   </Grid>

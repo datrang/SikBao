@@ -5,8 +5,6 @@ import ingList from "./Components/Ingredients/enteredIng"
 import { switchNameHandler } from "./Components/Ingredients/input";
 import Footer from "./Components/Layouts/Footer";
 import Ingredients from "./Components/Ingredients";
-import LeftPane from "./Components/Ingredients";
-import RightPane from "./Components/Ingredients";
 import { ingredients, foodtypes } from "./store.js";
 
 //Contains list of user ingredients
@@ -19,7 +17,7 @@ export default class extends Component {
         state = {
             ingredients,
             switchNameHandler,
-            foodtypes
+            ingredient: {}
     };
     // After enter key is pressed puts user input through validation
   pressed = (event) => {
@@ -34,27 +32,26 @@ export default class extends Component {
           //ReactDOM.render(this.element2, document.getElementById('root'));
       }
   }
-  getIngredientsbyFoodtypes() {
-    return Object.entries(
-      this.state.ingredients.reduce((ingredients, ingredient) => {
-        const { foodtypes } = ingredient;
-
-        ingredients[foodtypes] = ingredient[foodtypes]
-          ? [...ingredients[foodtypes], ingredient]
-          : [ingredient];
-
+  getIngredientsByFoodtypes() {
+      return Object.entries(
+          this.state.ingredients.reduce((ingredients, ingredient) => {
+            const { foodtypes } = ingredient;
+             ingredients[foodtypes] = ingredients[foodtypes]
+             ? [...ingredients[foodtypes], ingredient]
+             : [ingredient];
         return ingredients;
       }, {})
     );
-  }z
+  }
 
   render() {
-      const ingredients = this.getIngredientsbyFoodtypes()
+      const ingredients = this.getIngredientsByFoodtypes()
+     // console.log(ingredients)
 
     return (
         <Fragment>
             <Header />
-            <Ingredients ingredients={ingredients} />
+            <Ingredients ingredients={ingredients} foods={this.foods} />
             <Footer foodtypes={foodtypes} /> 
             <h1>Input Ingredients</h1>
             <input type="text" id="textinput1" onKeyPress={this.pressed} />
