@@ -17,8 +17,9 @@ const styles = {
 
 export default ({
     ingredients,
+    foods,
     onSelect,
-    foods
+    onRemoval
     }) =>
   <Grid container>
     <Grid item sm>
@@ -47,19 +48,41 @@ export default ({
     </Grid>
     <Grid item sm>
             <Paper style={styles.Paper} >
-                {foods ?
-                    <Typography
-                        variant="display1"
-                    >
-                        Ingredients Selected:
-                </Typography>
-                :
-                    <Typography
-                        variant="display1"
-                    >
-                        Welcome my dude!
-                </Typography>
-                    }
+                {foods.length
+                    ?
+                    <Fragment>
+                        <Typography
+                            variant="display1"
+                        >
+                            Ingredients Selected:
+                        </Typography>
+                        <List component="ul">
+                            {foods.map((food) =>
+                                <ListItem button>
+                                    <ListItemText
+                                        primary={food.slice(0, 1).toUpperCase() + food.slice(1, food.length)}
+                                        onClick={() => onRemoval(food)} />
+                                </ListItem>
+                            )}
+                        </List>
+                        </Fragment>
+                        :
+                        <Fragment>
+                            <Typography
+                                variant="display1"
+                            >
+                                Welcome my dude!
+                            </Typography>
+                   
+                            <Typography
+                                variant="subheading"
+                                style={{ marginTop: 20 }}
+                            >
+                                Please input or select an ingredient.
+                            </Typography>
+                            </Fragment>
+                }
+                {console.log(foods)}
       </Paper>
     </Grid>
   </Grid>

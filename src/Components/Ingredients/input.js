@@ -9,12 +9,12 @@ export const switchNameHandler = (input, foods) => {
     var textinput = input.toLowerCase();
         console.log(textinput);
         // console.log(ingredient.length);
-    //Checks to see if food is valid
         var i = 0
+    // Compares input to all ingredients, stops once it adds the ingredient to list
+    // Also doesn't run if ingredient is already in list
         while(i < ingredients.length && !foods.includes(textinput)) {
             if (textinput === ingredients[i].id) {
                 foods.push(textinput);
-                break;
             }
             i++
         }

@@ -1,5 +1,7 @@
+// Types of igredients
 export const foodtypes = ["Meats", "Vegetables", "Starch", "Fruits"];
 
+// Library of ingredients
 export const ingredients = [
     {
         foodtypes: "Starch",
