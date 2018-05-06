@@ -3,14 +3,17 @@ export const foodtypes = ["Meats", "Vegetables", "Starch", "Fruits"];
 export const ingredients = [
     {
         foodtypes: "Starch",
-        id: "Chicken",
+        name: "Chicken",
+        id: "chicken"
      },
     {
         foodtypes: "Meats",
-        id: "Beef",
+        name: "Beef",
+        id: "beef"
      },
     {
         foodtypes: "Meats",
-        id: "Bread"
+        name: "Bread",
+        id: "bread"
     }
 ];

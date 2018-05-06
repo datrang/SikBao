@@ -1,10 +1,8 @@
 import React, {Fragment } from 'react';
 import { Grid, Paper, Typography, List } from 'material-ui';
-import {ListItem, ListItemText} from 'material-ui/List'
-import LeftPane from './LeftPane'
-import RightPane from './RightPane'
-import Button from "material-ui/Button"
-
+import { ListItem, ListItemText } from 'material-ui/List';
+import Button from "material-ui/Button";
+import Checkbox from 'material-ui/Checkbox';
 
 
 const styles = {
@@ -17,7 +15,11 @@ const styles = {
     }
 };
 
-export default ({ ingredients, foods }) =>
+export default ({
+    ingredients,
+    onSelect,
+    foods
+    }) =>
   <Grid container>
     <Grid item sm>
             <Paper style={styles.Paper} >
@@ -26,14 +28,16 @@ export default ({ ingredients, foods }) =>
                         <Button>
                         <Typography 
               variant="headline"
-                            style={{ textTransform: 'capitalize' }}
+                            style={{ textTransform: 'capitalize', textTransform: 'bold' }}
                         >{group}
                         </Typography>
                             </Button>
             <List component="ul">
-                            {ingredients.map(({ id }) =>
+                            {ingredients.map(({ id, name }) =>
                                 <ListItem button>
-                                    <ListItemText primary={id} id={id} />
+                                    <ListItemText
+                                        primary={name}
+                                        onClick={() => onSelect(id)} />
                                 </ListItem>
                             )}
             </List>
@@ -42,21 +46,20 @@ export default ({ ingredients, foods }) =>
       </Paper>
     </Grid>
     <Grid item sm>
-      <Paper style={styles.Paper} >
-        <Typography
-          variant="display1"
-        >
-          Welcome my dude!
-        </Typography>
-        <Typography
-          variant="subheading"
-          style={{ marginTop: 20 }}
-        >
-          Please input your ingredients on the left panel
-        </Typography>
-        <ul>
-                    {foods.map((foods) => <li>{foods}</li>)}
-                        </ul>
+            <Paper style={styles.Paper} >
+                {foods ?
+                    <Typography
+                        variant="display1"
+                    >
+                        Ingredients Selected:
+                </Typography>
+                :
+                    <Typography
+                        variant="display1"
+                    >
+                        Welcome my dude!
+                </Typography>
+                    }
       </Paper>
     </Grid>
   </Grid>

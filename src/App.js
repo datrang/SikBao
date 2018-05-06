@@ -25,11 +25,6 @@ export default class extends Component {
           switchNameHandler(document.getElementById('textinput1').value, foods)
           // Empties input bar, ease of use
           document.getElementById('textinput1').value = ''
-          console.log(ingredients[0].id)
-          this.element1 = <h2>popcorn</h2>
-          this.element2 = <button onClick=""> X</button>
-          //ReactDOM.hydrate(this.element1, document.getElementById('root'));
-          //ReactDOM.render(this.element2, document.getElementById('root'));
       }
   }
   getIngredientsByFoodtypes() {
@@ -44,18 +39,29 @@ export default class extends Component {
     );
   }
 
+  handleIngredientSelected = id => {
+      switchNameHandler(id, foods)
+      this.setState({});
+  }
   render() {
-      const ingredients = this.getIngredientsByFoodtypes()
-     // console.log(ingredients)
-
+      const ingredients = this.getIngredientsByFoodtypes();
+     // console.log(ingredients)  
+      //console.log(foods);
     return (
         <Fragment>
             <Header />
-            <Ingredients ingredients={ingredients} foods={this.foods} />
-            <Footer foodtypes={foodtypes} /> 
             <h1>Input Ingredients</h1>
-            <input type="text" id="textinput1" onKeyPress={this.pressed} />
+            <input type="text"
+                id="textinput1"
+                onKeyPress={this.pressed} />
             <input type="checkbox" />
+            <Ingredients
+                foods={foods}
+                ingredients={ingredients}
+                foods={this.foods}
+                onSelect={this.handleIngredientSelected}
+                    />
+            <Footer foodtypes = {foodtypes} /> 
             <p id="demo"></p>
       </Fragment>
     )
