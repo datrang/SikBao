@@ -19,27 +19,29 @@ export default ({
     ingredients,
     foods,
     onSelect,
-    onRemoval
+    onRemoval,
+    keyPress,
+    props
     }) =>
   <Grid container>
     <Grid item sm>
             <Paper style={styles.Paper} >
-                {ingredients.map(([group, ingredients]) =>
+                {ingredients.map(([foodtypes, ingredients]) =>
                     <Fragment>
                         <Button>
                         <Typography 
               variant="headline"
                             style={{ textTransform: 'capitalize', textTransform: 'bold' }}
-                        >{group}
+                        >{foodtypes}
                         </Typography>
                             </Button>
             <List component="ul">
-                            {ingredients.map(({ id, name }) =>
-                                <ListItem button>
-                                    <ListItemText
-                                        primary={name}
-                                        onClick={() => onSelect(id)} />
-                                </ListItem>
+                            {ingredients.map(({ id, name }) => 
+                                    <ListItem button>
+                                        <ListItemText
+                                            primary={name}
+                                            onClick={() => onSelect(id)} />
+                                    </ListItem>
                             )}
             </List>
           </Fragment>
