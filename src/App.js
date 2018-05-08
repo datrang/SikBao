@@ -15,6 +15,7 @@ export default class extends Component {
         super();
         this.state = {
             ingredients,
+            currentIngredients: ingredients,
             recipes,
             ingredient: {},
             foods: [],
@@ -41,14 +42,14 @@ export default class extends Component {
         getIngredientsByFoodtypes() {
         // Seperates the ingredients based on food types
       return Object.entries(
-          this.state.ingredients.reduce((ingredients, ingredient) => {
+          this.state.currentIngredients.reduce((currentIngredients, ingredient) => {
               const { foodtypes } = ingredient;
               // Sees if the ingredient already has a food type
-              ingredients[foodtypes] = ingredients[foodtypes]
+              currentIngredients[foodtypes] = currentIngredients[foodtypes]
                  // If so adds it to the list of ingredients inside the foodtype
-             ? [...ingredients[foodtypes], ingredient]
+             ? [...currentIngredients[foodtypes], ingredient]
              : [ingredient];
-        return ingredients;
+        return currentIngredients;
       }, {})
     );
   }
@@ -73,10 +74,38 @@ export default class extends Component {
 
   handleShowRecipes = () => {
       // Hides and displays the recipes
-      this.setState(prevState => ({
+      this.setState((prevState) => {
           showing: !prevState.showing
-      }))
+      })
       console.log(this.state.showing)
+  }
+
+  handleSearching = () => {
+      var hold = []
+      // Checks if input is empty
+      document.getElementById('userInput1').value
+          ?
+          // If not empty display ingredients that includes the user input
+          this.setState((prevState) => {
+              ingredients.map((ing) =>
+                  // Check all ingredients
+                  ing.id.includes(document.getElementById('userInput1').value)
+                      ?
+                      // If ingredient includes user input add to ingredients to be displayed
+                      hold.push(ing)
+                      :
+                      // Else do nothing
+                      null
+              )
+              // Update displayed ingredients
+              return { currentIngredients: hold }
+
+          })
+          :
+          // If empty display all ingredients
+          this.setState((prevState) => {
+              return { currentIngredients: ingredients }
+          })
   }
 
   render() {
@@ -101,7 +130,7 @@ export default class extends Component {
                 foods={this.state.foods}
                 onSelect={this.handleIngredientSelected}
                 onRemoval={this.handleRemoveIngredient}
-                keyPress={this.pressed}
+                searching={this.handleSearching}
                     />
             <Footer foodtypes={foodtypes} /> 
              {this.state.showing

@@ -1,5 +1,5 @@
 import React, {Fragment } from 'react';
-import { Grid, Paper, Typography, List } from 'material-ui';
+import { Grid, Paper, Typography, List, TextField } from 'material-ui';
 import { ListItem, ListItemText } from 'material-ui/List';
 import Button from "material-ui/Button";
 import Checkbox from 'material-ui/Checkbox';
@@ -21,11 +21,16 @@ export default ({
     onSelect,
     onRemoval,
     keyPress,
-    props
+    searching
     }) =>
   <Grid container>
     <Grid item sm>
             <Paper style={styles.Paper} >
+                <TextField
+                    id="userInput1"
+                    onChange={() => searching()}
+                />
+                <br />
                 {ingredients.map(([foodtypes, ingredients]) =>
                     <Fragment>
                         <Button>
