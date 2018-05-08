@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import ReactDOM from 'react-dom';
 import Header from "./Components/Layouts/Header";
 import ingList from "./Components/Ingredients/enteredIng";
-import { switchNameHandler } from "./Components/Ingredients/input";
 import Footer from "./Components/Layouts/Footer";
 import Recipes from "./Components/Ingredients/Recipes";
 import Ingredients from "./Components/Ingredients";
@@ -12,25 +11,33 @@ import { ingredients, foodtypes, recipes } from "./store.js";
 
 export default class extends Component {
     // Allows use of functions
-        state = {
+    constructor() {
+        super();
+        this.state = {
             ingredients,
             recipes,
-            switchNameHandler,
             ingredient: {},
             foods: [],
             showing: false
-    };
+        };
+    }
     // After enter key is pressed puts user input through validation
         pressed = (event) => {
-            console.log(event)
-      if (event.key == 'Enter') {
-          switchNameHandler(document.getElementById('textinput1').value, this.state.foods)
-          // Empties input bar, ease of use
-          document.getElementById('textinput1').value = ''
-          // Updates display
-          this.setState(this.state)
-      }
-  }
+            if (event.key == 'Enter') {
+                // Checks user input after enter is pressed
+                ingredients.map((ing) => 
+                    // Compares each ingredient to the user input checking for match
+                    ing.id === document.getElementById('textInput1').value.toLowerCase()
+                        ?
+                        // If match, update list of ingredients
+                        this.setState((prevState) => {
+                            return { foods: [...prevState.foods, ing.name]}
+                        })
+                        // Else do nothing
+                        : null
+                )
+            }
+         }
         getIngredientsByFoodtypes() {
         // Seperates the ingredients based on food types
       return Object.entries(
@@ -48,21 +55,20 @@ export default class extends Component {
 
   handleIngredientSelected = id => {
       // If ingredient isn't already in list add it
-      if (!this.state.foods.includes(id)) {
-          this.setState(prevState => ({
-              foods: [...prevState.foods, id]
-          }))
-      }
-      console.log(this.state.foods)
+      !this.state.foods.includes(id)
+      ?
+          this.setState((prevState) => {
+              return { foods: [...prevState.foods, id] }
+          })
+      : null
   }
 
   handleRemoveIngredient = food => {
       // Removes ingredient from list
-      this.state.foods.splice(this.state.foods.indexOf(food), 1)
-      /*this.setState(prevState => ({
-          foods: prevState.foods.splice(prevState.foods.indexOf(food), 1)
-      }))*/
-      this.setState(this.state)
+      this.setState((prevState) => {
+          prevState.foods.splice(prevState.foods.indexOf(food), 1)
+          return { foods: prevState.foods.splice(prevState.foods.indexOf(food), 1) }
+      })
   }
 
   handleShowRecipes = () => {
@@ -72,15 +78,15 @@ export default class extends Component {
       }))
       console.log(this.state.showing)
   }
+
   render() {
       const ingredients = this.getIngredientsByFoodtypes();
-      console.log(this.state.recipes[0].ingredientID)
     return (
         <Fragment>
             <Header />
             <h1>Input Ingredients</h1>
             <input type="text"
-                id="textinput1"
+                id="textInput1"
                 onKeyPress={this.pressed} />
             <input type="checkbox" />
             <button

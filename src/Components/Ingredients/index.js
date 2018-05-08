@@ -84,7 +84,6 @@ export default ({
                             </Typography>
                             </Fragment>
                 }
-                {console.log(foods)}
       </Paper>
     </Grid>
   </Grid>
