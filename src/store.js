@@ -1,16 +1,38 @@
-export const foodtypes = ["Meats", "Vegetables", "Starch", "Fruits"];
+// Types of igredients
+export const foodtypes = ["Meats", "Vegetables", "Starch", "Fruits", "Seasoning"];
 
+// Library of recipes
+export const recipes = [
+    {
+        ingredientID: ["beef", "stew"],
+        name: "Beef Stew"
+    },
+    {
+        ingredientID: ["garlic", "bread"],
+        name: "Garlic Bread"
+    }
+]
+
+// Library of ingredients
 export const ingredients = [
     {
-        id: "Chicken",
-        foodtypes: "Fruits"
+        foodtypes: "Starch",
+        name: "Chicken",
+        id: "chicken"
      },
     {
-        id: "Beef",
-        foodtypes: "Meats"
+        foodtypes: "Meats",
+        name: "Beef",
+        id: "beef"
      },
     {
-        id: "Bread",
-        foodtypes: "Meats"
+        foodtypes: "Meats",
+        name: "Bread",
+        id: "bread"
+    },
+    {
+        foodtypes: "Seasoning",
+        name: "Garlic",
+        id: "garlic"
     }
 ];
