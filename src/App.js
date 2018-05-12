@@ -1,30 +1,28 @@
 import React, { Component, Fragment } from "react";
-import ReactDOM from 'react-dom';
 import Header from "./Components/Layouts/Header";
-import ingList from "./Components/Ingredients/enteredIng";
 import Footer from "./Components/Layouts/Footer";
 import Recipes from "./Components/Ingredients/Recipes";
 import Ingredients from "./Components/Ingredients";
 import { ingredients, foodtypes, recipes } from "./store.js";
-
-//Contains list of user ingredients
 
 export default class extends Component {
     // Allows use of functions
     constructor() {
         super();
         this.state = {
-            ingredients,
-            currentIngredients: ingredients,
-            recipes,
-            ingredient: {},
-            foods: [],
-            showing: false
+            ingredients, // List of ingredients
+            foodtypes, // List of foodtypes
+            recipes, // List of recipes
+            currentIngredients: ingredients, // List of currently displaying ingredients
+            selectedFoodTypes: foodtypes, // List of currently displaying foodtypes
+            //ingredient: {}, 
+            foods: [], // Ingredients user wishes to use
+            showing: false // Showing the recipes
         };
     }
     // After enter key is pressed puts user input through validation
         pressed = (event) => {
-            if (event.key == 'Enter') {
+            if (event.key === 'Enter') {
                 // Checks user input after enter is pressed
                 ingredients.map((ing) => 
                     // Compares each ingredient to the user input checking for match
@@ -61,21 +59,21 @@ export default class extends Component {
           this.setState((prevState) => {
               return { foods: [...prevState.foods, id] }
           })
-      : null
+          : null
   }
 
   handleRemoveIngredient = food => {
       // Removes ingredient from list
       this.setState((prevState) => {
           prevState.foods.splice(prevState.foods.indexOf(food), 1)
-          return { foods: prevState.foods.splice(prevState.foods.indexOf(food), 1) }
+          return {foods: prevState.foods }
       })
   }
 
   handleShowRecipes = () => {
       // Hides and displays the recipes
       this.setState((prevState) => {
-          showing: !prevState.showing
+          return { showing: !prevState.showing }
       })
       console.log(this.state.showing)
   }
@@ -108,8 +106,42 @@ export default class extends Component {
           })
   }
 
+    // Links recipe details placeholder
+  handleLinkingRecipes = (recipeName) => {
+      recipes.map((recipe) => {
+          if (recipeName === recipe.name) {
+              window.open(recipe.link)
+          }
+      })
+  }
+
+    // Hides food types
+  handleHideFoodTypes = (foodType) => {
+      this.state.selectedFoodTypes.includes(foodType)
+        ? // Makes sure foodtype is in foodtypes before removing
+          this.setState((prevState) => {
+              // Removes the food type from array of foodtypes to display
+          prevState.selectedFoodTypes.splice(prevState.selectedFoodTypes.indexOf(foodType), 1)
+          return { selectedFoodTypes: prevState.selectedFoodTypes }
+          })
+          : null //Else do nothing
+  }
+
+    //Shows food types
+  handleDisplayFoodTypes = (foodType) => {
+      this.state.selectedFoodTypes.includes(foodType)
+          ? null // If foodtype is already displaying do nothing
+          : // Else add it to list of foodtypes to display
+          this.setState((prevState) => {
+              return { selectedFoodTypes: [...prevState.selectedFoodTypes, foodType]}
+          })
+
+  }
+
+
   render() {
       const ingredients = this.getIngredientsByFoodtypes();
+      //console.log(this.state.selectedFoodTypes)
     return (
         <Fragment>
             <Header />
@@ -127,16 +159,21 @@ export default class extends Component {
                 </button>
             <Ingredients
                 ingredients={ingredients}
+                selectedFoodTypes={this.state.selectedFoodTypes}
                 foods={this.state.foods}
                 onSelect={this.handleIngredientSelected}
                 onRemoval={this.handleRemoveIngredient}
+                onHide={this.handleHideFoodTypes}
+                onDisplay={this.handleDisplayFoodTypes}
                 searching={this.handleSearching}
                     />
             <Footer foodtypes={foodtypes} /> 
              {this.state.showing
-                    ? <Recipes
-                        foods={this.state.foods}
-                        recipes={this.state.recipes}
+                ?
+                <Recipes
+                    foods={this.state.foods}
+                    recipes={this.state.recipes}
+                    linkRecipes={this.handleLinkingRecipes}
                     />
                     : null
                 }

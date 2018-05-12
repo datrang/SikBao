@@ -5,11 +5,13 @@ export const foodtypes = ["Meats", "Vegetables", "Starch", "Fruits", "Seasoning"
 export const recipes = [
     {
         ingredientID: ["beef", "stew"],
-        name: "Beef Stew"
+        name: "Beef Stew",
+        link: "https://www.allrecipes.com/recipe/14685/slow-cooker-beef-stew-i/"
     },
     {
         ingredientID: ["garlic", "bread"],
-        name: "Garlic Bread"
+        name: "Garlic Bread",
+        link: "https://www.allrecipes.com/recipe/21080/great-garlic-bread/"
     }
 ]
 

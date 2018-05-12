@@ -2,7 +2,7 @@ import React, {Fragment } from 'react';
 import { Grid, Paper, Typography, List, TextField } from 'material-ui';
 import { ListItem, ListItemText } from 'material-ui/List';
 import Button from "material-ui/Button";
-import Checkbox from 'material-ui/Checkbox';
+import blue from 'material-ui/colors/red';
 
 
 const styles = {
@@ -12,13 +12,19 @@ const styles = {
     marginBottom: 10, 
     height:500, 
     overflowY:'auto'
-    }
+    },
+  inputStyle: {
+      color: blue
+  }
 };
 
 export default ({
     ingredients,
+    selectedFoodTypes,
     foods,
     onSelect,
+    onHide,
+    onDisplay,
     onRemoval,
     keyPress,
     searching
@@ -32,25 +38,44 @@ export default ({
                 />
                 <br />
                 {ingredients.map(([foodtypes, ingredients]) =>
-                    <Fragment>
-                        <Button>
-                        <Typography 
-              variant="headline"
-                            style={{ textTransform: 'capitalize', textTransform: 'bold' }}
-                        >{foodtypes}
-                        </Typography>
+                    // Checks if that food type is to be displayed
+                    selectedFoodTypes.includes(foodtypes)
+                        ? // If so print the food type and its ingredients
+                        <Fragment key={foodtypes}>
+                            <Button
+                                key={foodtypes}
+                                onClick={() => onHide(foodtypes)}>
+                                <Typography
+                                    variant="headline"
+                                    style={{ textTransform: 'capitalize', textTransform: 'bold' }}
+                                >{foodtypes}
+                                </Typography>
                             </Button>
-            <List component="ul">
-                            {ingredients.map(({ id, name }) => 
-                                    <ListItem button>
+                            <List component="ul">
+                                {ingredients.map(({ id, name }) =>
+                                    <ListItem button key={id}>
                                         <ListItemText
                                             primary={name}
                                             onClick={() => onSelect(id)} />
                                     </ListItem>
-                            )}
-            </List>
-          </Fragment>
-        )}
+                                )}
+                            </List>
+                    </Fragment>
+                        : // If not display the food type so users can show if they want
+                        <Fragment key={foodtypes}>
+                            <Button
+                                key={foodtypes}
+                                onClick={() => onDisplay(foodtypes)}>
+                                <Typography
+                                    variant="headline"
+                                    style={{ textTransform: 'capitalize', textTransform: 'bold' }}
+                                >{foodtypes}
+                                </Typography>
+                            </Button>
+                        <br />
+                        </Fragment>
+                    
+                )}
       </Paper>
     </Grid>
     <Grid item sm>
@@ -65,7 +90,7 @@ export default ({
                         </Typography>
                         <List component="ul">
                             {foods.map((food) =>
-                                <ListItem button>
+                                <ListItem button key={food.slice(0, 1).toUpperCase() + food.slice(1, food.length)}>
                                     <ListItemText
                                         primary={food.slice(0, 1).toUpperCase() + food.slice(1, food.length)}
                                         onClick={() => onRemoval(food)} />
@@ -85,7 +110,7 @@ export default ({
                                 variant="subheading"
                                 style={{ marginTop: 20 }}
                             >
-                                Please input or select an ingredient.
+                                Please input or select an ingredient on the left side.
                             </Typography>
                             </Fragment>
                 }
