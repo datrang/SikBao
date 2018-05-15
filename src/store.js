@@ -1,5 +1,5 @@
 // Types of igredients
-export const foodtypes = ["Meats", "Vegetables", "Starch", "Fruits", "Seasoning"];
+export const foodtypes = ["Meats", "Vegetables", "Starch", "Fruits", "Seasoning", "Fish"];
 
 // Library of recipes
 export const recipes = [
@@ -22,6 +22,16 @@ export const ingredients = [
         name: "Chicken",
         id: "chicken"
      },
+     {
+         foodtypes: "Fish",
+         name: "Salmon",
+         id: "salmon"
+     }
+     {
+         foodtypes: "Fish",
+         name: "Tuna",
+         id: "tuna"
+     }
      {
          foodtypes: "Starch",
          name: "Rice",
@@ -82,6 +92,51 @@ export const ingredients = [
         name: "Bread",
         id: "bread"
     },
+    {
+        foodtypes: "Fruits",
+        name: "Lime",
+        id: "lime"
+    }
+    {
+        foodtypes: "Fruits",
+        name: "Lemon",
+        id: "lemon"
+    }
+    {
+        foodtypes: "Fruits",
+        name: "Blueberry",
+        id: "blueberry"
+    }
+    {
+        foodtypes: "Fruits",
+        name: "Strawberry",
+        id: "strawberry"
+    }
+    {
+        foodtypes: "Fruits",
+        name: "Pear",
+        id: "Pear"
+    }
+    {
+        foodtypes: "Fruits",
+        name: "Apple",
+        id: "apple"
+    }
+    {
+        foodtypes: "Vegetables",
+        name: "Cabbage",
+        id: "cabbage"
+    }
+    {
+        foodtypes: "Vegetables",
+        name: "Bell Peppers",
+        id: "bellpepper"
+    }
+    {
+        foodtypes: "Seasoning",
+        name: "Rosemary",
+        id: "rosemary"
+    }
     {
         foodtypes: "Seasoning",
         name: "Garlic",
