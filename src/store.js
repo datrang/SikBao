@@ -18,17 +18,67 @@ export const recipes = [
 // Library of ingredients
 export const ingredients = [
     {
-        foodtypes: "Starch",
+        foodtypes: "Meats",
         name: "Chicken",
         id: "chicken"
+     },
+     {
+         foodtypes: "Starch",
+         name: "Rice",
+         id: "rice"
+     },
+     {
+         foodtypes: "Vegetables",
+         name: "Kale",
+         id: "kale"
+     },
+     {
+         foodtypes: "Vegetables",
+         name: "Green Beans",
+         id: "greenbeans"
+     },
+     {
+         foodtypes: "Vegetables",
+         name: "Lettuce",
+         id: "lettuce"
+     },
+     {
+         foodtypes: "Vegetables",
+         name: "Broccoli",
+         id: "broccoli"
+     },
+     {
+         foodtypes: "Starch",
+         name: "Potato",
+         id: "potato"
+     },
+     {
+         foodtypes: "Starch",
+         name: "Pasta",
+         id: "pasta"
      },
     {
         foodtypes: "Meats",
         name: "Beef",
         id: "beef"
      },
+     {
+         foodtypes: "Meats",
+         name: "Bacon",
+         id: "bacon"
+     },
+     {
+         foodtypes: "Meats",
+         name: "Pork Chops",
+         id: "porkchops"
+     },
+     {
+         foodtypes: "Meats",
+         name: "Turkey",
+         id: "turkey"
+     },
     {
-        foodtypes: "Meats",
+        foodtypes: "Starch",
         name: "Bread",
         id: "bread"
     },
