@@ -15,16 +15,28 @@ export default class extends Component {
             recipes, // List of recipes
             currentIngredients: ingredients, // List of currently displaying ingredients
             selectedFoodTypes: foodtypes, // List of currently displaying foodtypes
-            //ingredient: {}, 
+            //ingredient: {},
             foods: [], // Ingredients user wishes to use
             showing: false // Showing the recipes
         };
     }
+
+    onInputChange = e => {
+      this.setState({currentFood: e.target.value});
+    }
+    onClick = () =>{
+      let foodCopy = this.state.foods.slide();
+      foodCopy.push(this.state.currentFood);
+
+      this.setState({foods: foodCopy, currentFood:""});
+    }
+
+
     // After enter key is pressed puts user input through validation
         pressed = (event) => {
             if (event.key === 'Enter') {
                 // Checks user input after enter is pressed
-                ingredients.map((ing) => 
+                ingredients.map((ing) =>
                     // Compares each ingredient to the user input checking for match
                     ing.id === document.getElementById('textInput1').value.toLowerCase()
                         ?
@@ -142,7 +154,7 @@ export default class extends Component {
   render() {
       const ingredients = this.getIngredientsByFoodtypes();
       //console.log(this.state.selectedFoodTypes)
-    return (
+      return(
         <Fragment>
             <Header />
             <h1>Input Ingredients</h1>
@@ -167,7 +179,7 @@ export default class extends Component {
                 onDisplay={this.handleDisplayFoodTypes}
                 searching={this.handleSearching}
                     />
-            <Footer foodtypes={foodtypes} /> 
+            <Footer foodtypes={foodtypes} />
              {this.state.showing
                 ?
                 <Recipes
@@ -179,6 +191,6 @@ export default class extends Component {
                 }
             <p id="demo"></p>
         </Fragment>
-    )
+      )
   }
 }

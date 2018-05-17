@@ -26,12 +26,12 @@ export const ingredients = [
          foodtypes: "Fish",
          name: "Salmon",
          id: "salmon"
-     }
+     },
      {
          foodtypes: "Fish",
          name: "Tuna",
          id: "tuna"
-     }
+     },
      {
          foodtypes: "Starch",
          name: "Rice",
@@ -96,47 +96,47 @@ export const ingredients = [
         foodtypes: "Fruits",
         name: "Lime",
         id: "lime"
-    }
+    },
     {
         foodtypes: "Fruits",
         name: "Lemon",
         id: "lemon"
-    }
+    },
     {
         foodtypes: "Fruits",
         name: "Blueberry",
         id: "blueberry"
-    }
+    },
     {
         foodtypes: "Fruits",
         name: "Strawberry",
         id: "strawberry"
-    }
+    },
     {
         foodtypes: "Fruits",
         name: "Pear",
         id: "Pear"
-    }
+    },
     {
         foodtypes: "Fruits",
         name: "Apple",
         id: "apple"
-    }
+    },
     {
         foodtypes: "Vegetables",
         name: "Cabbage",
         id: "cabbage"
-    }
+    },
     {
         foodtypes: "Vegetables",
         name: "Bell Peppers",
         id: "bellpepper"
-    }
+    },
     {
         foodtypes: "Seasoning",
         name: "Rosemary",
         id: "rosemary"
-    }
+    },
     {
         foodtypes: "Seasoning",
         name: "Garlic",
