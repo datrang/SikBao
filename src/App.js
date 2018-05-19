@@ -1,161 +1,161 @@
 import React, { Component, Fragment } from "react";
-import Header from "./Components/Layouts/Header";
-import Footer from "./Components/Layouts/Footer";
-import Recipes from "./Components/Ingredients/Recipes";
-import Ingredients from "./Components/Ingredients";
+import Header from "./components/Layouts/Header";
+import Footer from "./components/Layouts/Footer";
+import Recipes from "./components/Ingredients/Recipes";
+import Ingredients from "./components/Ingredients";
 import { ingredients, foodtypes, recipes } from "./store.js";
 
 export default class extends Component {
     // Allows use of functions
     constructor() {
         super();
-        this.state = {
-            ingredients, // List of ingredients
-            foodtypes, // List of foodtypes
-            recipes, // List of recipes
-            currentIngredients: ingredients, // List of currently displaying ingredients
-            selectedFoodTypes: foodtypes, // List of currently displaying foodtypes
-            //ingredient: {}, 
-            foods: [], // Ingredients user wishes to use
-            showing: false // Showing the recipes
-        };
+            this.state = {
+                ingredients, // List of ingredients
+                foodtypes, // List of foodtypes
+                recipes, // List of recipes
+                currentIngredients: ingredients, // List of currently displaying ingredients
+                selectedFoodTypes: foodtypes, // List of currently displaying foodtypes
+                //ingredient: {}, 
+                foods: [], // Ingredients user wishes to use
+                showing: false // Showing the recipes
+            };
     }
     // After enter key is pressed puts user input through validation
-        pressed = (event) => {
-            if (event.key === 'Enter') {
-                // Checks user input after enter is pressed
-                ingredients.map((ing) => 
-                    // Compares each ingredient to the user input checking for match
-                    ing.id === document.getElementById('textInput1').value.toLowerCase()
-                        ?
-                        // If match, update list of ingredients
-                        this.setState((prevState) => {
-                            return { foods: [...prevState.foods, ing.name]}
-                        })
-                        // Else do nothing
-                        : null
-                )
-            }
-         }
-        getIngredientsByFoodtypes() {
-        // Seperates the ingredients based on food types
-      return Object.entries(
-          this.state.currentIngredients.reduce((currentIngredients, ingredient) => {
-              const { foodtypes } = ingredient;
-              // Sees if the ingredient already has a food type
-              currentIngredients[foodtypes] = currentIngredients[foodtypes]
-                 // If so adds it to the list of ingredients inside the foodtype
-             ? [...currentIngredients[foodtypes], ingredient]
-             : [ingredient];
+    pressed = (event) => {
+        if (event.key === 'Enter') {
+            // Checks user input after enter is pressed
+            ingredients.map((ing) => 
+                // Compares each ingredient to the user input checking for match
+                ing.id === document.getElementById('textInput1').value.toLowerCase()
+                    ?
+                // If match, update list of ingredients
+                this.setState((prevState) => {
+                    return { foods: [...prevState.foods, ing.name]}
+                })
+                // Else do nothing
+                    : null
+            )
+        }
+    
+    }
+}
+
+getIngredientsByFoodtypes() {
+    // Seperates the ingredients based on food types
+    return Object.entries(
+    this.state.currentIngredients.reduce((currentIngredients, ingredient) => {
+        const { foodtypes } = ingredient;
+        // Sees if the ingredient already has a food type
+        currentIngredients[foodtypes] = currentIngredients[foodtypes]
+        // If so adds it to the list of ingredients inside the foodtype
+            ? [...currentIngredients[foodtypes], ingredient]
+            : [ingredient];
         return currentIngredients;
-      }, {})
+    }, {})
     );
-  }
+}
 
-  handleIngredientSelected = id => {
-      // If ingredient isn't already in list add it
-      !this.state.foods.includes(id)
-      ?
-          this.setState((prevState) => {
-              return { foods: [...prevState.foods, id] }
-          })
-          : null
-  }
+handleIngredientSelected = id => {
+    // If ingredient isn't already in list add it
+    !this.state.foods.includes(id)
+        ?
+            this.setState((prevState) => {
+                return { foods: [...prevState.foods, id] }
+            })
+        : null
+}
 
-  handleRemoveIngredient = food => {
-      // Removes ingredient from list
-      this.setState((prevState) => {
-          prevState.foods.splice(prevState.foods.indexOf(food), 1)
-          return {foods: prevState.foods }
-      })
-  }
+handleRemoveIngredient = food => {
+    // Removes ingredient from list
+    this.setState((prevState) => {
+        prevState.foods.splice(prevState.foods.indexOf(food), 1)
+            return {foods: prevState.foods }
+    })
+}
 
-  handleShowRecipes = () => {
-      // Hides and displays the recipes
-      this.setState((prevState) => {
-          return { showing: !prevState.showing }
-      })
-      console.log(this.state.showing)
-  }
+handleShowRecipes = () => {
+    // Hides and displays the recipes
+    this.setState((prevState) => {
+        return { showing: !prevState.showing }
+    })
+        console.log(this.state.showing)
+}
 
-  handleSearching = () => {
-      var hold = []
-      // Checks if input is empty
-      document.getElementById('userInput1').value
-          ?
-          // If not empty display ingredients that includes the user input
-          this.setState((prevState) => {
-              ingredients.map((ing) =>
-                  // Check all ingredients
-                  ing.id.includes(document.getElementById('userInput1').value)
-                      ?
-                      // If ingredient includes user input add to ingredients to be displayed
-                      hold.push(ing)
-                      :
-                      // Else do nothing
-                      null
-              )
-              // Update displayed ingredients
-              return { currentIngredients: hold }
+handleSearching = () => {
+    var hold = []
+    // Checks if input is empty
+    document.getElementById('userInput1').value
+        ?
+            // If not empty display ingredients that includes the user input
+            this.setState((prevState) => {
+                ingredients.map((ing) =>
+                    // Check all ingredients
+                    ing.id.includes(document.getElementById('userInput1').value)
+                        ?
+                            // If ingredient includes user input add to ingredients to be displayed
+                            hold.push(ing)
+                        :
+                            // Else do nothing
+                            null
+                )
+                // Update displayed ingredients
+                return { currentIngredients: hold }
+            })
+        :
+            // If empty display all ingredients
+            this.setState((prevState) => {
+                return { currentIngredients: ingredients }
+            })
+}
 
-          })
-          :
-          // If empty display all ingredients
-          this.setState((prevState) => {
-              return { currentIngredients: ingredients }
-          })
-  }
+// Links recipe details placeholder
+handleLinkingRecipes = (recipeName) => {
+    recipes.map((recipe) => {
+        if (recipeName === recipe.name) {
+            window.open(recipe.link)
+        }
+    })
+}
 
-    // Links recipe details placeholder
-  handleLinkingRecipes = (recipeName) => {
-      recipes.map((recipe) => {
-          if (recipeName === recipe.name) {
-              window.open(recipe.link)
-          }
-      })
-  }
-
-    // Hides food types
-  handleHideFoodTypes = (foodType) => {
-      this.state.selectedFoodTypes.includes(foodType)
+// Hides food types
+handleHideFoodTypes = (foodType) => {
+    this.state.selectedFoodTypes.includes(foodType)
         ? // Makes sure foodtype is in foodtypes before removing
-          this.setState((prevState) => {
-              // Removes the food type from array of foodtypes to display
-          prevState.selectedFoodTypes.splice(prevState.selectedFoodTypes.indexOf(foodType), 1)
-          return { selectedFoodTypes: prevState.selectedFoodTypes }
-          })
-          : null //Else do nothing
-  }
+            this.setState((prevState) => {
+                // Removes the food type from array of foodtypes to display
+                prevState.selectedFoodTypes.splice(prevState.selectedFoodTypes.indexOf(foodType), 1)
+                    return { selectedFoodTypes: prevState.selectedFoodTypes }
+            })
+        : null //Else do nothing
+}
 
-    //Shows food types
-  handleDisplayFoodTypes = (foodType) => {
-      this.state.selectedFoodTypes.includes(foodType)
-          ? null // If foodtype is already displaying do nothing
-          : // Else add it to list of foodtypes to display
-          this.setState((prevState) => {
-              return { selectedFoodTypes: [...prevState.selectedFoodTypes, foodType]}
-          })
+//Shows food types
+handleDisplayFoodTypes = (foodType) => {
+    this.state.selectedFoodTypes.includes(foodType)
+        ? null // If foodtype is already displaying do nothing
+        : // Else add it to list of foodtypes to display
+            this.setState((prevState) => {
+                return { selectedFoodTypes: [...prevState.selectedFoodTypes, foodType]}
+            })
+}
 
-  }
-
-
-  render() {
-      const ingredients = this.getIngredientsByFoodtypes();
-      //console.log(this.state.selectedFoodTypes)
+render() {
+    const ingredients = this.getIngredientsByFoodtypes();
+    //console.log(this.state.selectedFoodTypes)
     return (
         <Fragment>
             <Header />
-            <h1>Input Ingredients</h1>
-            <input type="text"
-                id="textInput1"
-                onKeyPress={this.pressed} />
-            <input type="checkbox" />
-            <button
-                type="button"
-                name="showRecipes"
-                onClick={this.handleShowRecipes}
-                >
-                Search for Recipes
+                <h1>Input Ingredients</h1>
+                <input type="text"
+                    id="textInput1"
+                    onKeyPress={this.pressed} />
+                <input type="checkbox" />
+                <button
+                    type="button"
+                    name="showRecipes"
+                    onClick={this.handleShowRecipes}
+                    >
+                    Search for Recipes
                 </button>
             <Ingredients
                 ingredients={ingredients}
@@ -168,17 +168,17 @@ export default class extends Component {
                 searching={this.handleSearching}
                     />
             <Footer foodtypes={foodtypes} /> 
-             {this.state.showing
-                ?
-                <Recipes
-                    foods={this.state.foods}
-                    recipes={this.state.recipes}
-                    linkRecipes={this.handleLinkingRecipes}
-                    />
+                {this.state.showing
+                    ?
+                        <Recipes
+                        foods={this.state.foods}
+                        recipes={this.state.recipes}
+                        linkRecipes={this.handleLinkingRecipes}
+            />
                     : null
-                }
+            }
             <p id="demo"></p>
         </Fragment>
     )
-  }
+                }
 }

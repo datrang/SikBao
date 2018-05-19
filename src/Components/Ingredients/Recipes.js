@@ -4,7 +4,6 @@ import { ListItem, ListItemText } from 'material-ui/List';
 // Displays recipes based on ingredients selected
 export default ({ recipes, foods, linkRecipes }) => (
     <Fragment>
-
         <List component="ul">
             {foods.map((name) =>
                 // ^ Gets all the ingredients currently selected
@@ -14,15 +13,13 @@ export default ({ recipes, foods, linkRecipes }) => (
                         ?
                         // If it is print that recipe
                         < ListItem button key={recipe.name}>
-                                <ListItemText
-                                primary={recipe.name}
-                                onClick={() => linkRecipes(recipe.name)}/>
+                            <ListItemText
+                            primary={recipe.name}
+                            onClick={() => linkRecipes(recipe.name)}/>
                         </ListItem>
                         : null // If not then don't
-                    
-                
                 )
             )}
-            </List>
+        </List>
     </Fragment>
 );
