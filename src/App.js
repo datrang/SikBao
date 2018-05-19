@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from "react";
-import Header from "./components/Layouts/Header";
-import Footer from "./components/Layouts/Footer";
-import Recipes from "./components/Ingredients/Recipes";
-import Ingredients from "./components/Ingredients";
+import Header from "./Components/Layouts/Header";
+import Footer from "./Components/Layouts/Footer";
+import Recipes from "./Components/Ingredients/Recipes";
+import Ingredients from "./Components/Ingredients";
 import { ingredients, foodtypes, recipes } from "./store.js";
+import firebase from './firebase.js';
 
 export default class extends Component {
     // Allows use of functions
@@ -18,7 +19,8 @@ export default class extends Component {
                 //ingredient: {}, 
                 foods: [], // Ingredients user wishes to use
                 showing: false // Showing the recipes
-            };
+        };
+        this.handleSavingIngredients = this.handleSavingIngredients.bind(this)
     }
     // After enter key is pressed puts user input through validation
     pressed = (event) => {
@@ -38,7 +40,6 @@ export default class extends Component {
         }
     
     }
-}
 
 getIngredientsByFoodtypes() {
     // Seperates the ingredients based on food types
@@ -57,6 +58,7 @@ getIngredientsByFoodtypes() {
 
 handleIngredientSelected = id => {
     // If ingredient isn't already in list add it
+
     !this.state.foods.includes(id)
         ?
             this.setState((prevState) => {
@@ -139,23 +141,38 @@ handleDisplayFoodTypes = (foodType) => {
             })
 }
 
+handleSavingIngredients(e) {
+    e.preventDefault();
+    const itemsRef = firebase.database().ref('userIngredients');
+    const item = {
+        ingredients: this.state.foods
+    }
+    itemsRef.push(item);
+}
+
 render() {
     const ingredients = this.getIngredientsByFoodtypes();
     //console.log(this.state.selectedFoodTypes)
     return (
         <Fragment>
             <Header />
-                <h1>Input Ingredients</h1>
-                <input type="text"
-                    id="textInput1"
-                    onKeyPress={this.pressed} />
-                <input type="checkbox" />
-                <button
-                    type="button"
-                    name="showRecipes"
-                    onClick={this.handleShowRecipes}
-                    >
-                    Search for Recipes
+            <input type="text"
+                id="textInput1"
+                onKeyPress={this.pressed} />
+            <input type="checkbox" />
+            <button
+                type="button"
+                name="showRecipes"
+                onClick={this.handleShowRecipes}
+            >
+                Search for Recipes
+                </button>
+            <button
+                type="button"
+                name="saveIngredients"
+                onClick={this.handleSavingIngredients}
+            >
+                Save ingredients!
                 </button>
             <Ingredients
                 ingredients={ingredients}
@@ -166,19 +183,19 @@ render() {
                 onHide={this.handleHideFoodTypes}
                 onDisplay={this.handleDisplayFoodTypes}
                 searching={this.handleSearching}
-                    />
-            <Footer foodtypes={foodtypes} /> 
-                {this.state.showing
-                    ?
-                        <Recipes
-                        foods={this.state.foods}
-                        recipes={this.state.recipes}
-                        linkRecipes={this.handleLinkingRecipes}
             />
-                    : null
+            <Footer foodtypes={foodtypes} />
+            {this.state.showing
+                ?
+                <Recipes
+                    foods={this.state.foods}
+                    recipes={this.state.recipes}
+                    linkRecipes={this.handleLinkingRecipes}
+                />
+                : null
             }
             <p id="demo"></p>
         </Fragment>
     )
-                }
+}
 }
