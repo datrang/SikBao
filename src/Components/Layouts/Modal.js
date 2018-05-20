@@ -31,6 +31,9 @@ export default ({ logIn, signUp }) => (
                     onClick={() => signUp(document.getElementById('txtEmail'), document.getElementById('txtPassword'))}
                 >Sign Up
                 </button>
+                <span>
+                    Sign up will use currently typed in data, password must be longer than 6 letters because firebase
+                    </span>
             </div>
         )}
     </Popup>
