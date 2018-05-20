@@ -22,7 +22,8 @@ export default class extends Component {
                 //ingredient: {}, 
                 foods: [], // Ingredients user wishes to use
                 showingRecipes: false, // Showing the recipes
-                authState: false
+                authState: false,
+                userId: ""
         };
     }
 
@@ -147,13 +148,9 @@ export default class extends Component {
     handleSavingIngredients = (e) => {
         e.preventDefault();
         // saves user ingredients to their fridge
-        const itemsRef = firebase.database().ref('userIngredients');
-        const item = {
-            ingredients: this.state.foods
-        }
-        // Currently adds new fridge
-        // Should replace
-        itemsRef.push(item);
+        const uidRef = firebase.database().ref('users/' + this.state.userId).set({
+            fridge: this.state.foods
+        });
     }
 
     handleLogIn = (e) => {
@@ -184,12 +181,11 @@ export default class extends Component {
     }
 
     createUserDB = (email) => {
+        // Firebase lags, so once firebase updates create the user's DB
         firebase.auth().onAuthStateChanged(user => {
             const uidRef = firebase.database().ref('users/' + user.uid).set({
                 name: "placeholder"
             });
-            var key = user.uid;
-            //const dd = uidRef.child(key);
         })
     }
 
@@ -202,7 +198,16 @@ export default class extends Component {
     componentDidMount = () => {
         // Incase firebase takes longer than the render
         firebase.auth().onAuthStateChanged((user) => {
-            this.setState(this.state)
+            // Grabs UID of user if there one
+            if (user) {
+                this.setState((prevState) => {
+                    return { userId: user.uid }
+                })
+            } else {
+                this.setState((prevState) => {
+                    return { userId: "" }
+                })
+            }
         })
     }
 
