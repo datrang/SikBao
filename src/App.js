@@ -1,13 +1,11 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import Header from "./Components/Layouts/Header";
 import Footer from "./Components/Layouts/Footer";
 import Recipes from "./Components/Ingredients/Recipes";
 import Ingredients from "./Components/Ingredients";
 import { ingredients, foodtypes, recipes } from "./store.js";
 import firebase from './firebase.js';
-import Popup from "reactjs-popup";
 import Modal from"./Components/Layouts/Modal"
-import './modals.css';
 
 export default class extends Component {
     // Allows use of functions
@@ -63,12 +61,11 @@ export default class extends Component {
     handleIngredientSelected = id => {
         // If ingredient isn't already in list add it
 
-        !this.state.foods.includes(id)
-            ?
-                this.setState((prevState) => {
-                    return { foods: [...prevState.foods, id] }
-                })
-            : null
+        if (!this.state.foods.includes(id)) {
+            this.setState((prevState) => {
+                return { foods: [...prevState.foods, id] }
+            })
+        }
     }
 
     handleRemoveIngredient = food => {
@@ -125,30 +122,29 @@ export default class extends Component {
 
     // Hides food types
     handleHideFoodTypes = (foodType) => {
-        this.state.selectedFoodTypes.includes(foodType)
-            ? // Makes sure foodtype is in foodtypes before removing
-                this.setState((prevState) => {
-                    // Removes the food type from array of foodtypes to display
-                    prevState.selectedFoodTypes.splice(prevState.selectedFoodTypes.indexOf(foodType), 1)
-                        return { selectedFoodTypes: prevState.selectedFoodTypes }
-                })
-            : null //Else do nothing
+        if (this.state.selectedFoodTypes.includes(foodType)) {
+            // Makes sure foodtype is in foodtypes before removing
+            this.setState((prevState) => {
+                // Removes the food type from array of foodtypes to display
+                prevState.selectedFoodTypes.splice(prevState.selectedFoodTypes.indexOf(foodType), 1)
+                return { selectedFoodTypes: prevState.selectedFoodTypes }
+            })
+        }
     }
 
     //Shows food types
     handleDisplayFoodTypes = (foodType) => {
-        this.state.selectedFoodTypes.includes(foodType)
-            ? null // If foodtype is already displaying do nothing
-            : // Else add it to list of foodtypes to display
-                this.setState((prevState) => {
-                    return { selectedFoodTypes: [...prevState.selectedFoodTypes, foodType]}
-                })
+        if (!this.state.selectedFoodTypes.includes(foodType)) {
+            this.setState((prevState) => {
+                return { selectedFoodTypes: [...prevState.selectedFoodTypes, foodType] }
+            })
+        }
     }
 
     handleSavingIngredients = (e) => {
         e.preventDefault();
         // saves user ingredients to their fridge
-        const uidRef = firebase.database().ref('users/' + this.state.userId).set({
+        firebase.database().ref('users/' + this.state.userId).set({
             fridge: this.state.foods
         });
     }
@@ -172,7 +168,6 @@ export default class extends Component {
         // Calls firebases sign up function using user email and password
         const auth = firebase.auth();
         const promise = auth.createUserWithEmailAndPassword(email, pass);
-        let userId="okok"
         // If error prints to console
         // Better to print to screen
         promise
@@ -183,7 +178,7 @@ export default class extends Component {
     createUserDB = (email) => {
         // Firebase lags, so once firebase updates create the user's DB
         firebase.auth().onAuthStateChanged(user => {
-            const uidRef = firebase.database().ref('users/' + user.uid).set({
+            firebase.database().ref('users/' + user.uid).set({
                 name: "placeholder"
             });
         })
@@ -239,18 +234,25 @@ export default class extends Component {
                     />
                 }
                 <input type="checkbox" />
+                {// Button for showing recipes
+                }
                 <button
                     name="showRecipes"
                     onClick={this.handleShowRecipes}
                 >
                     Search for Recipes
                 </button>
+                {// Button for saving ingredients
+                }
                 <button
                     name="saveIngredients"
                     onClick={this.handleSavingIngredients}
                 >
                     Save ingredients!
-                    </button>
+                </button>
+                {// Calls the Ingredients from index.js in components/Layout
+                 // And sets the props
+                }
                 <Ingredients
                     ingredients={ingredients}
                     selectedFoodTypes={this.state.selectedFoodTypes}
@@ -263,12 +265,14 @@ export default class extends Component {
                 />
                 <Footer foodtypes={foodtypes} />
                 {this.state.showing
+                    // If user wants to display recipes display them
                     ?
                     <Recipes
                         foods={this.state.foods}
                         recipes={this.state.recipes}
                         linkRecipes={this.handleLinkingRecipes}
                     />
+                    // Else don't
                     : null
                 }
                 <p id="demo"></p>

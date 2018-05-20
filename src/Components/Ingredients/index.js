@@ -45,7 +45,7 @@ export default ({
                                 onClick={() => onHide(foodtypes)}>
                                     <Typography
                                         variant="headline"
-                                        style={{ textTransform: 'capitalize', textTransform: 'bold' }}
+                                        style={{ textTransform: 'capitalize bold' }}
                                         >{foodtypes}
                                     </Typography>
                             </Button>
@@ -66,7 +66,7 @@ export default ({
                                 onClick={() => onDisplay(foodtypes)}>
                                     <Typography
                                         variant="headline"
-                                        style={{ textTransform: 'capitalize', textTransform: 'bold' }}
+                                        style={{ textTransform: 'capitalize bold' }}
                                         >{foodtypes}
                                     </Typography>
                             </Button>
