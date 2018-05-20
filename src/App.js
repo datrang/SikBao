@@ -1,62 +1,43 @@
-import React, { Component, Fragment } from "react";
-import Header from "./components/Layouts/Header";
-import Footer from "./components/Layouts/Footer";
-// import Ingredients from "./components/Ingredients";
-import { ingredients, foodtypes } from "./store.js";
+ import React, {Component} from 'react';
+ import logo from '.logo.svg';
+ import './App.css';
 
-export default class extends Component {
-  state = {
-    ingredients,
-    ingredient:{}
-  };
-
-  getIngredientsbyFoodtypes() {
-    return Object.entries(
-      this.state.ingredients.reduce((ingredients, ingredient) => {
-        const { foodtypes } = ingredient;
-
-        ingredients[foodtypes] = ingredient[foodtypes]
-          ? [...ingredients[foodtypes], ingredient]
-          : [ingredient];
-
-        return ingredients;
-      }, {})
-    );
+export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      todos: [],
+      currentTodo: ""
+    };
   }
 
-  handleCategorySelected = category => {
-    this.setState({
-      category
-    })
+  onInputChange = e => {
+    this.setState({currentTodo: e.target.value});
   }
 
-  handleIngredientSelected = id => {
-    this.setState(({ ingredients }) => ({
-      ingredient: ingredients.find(ex => ex.id === id)
-    }))
+  onClick = () => {
+    let todosCopy = this.state.todos.slice();
+    todosCopy.push(this.state.currentTodo);
+
+    this.setState({todos: todosCopy, currentTodo: "" });
   }
 
   render() {
-    const ingredients = this.getIngredientsbyFoodtypes(),
-    {category, ingredient} = this.state
-
-    return (
-      <Fragment>
-        <Header />
-
-        <ingredients
-          ingredient = {ingredient}
-          category={category}
-          ingredients={ingredients}
-          onSelect = {this.handleIngredientSelected}
-        />
-
-        <Footer
-          category = {category}
-          foodtypes={foodtypes}
-        onSelect ={this.handleCategorySelected}
-        />
-      </Fragment>
-    )
+    let bulletedTodos = this.state.todos.map((e, i) => {
+      return (
+        <li key={i}>{e}</li>
+      );
+    });
+    return(
+      <div>
+        <input placeholder = "Enter todo" value = {this.state.currentTodo}
+          onChange = {this.onInputChange}/>
+        <button onClick = {this.onClick}>Add!</button>
+        <br />
+        { this.state.todos.length === 0 ? "None" : <ul>{bulletedTodos}</ul>}
+      </div>
+    );
   }
 }
+
+export default App;
