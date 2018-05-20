@@ -9,7 +9,6 @@ import Popup from "reactjs-popup";
 import Modal from"./Components/Layouts/Modal"
 import './modals.css';
 
-
 export default class extends Component {
     // Allows use of functions
     constructor() {
@@ -176,9 +175,22 @@ export default class extends Component {
         // Calls firebases sign up function using user email and password
         const auth = firebase.auth();
         const promise = auth.createUserWithEmailAndPassword(email, pass);
+        let userId="okok"
         // If error prints to console
         // Better to print to screen
-        promise.catch(e => console.log(e.message));
+        promise
+            .then(this.createUserDB(email))
+            .catch(e => console.log(e.message));
+    }
+
+    createUserDB = (email) => {
+        firebase.auth().onAuthStateChanged(user => {
+            const uidRef = firebase.database().ref('users/' + user.uid).set({
+                name: "placeholder"
+            });
+            var key = user.uid;
+            //const dd = uidRef.child(key);
+        })
     }
 
     handleLogOut = (e) => {
@@ -191,7 +203,6 @@ export default class extends Component {
         // Incase firebase takes longer than the render
         firebase.auth().onAuthStateChanged((user) => {
             this.setState(this.state)
-            console.log("okok")
         })
     }
 
