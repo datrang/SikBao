@@ -4,7 +4,6 @@ import { ingredients, foodtypes } from "../../store.js";
 // Function to check if ingredient is valid
 
 export const switchNameHandler = (input, foods) => {
-
     //Ignores case sensitivity
     var textinput = input.toLowerCase();
         console.log(textinput);
@@ -18,6 +17,6 @@ export const switchNameHandler = (input, foods) => {
             }
             i++
         }
-        console.log('-------');
-        console.log(foods);
-    }
+    console.log('-------');
+    console.log(foods);
+}
