@@ -2,26 +2,24 @@
  import './App.css';
  import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
  import Main from './components/main';
+ import {Link} from 'react-router-dom';
 
 class App extends Component {
   render() {
     return(
       <div className="demo-big-content">
           <Layout>
-              <Header title="SikBao" scroll>
+              <Header className="headerColor" title={<Link style = {{textDecoration:'none', color: 'white'}}
+              to = "/">SikBao</Link>} scroll>
                   <Navigation>
-                      <a href="/">Links</a>
-                      <a href="/">Link</a>
-                      <a href="/">Link</a>
-                      <a href="/">Link</a>
+                      <Link to="/profile">Profile</Link>
+                      <Link to="/settings">Settings</Link>
                   </Navigation>
               </Header>
-              <Drawer title="Title">
+              <Drawer title="SikBao">
                   <Navigation>
-                      <a href="/">Link</a>
-                      <a href="/">Link</a>
-                      <a href="/">Link</a>
-                      <a href="/">Link</a>
+                      <Link to="/profile">Profile</Link>
+                      <Link to="/settings">Settings</Link>
                   </Navigation>
               </Drawer>
               <Content>
