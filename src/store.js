@@ -19,329 +19,329 @@ export const recipes = [
 // Library of ingredients
 export const ingredients = [
     {
-        "name": "Beef Roast",
-        "foodTypes": "Meat",
-        "id": "beef roast"
+        name: "Beef Roast",
+        foodTypes: "Meat",
+        id: "beef roast"
     },
     {
-        "name": "Brown Gravy Mix",
-        "foodTypes": "Baking",
-        "id": "brown gravy mix"
+        name: "Brown Gravy Mix",
+        foodTypes: "Baking",
+        id: "brown gravy mix"
     },
     {
-        "name": "Dried Italian Salad Dressing Mix",
-        "foodTypes": "Condiments",
-        "id": "dried Italian salad dressing mix"
+        name: "Dried Italian Salad Dressing Mix",
+        foodTypes: "Condiments",
+        id: "dried Italian salad dressing mix"
     },
     {
-        "name": "Dry Ranch Dressing Mix",
-        "foodTypes": "Condiments",
-        "id": "dry ranch dressing mix"
+        name: "Dry Ranch Dressing Mix",
+        foodTypes: "Condiments",
+        id: "dry ranch dressing mix"
     },
     {
-        "name": "Water",
-        "foodTypes": "Drinks",
-        "id": "water"
+        name: "Water",
+        foodTypes: "Drinks",
+        id: "water"
     },
     {
-        "name": "Asparagus",
-        "foodTypes": "Produce",
-        "id": "asparagus"
+        name: "Asparagus",
+        foodTypes: "Produce",
+        id: "asparagus"
     },
     {
-        "name": "Olive Oil",
-        "foodTypes": "Condiments",
-        "id": "olive oil"
+        name: "Olive Oil",
+        foodTypes: "Condiments",
+        id: "olive oil"
     },
     {
-        "name": "Kosher Salt",
-        "foodTypes": "Baking",
-        "id": "kosher salt"
+        name: "Kosher Salt",
+        foodTypes: "Baking",
+        id: "kosher salt"
     },
     {
-        "name": "Beef Broth",
-        "foodTypes": "Misc",
-        "id": "beef broth"
+        name: "Beef Broth",
+        foodTypes: "Misc",
+        id: "beef broth"
     },
     {
-        "name": "Dried Green Lentils",
-        "foodTypes": "Misc",
-        "id": "dried green lentils"
+        name: "Dried Green Lentils",
+        foodTypes: "Misc",
+        id: "dried green lentils"
     },
     {
-        "name": "Basmati Rice",
-        "foodTypes": "Misc",
-        "id": "basmati rice"
+        name: "Basmati Rice",
+        foodTypes: "Misc",
+        id: "basmati rice"
     },
     {
-        "name": "Curry Powder",
-        "foodTypes": "Condiments",
-        "id": "curry powder"
+        name: "Curry Powder",
+        foodTypes: "Condiments",
+        id: "curry powder"
     },
     {
-        "name": "Salt",
-        "foodTypes": "Condiments",
-        "id": "salt"
+        name: "Salt",
+        foodTypes: "Condiments",
+        id: "salt"
     },
     {
-        "name": "Yeast",
-        "foodTypes": "Baking",
-        "id": "yeast"
+        name: "Yeast",
+        foodTypes: "Baking",
+        id: "yeast"
     },
     {
-        "name": "Flour",
-        "foodTypes": "Baking",
-        "id": "flour"
+        name: "Flour",
+        foodTypes: "Baking",
+        id: "flour"
     },
     {
-        "name": "Vegetable Oil",
-        "foodTypes": "Baking",
-        "id": "vegetable oil"
+        name: "Vegetable Oil",
+        foodTypes: "Baking",
+        id: "vegetable oil"
     },
     {
-        "name": "Sugar",
-        "foodTypes": "Baking",
-        "id": "sugar"
+        name: "Sugar",
+        foodTypes: "Baking",
+        id: "sugar"
     },
     {
-        "name": "Salt",
-        "foodTypes": "Baking",
-        "id": "salt"
+        name: "Salt",
+        foodTypes: "Baking",
+        id: "salt"
     },
     {
-        "name": "Hot Water",
-        "foodTypes": "Misc",
-        "id": "hot water"
+        name: "Hot Water",
+        foodTypes: "Misc",
+        id: "hot water"
     },
     {
-        "name": "Pizza Sauce",
-        "foodTypes": "Misc",
-        "id": "pizza sauce"
+        name: "Pizza Sauce",
+        foodTypes: "Misc",
+        id: "pizza sauce"
     },
     {
-        "name": "Mozzarella Cheese",
-        "foodTypes": "Dairy",
-        "id": "mozzarella cheese"
+        name: "Mozzarella Cheese",
+        foodTypes: "Dairy",
+        id: "mozzarella cheese"
     },
     {
-        "name": "Acorn Squash",
-        "foodTypes": "Produce",
-        "id": "acorn squash"
+        name: "Acorn Squash",
+        foodTypes: "Produce",
+        id: "acorn squash"
     },
     {
-        "name": "Boiling Water",
-        "foodTypes": "Drinks",
-        "id": "boiling water"
+        name: "Boiling Water",
+        foodTypes: "Drinks",
+        id: "boiling water"
     },
     {
-        "name": "Apples Chopped Into 1.4 Inch Pieces",
-        "foodTypes": "Produce",
-        "id": "apples chopped into 1.4 inch pieces"
+        name: "Apples Chopped Into 1.4 Inch Pieces",
+        foodTypes: "Produce",
+        id: "apples chopped into 1.4 inch pieces"
     },
     {
-        "name": "Dried Cranberries",
-        "foodTypes": "Produce",
-        "id": "dried cranberries"
+        name: "Dried Cranberries",
+        foodTypes: "Produce",
+        id: "dried cranberries"
     },
     {
-        "name": "Cinnamon",
-        "foodTypes": "Baking",
-        "id": "cinnamon"
+        name: "Cinnamon",
+        foodTypes: "Baking",
+        id: "cinnamon"
     },
     {
-        "name": "Melted Butter",
-        "foodTypes": "Dairy",
-        "id": "melted butter"
+        name: "Melted Butter",
+        foodTypes: "Dairy",
+        id: "melted butter"
     },
     {
-        "name": "Plain Flour",
-        "foodTypes": "Baking",
-        "id": "plain flour"
+        name: "Plain Flour",
+        foodTypes: "Baking",
+        id: "plain flour"
     },
     {
-        "name": "Eggs",
-        "foodTypes": "Dairy",
-        "id": "eggs"
+        name: "Eggs",
+        foodTypes: "Dairy",
+        id: "eggs"
     },
     {
-        "name": "Milk",
-        "foodTypes": "Dairy",
-        "id": "milk"
+        name: "Milk",
+        foodTypes: "Dairy",
+        id: "milk"
     },
     {
-        "name": "Vegetable Oil",
-        "foodTypes": "Condiments",
-        "id": "vegetable oil"
+        name: "Vegetable Oil",
+        foodTypes: "Condiments",
+        id: "vegetable oil"
     },
     {
-        "name": "Raisins",
-        "foodTypes": "Produce",
-        "id": "raisins"
+        name: "Raisins",
+        foodTypes: "Produce",
+        id: "raisins"
     },
     {
-        "name": "Cup Water",
-        "foodTypes": "Drinks",
-        "id": "cup water"
+        name: "Cup Water",
+        foodTypes: "Drinks",
+        id: "cup water"
     },
     {
-        "name": "Shortening",
-        "foodTypes": "Baking",
-        "id": "shortening"
+        name: "Shortening",
+        foodTypes: "Baking",
+        id: "shortening"
     },
     {
-        "name": "Sugar",
-        "foodTypes": "Baking",
-        "id": "sugar"
+        name: "Sugar",
+        foodTypes: "Baking",
+        id: "sugar"
     },
     {
-        "name": "Flour",
-        "foodTypes": "Baking",
-        "id": "flour"
+        name: "Flour",
+        foodTypes: "Baking",
+        id: "flour"
     },
     {
-        "name": "Soda",
-        "foodTypes": "Baking",
-        "id": "soda"
+        name: "Soda",
+        foodTypes: "Baking",
+        id: "soda"
     },
     {
-        "name": "Salt",
-        "foodTypes": "Baking",
-        "id": "salt"
+        name: "Salt",
+        foodTypes: "Baking",
+        id: "salt"
     },
     {
-        "name": "Cinnamon",
-        "foodTypes": "Baking",
-        "id": "cinnamon"
+        name: "Cinnamon",
+        foodTypes: "Baking",
+        id: "cinnamon"
     },
     {
-        "name": "Baking Powder",
-        "foodTypes": "Baking",
-        "id": "baking powder"
+        name: "Baking Powder",
+        foodTypes: "Baking",
+        id: "baking powder"
     },
     {
-        "name": "Cloves",
-        "foodTypes": "Baking",
-        "id": "cloves"
+        name: "Cloves",
+        foodTypes: "Baking",
+        id: "cloves"
     },
     {
-        "name": "Oats",
-        "foodTypes": "Baking",
-        "id": "oats"
+        name: "Oats",
+        foodTypes: "Baking",
+        id: "oats"
     },
     {
-        "name": "Chopped Nuts",
-        "foodTypes": "Baking",
-        "id": "chopped nuts"
+        name: "Chopped Nuts",
+        foodTypes: "Baking",
+        id: "chopped nuts"
     },
     {
-        "name": "Rolled Oats, (not Instant)",
-        "foodTypes": "Baking",
-        "id": "rolled oats, (not instant)"
+        name: "Rolled Oats, (not Instant)",
+        foodTypes: "Baking",
+        id: "rolled oats, (not instant)"
     },
     {
-        "name": "All-purpose Flour",
-        "foodTypes": "Baking",
-        "id": "all-purpose flour"
+        name: "All-purpose Flour",
+        foodTypes: "Baking",
+        id: "all-purpose flour"
     },
     {
-        "name": "Grated Orange Rind",
-        "foodTypes": "Produce",
-        "id": "grated orange rind"
+        name: "Grated Orange Rind",
+        foodTypes: "Produce",
+        id: "grated orange rind"
     },
     {
-        "name": "Salt",
-        "foodTypes": "Baking",
-        "id": "salt"
+        name: "Salt",
+        foodTypes: "Baking",
+        id: "salt"
     },
     {
-        "name": "Cold Butter, Cubed",
-        "foodTypes": "Baking",
-        "id": "cold butter, cubed"
+        name: "Cold Butter, Cubed",
+        foodTypes: "Baking",
+        id: "cold butter, cubed"
     },
     {
-        "name": "Packed Brown Sugar",
-        "foodTypes": "Baking",
-        "id": "packed brown sugar"
+        name: "Packed Brown Sugar",
+        foodTypes: "Baking",
+        id: "packed brown sugar"
     },
     {
-        "name": "Fresh Blueberries",
-        "foodTypes": "Produce",
-        "id": "fresh blueberries"
+        name: "Fresh Blueberries",
+        foodTypes: "Produce",
+        id: "fresh blueberries"
     },
     {
-        "name": "Granulated Sugar",
-        "foodTypes": "Baking",
-        "id": "granulated sugar"
+        name: "Granulated Sugar",
+        foodTypes: "Baking",
+        id: "granulated sugar"
     },
     {
-        "name": "Orange Juice",
-        "foodTypes": "Produce",
-        "id": "orange juice"
+        name: "Orange Juice",
+        foodTypes: "Produce",
+        id: "orange juice"
     },
     {
-        "name": "Cornstarch",
-        "foodTypes": "Baking",
-        "id": "cornstarch"
+        name: "Cornstarch",
+        foodTypes: "Baking",
+        id: "cornstarch"
     },
     {
-        "name": "Skinless, Boneless Chicken Breasts, Halved Lengthwise",
-        "foodTypes": "Meat",
-        "id": "skinless, boneless chicken breasts, halved lengthwise"
+        name: "Skinless, Boneless Chicken Breasts, Halved Lengthwise",
+        foodTypes: "Meat",
+        id: "skinless, boneless chicken breasts, halved lengthwise"
     },
     {
-        "name": "Mayonnaise",
-        "foodTypes": "Baking",
-        "id": "mayonnaise"
+        name: "Mayonnaise",
+        foodTypes: "Baking",
+        id: "mayonnaise"
     },
     {
-        "name": "Lemon Zest",
-        "foodTypes": "Produce",
-        "id": "lemon zest"
+        name: "Lemon Zest",
+        foodTypes: "Produce",
+        id: "lemon zest"
     },
     {
-        "name": "Lemon Juice",
-        "foodTypes": "Produce",
-        "id": "lemon juice"
+        name: "Lemon Juice",
+        foodTypes: "Produce",
+        id: "lemon juice"
     },
     {
-        "name": "Curry Powder",
-        "foodTypes": "Baking",
-        "id": "curry powder"
+        name: "Curry Powder",
+        foodTypes: "Baking",
+        id: "curry powder"
     },
     {
-        "name": "Salt",
-        "foodTypes": "Baking",
-        "id": "salt"
+        name: "Salt",
+        foodTypes: "Baking",
+        id: "salt"
     },
     {
-        "name": "Ripe Mangoes, Diced",
-        "foodTypes": "Produce",
-        "id": "ripe mangoes, diced"
+        name: "Ripe Mangoes, Diced",
+        foodTypes: "Produce",
+        id: "ripe mangoes, diced"
     },
     {
-        "name": "Dried Cranberries",
-        "foodTypes": "Produce",
-        "id": "dried cranberries"
+        name: "Dried Cranberries",
+        foodTypes: "Produce",
+        id: "dried cranberries"
     },
     {
-        "name": "Green Onions, Thinly Sliced",
-        "foodTypes": "Produce",
-        "id": "green onions, thinly sliced"
+        name: "Green Onions, Thinly Sliced",
+        foodTypes: "Produce",
+        id: "green onions, thinly sliced"
     },
     {
-        "name": "Celery Stalk, Finely Chopped",
-        "foodTypes": "Produce",
-        "id": "celery stalk, finely chopped"
+        name: "Celery Stalk, Finely Chopped",
+        foodTypes: "Produce",
+        id: "celery stalk, finely chopped"
     },
     {
-        "name": "Boston Lettuce",
-        "foodTypes": "Produce",
-        "id": "Boston lettuce"
+        name: "Boston Lettuce",
+        foodTypes: "Produce",
+        id: "Boston lettuce"
     },
     {
-        "name": "English Muffins, Toasted",
-        "foodTypes": "Misc",
-        "id": "English muffins, toasted"
+        name: "English Muffins, Toasted",
+        foodTypes: "Misc",
+        id: "English muffins, toasted"
     }
 ]
 /*
@@ -370,31 +370,31 @@ export const ingredients = [
 
 export const tester = [
     {
-        "name": "Crock Pot Roast",
+        name: "Crock Pot Roast",
         "ingredients": [
             {
                 "quantity": "1",
-                "name": " beef roast",
+                name: " beef roast",
                 "type": "Meat"
             },
             {
                 "quantity": "1 package",
-                "name": "brown gravy mix",
+                name: "brown gravy mix",
                 "type": "Baking"
             },
             {
                 "quantity": "1 package",
-                "name": "dried Italian salad dressing mix",
+                name: "dried Italian salad dressing mix",
                 "type": "Condiments"
             },
             {
                 "quantity": "1 package",
-                "name": "dry ranch dressing mix",
+                name: "dry ranch dressing mix",
                 "type": "Condiments"
             },
             {
                 "quantity": "1/2 cup",
-                "name": "water",
+                name: "water",
                 "type": "Drinks"
             }
         ],
@@ -414,21 +414,21 @@ export const tester = [
         "originalURL": "http://www.food.com/recipe/to-die-for-crock-pot-roast-27208"
     },
     {
-        "name": "Roasted Asparagus",
+        name: "Roasted Asparagus",
         "ingredients": [
             {
                 "quantity": "1 lb",
-                "name": " asparagus",
+                name: " asparagus",
                 "type": "Produce"
             },
             {
                 "quantity": "1 1/2 tbsp",
-                "name": "olive oil",
+                name: "olive oil",
                 "type": "Condiments"
             },
             {
                 "quantity": "1/2 tsp",
-                "name": "kosher salt",
+                name: "kosher salt",
                 "type": "Baking"
             }
         ],
@@ -460,31 +460,31 @@ export const tester = [
         "originalURL": "http://www.food.com/recipe/roasted-asparagus-50847"
     },
     {
-        "name": "Curried Lentils and Rice",
+        name: "Curried Lentils and Rice",
         "ingredients": [
             {
                 "quantity": "1 quart",
-                "name": "beef broth",
+                name: "beef broth",
                 "type": "Misc"
             },
             {
                 "quantity": "1 cup",
-                "name": "dried green lentils",
+                name: "dried green lentils",
                 "type": "Misc"
             },
             {
                 "quantity": "1/2 cup",
-                "name": "basmati rice",
+                name: "basmati rice",
                 "type": "Misc"
             },
             {
                 "quantity": "1 tsp",
-                "name": "curry powder",
+                name: "curry powder",
                 "type": "Condiments"
             },
             {
                 "quantity": "1 tsp",
-                "name": "salt",
+                name: "salt",
                 "type": "Condiments"
             }
         ],
@@ -505,46 +505,46 @@ export const tester = [
         "imageURL": "http://dagzhsfg97k4.cloudfront.net/wp-content/uploads/2012/05/lentils3.jpg"
     },
     {
-        "name": "Big Night Pizza",
+        name: "Big Night Pizza",
         "ingredients": [
             {
                 "quantity": "5 teaspoons",
-                "name": "yeast",
+                name: "yeast",
                 "type": "Baking"
             },
             {
                 "quantity": "5 cups",
-                "name": "flour",
+                name: "flour",
                 "type": "Baking"
             },
             {
                 "quantity": "4 tablespoons",
-                "name": "vegetable oil",
+                name: "vegetable oil",
                 "type": "Baking"
             },
             {
                 "quantity": "2 tablespoons",
-                "name": "sugar",
+                name: "sugar",
                 "type": "Baking"
             },
             {
                 "quantity": "2 teaspoons",
-                "name": "salt",
+                name: "salt",
                 "type": "Baking"
             },
             {
                 "quantity": "2 cups",
-                "name": "hot water",
+                name: "hot water",
                 "type": "Misc"
             },
             {
                 "quantity": "1/4 cup",
-                "name": "pizza sauce",
+                name: "pizza sauce",
                 "type": "Misc"
             },
             {
                 "quantity": "3/4 cup",
-                "name": "mozzarella cheese",
+                name: "mozzarella cheese",
                 "type": "Dairy"
             }
         ],
@@ -569,36 +569,36 @@ export const tester = [
         "imageURL": "http://upload.wikimedia.org/wikipedia/commons/c/c7/Spinach_pizza.jpg"
     },
     {
-        "name": "Cranberry and Apple Stuffed Acorn Squash Recipe",
+        name: "Cranberry and Apple Stuffed Acorn Squash Recipe",
         "ingredients": [
             {
                 "quantity": "2",
-                "name": "acorn squash",
+                name: "acorn squash",
                 "type": "Produce"
             },
             {
                 "quantity": "1",
-                "name": "boiling water",
+                name: "boiling water",
                 "type": "Drinks"
             },
             {
                 "quantity": "2",
-                "name": "apples chopped into 1.4 inch pieces",
+                name: "apples chopped into 1.4 inch pieces",
                 "type": "Produce"
             },
             {
                 "quantity": "1/2 cup",
-                "name": "dried cranberries",
+                name: "dried cranberries",
                 "type": "Produce"
             },
             {
                 "quantity": "1 teaspoon",
-                "name": "cinnamon",
+                name: "cinnamon",
                 "type": "Baking"
             },
             {
                 "quantity": "2 tablespoons",
-                "name": "melted butter",
+                name: "melted butter",
                 "type": "Dairy"
             }
         ],
@@ -626,26 +626,26 @@ export const tester = [
         "originalURL": ""
     },
     {
-        "name": "Mic's Yorkshire Puds",
+        name: "Mic's Yorkshire Puds",
         "ingredients": [
             {
                 "quantity": "200g",
-                "name": "plain flour",
+                name: "plain flour",
                 "type": "Baking"
             },
             {
                 "quantity": "3",
-                "name": "eggs",
+                name: "eggs",
                 "type": "Dairy"
             },
             {
                 "quantity": "300ml",
-                "name": "milk",
+                name: "milk",
                 "type": "Dairy"
             },
             {
                 "quantity": "3 tbsp",
-                "name": "vegetable oil",
+                name: "vegetable oil",
                 "type": "Condiments"
             }
         ],
@@ -675,66 +675,66 @@ export const tester = [
         "originalURL": "http://upload.wikimedia.org/wikipedia/commons/f/f9/Yorkshire_Pudding.jpg"
     },
     {
-        "name": "Old-Fashioned Oatmeal Cookies",
+        name: "Old-Fashioned Oatmeal Cookies",
         "ingredients": [
             {
                 "quantity": "1 cup",
-                "name": "raisins",
+                name: "raisins",
                 "type": "Produce"
             },
             {
                 "quantity": "1",
-                "name": "cup water",
+                name: "cup water",
                 "type": "Drinks"
             },
             {
                 "quantity": "3/4 cup",
-                "name": "shortening",
+                name: "shortening",
                 "type": "Baking"
             },
             {
                 "quantity": "1 1/2 cups",
-                "name": "sugar",
+                name: "sugar",
                 "type": "Baking"
             },
             {
                 "quantity": "2 1/2 cups",
-                "name": "flour",
+                name: "flour",
                 "type": "Baking"
             },
             {
                 "quantity": "1 tsp.",
-                "name": "soda",
+                name: "soda",
                 "type": "Baking"
             },
             {
                 "quantity": "1 tsp.",
-                "name": "salt",
+                name: "salt",
                 "type": "Baking"
             },
             {
                 "quantity": "1 tsp.",
-                "name": "cinnamon",
+                name: "cinnamon",
                 "type": "Baking"
             },
             {
                 "quantity": "1/2 tsp.",
-                "name": "baking powder",
+                name: "baking powder",
                 "type": "Baking"
             },
             {
                 "quantity": "1/2 tsp.",
-                "name": "cloves",
+                name: "cloves",
                 "type": "Baking"
             },
             {
                 "quantity": "2 cups",
-                "name": "oats",
+                name: "oats",
                 "type": "Baking"
             },
             {
                 "quantity": "1/2 cup",
-                "name": "chopped nuts",
+                name: "chopped nuts",
                 "type": "Baking"
             }
         ],
@@ -766,56 +766,56 @@ export const tester = [
         "originalURL": "#"
     },
     {
-        "name": "Blueberry Oatmeal Squares",
+        name: "Blueberry Oatmeal Squares",
         "ingredients": [
             {
                 "quantity": "2-1/2 cups",
-                "name": "rolled oats, (not instant)",
+                name: "rolled oats, (not instant)",
                 "type": "Baking"
             },
             {
                 "quantity": "1-1/4 cups",
-                "name": "all-purpose flour",
+                name: "all-purpose flour",
                 "type": "Baking"
             },
             {
                 "quantity": "1 tbsp",
-                "name": "grated orange rind",
+                name: "grated orange rind",
                 "type": "Produce"
             },
             {
                 "quantity": "1/4 tsp",
-                "name": "salt",
+                name: "salt",
                 "type": "Baking"
             },
             {
                 "quantity": "1 cup",
-                "name": "cold butter, cubed",
+                name: "cold butter, cubed",
                 "type": "Baking"
             },
             {
                 "quantity": "3/4 cup",
-                "name": "packed brown sugar",
+                name: "packed brown sugar",
                 "type": "Baking"
             },
             {
                 "quantity": "3 cups",
-                "name": "fresh blueberries",
+                name: "fresh blueberries",
                 "type": "Produce"
             },
             {
                 "quantity": "1/2 cup",
-                "name": "granulated sugar",
+                name: "granulated sugar",
                 "type": "Baking"
             },
             {
                 "quantity": "1/3 cup",
-                "name": "orange juice",
+                name: "orange juice",
                 "type": "Produce"
             },
             {
                 "quantity": "4 tsp",
-                "name": "cornstarch",
+                name: "cornstarch",
                 "type": "Baking"
             }
         ],
@@ -843,66 +843,66 @@ export const tester = [
         "originalURL": "http://www.canadianliving.com/food/blueberry_oatmeal_squares.php"
     },
     {
-        "name": "Curried chicken salad",
+        name: "Curried chicken salad",
         "ingredients": [
             {
                 "quantity": "3",
-                "name": "skinless, boneless chicken breasts, halved lengthwise",
+                name: "skinless, boneless chicken breasts, halved lengthwise",
                 "type": "Meat"
             },
             {
                 "quantity": "1/2 cup",
-                "name": "mayonnaise",
+                name: "mayonnaise",
                 "type": "Baking"
             },
             {
                 "quantity": "1 tbsp",
-                "name": "lemon zest",
+                name: "lemon zest",
                 "type": "Produce"
             },
             {
                 "quantity": "1 tbsp ",
-                "name": "lemon juice",
+                name: "lemon juice",
                 "type": "Produce"
             },
             {
                 "quantity": "1 1/2 tsp",
-                "name": "curry powder",
+                name: "curry powder",
                 "type": "Baking"
             },
             {
                 "quantity": "1/4 tsp",
-                "name": "salt",
+                name: "salt",
                 "type": "Baking"
             },
             {
                 "quantity": "2",
-                "name": "ripe mangoes, diced",
+                name: "ripe mangoes, diced",
                 "type": "Produce"
             },
             {
                 "quantity": "1/4 cup",
-                "name": "dried cranberries",
+                name: "dried cranberries",
                 "type": "Produce"
             },
             {
                 "quantity": "2",
-                "name": "green onions, thinly sliced",
+                name: "green onions, thinly sliced",
                 "type": "Produce"
             },
             {
                 "quantity": "1",
-                "name": "celery stalk, finely chopped",
+                name: "celery stalk, finely chopped",
                 "type": "Produce"
             },
             {
                 "quantity": "6 leaves",
-                "name": "Boston lettuce",
+                name: "Boston lettuce",
                 "type": "Produce"
             },
             {
                 "quantity": "6",
-                "name": "English muffins, toasted",
+                name: "English muffins, toasted",
                 "type": "Misc"
             }
         ],
