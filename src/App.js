@@ -1,6 +1,7 @@
  import React, {Component} from 'react';
  import './App.css';
  import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
+ import Main from './components/main';
 
 class App extends Component {
   render() {
@@ -9,6 +10,7 @@ class App extends Component {
           <Layout>
               <Header title="SikBao" scroll>
                   <Navigation>
+                  /* Top left navigation */
                       <a href="/">Links</a>
                       <a href="/">Link</a>
                       <a href="/">Link</a>
@@ -25,6 +27,7 @@ class App extends Component {
               </Drawer>
               <Content>
                   <div className="page-content" />
+                  <Main/>
               </Content>
           </Layout>
       </div>
