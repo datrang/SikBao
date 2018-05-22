@@ -67,7 +67,7 @@ export default class extends Component {
 
     handleIngredientSelected = id => {
         // If ingredient isn't already in list add it
-
+        console.log(id)
         if (!this.state.foods.includes(id)) {
             this.setState((prevState) => {
                 return { foods: [...prevState.foods, id] }
