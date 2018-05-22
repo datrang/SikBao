@@ -13,12 +13,14 @@ class App extends Component {
               to = "/">SikBao</Link>} scroll>
                   <Navigation>
                       <Link to="/profile">Profile</Link>
+                      <Link to="/favorites">Favorites</Link>
                       <Link to="/settings">Settings</Link>
                   </Navigation>
               </Header>
               <Drawer title="SikBao">
                   <Navigation>
                       <Link to="/profile">Profile</Link>
+                      <Link to="/favorites">Favorites</Link>
                       <Link to="/settings">Settings</Link>
                   </Navigation>
               </Drawer>
