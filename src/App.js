@@ -18,7 +18,7 @@ export default class extends Component {
                 currentIngredients: ingredients, // List of currently displaying ingredients
                 selectedFoodTypes: foodtypes, // List of currently displaying foodtypes
                 //ingredient: {}, 
-                foods: [], // Ingredients user wishes to use
+                foods: [], // Ingredients user wishes to use    
                 showingRecipes: false, // Showing the recipes
                 authState: false,
                 userId: ""
@@ -45,17 +45,21 @@ export default class extends Component {
 
     getIngredientsByFoodtypes() {
         // Seperates the ingredients based on food types
-        return Object.entries(
-        this.state.currentIngredients.reduce((currentIngredients, ingredient) => {
-            const { foodtypes } = ingredient;
-            // Sees if the ingredient already has a food type
-            currentIngredients[foodtypes] = currentIngredients[foodtypes]
-            // If so adds it to the list of ingredients inside the foodtype
-                ? [...currentIngredients[foodtypes], ingredient]
-                : [ingredient];
-            return currentIngredients;
-        }, {})
-        );
+        if (this.state.currentIngredients === null) {
+            return null
+        } else {
+            return Object.entries(
+                this.state.currentIngredients.reduce((currentIngredients, ingredient) => {
+                    const { foodtypes } = ingredient;
+                    // Sees if the ingredient already has a food type
+                    currentIngredients[foodtypes] = currentIngredients[foodtypes]
+                        // If so adds it to the list of ingredients inside the foodtype
+                        ? [...currentIngredients[foodtypes], ingredient]
+                        : [ingredient];
+                    return currentIngredients;
+                }, {})
+            );
+        }
     }
 
     handleIngredientSelected = id => {
@@ -93,7 +97,7 @@ export default class extends Component {
                 this.setState((prevState) => {
                     ingredients.map((ing) =>
                         // Check all ingredients
-                        ing.id.includes(document.getElementById('userInput1').value)
+                        ing.id.includes(document.getElementById('userInput1').value.toLowerCase())
                             ?
                                 // If ingredient includes user input add to ingredients to be displayed
                                 hold.push(ing)
@@ -102,7 +106,11 @@ export default class extends Component {
                                 null
                     )
                     // Update displayed ingredients
-                    return { currentIngredients: hold }
+                    if (hold.length > 0) {
+                        return { currentIngredients: hold }
+                    } else {
+                        return { currentIngredients: null }
+                    }
                 })
             :
                 // If empty display all ingredients
@@ -149,6 +157,7 @@ export default class extends Component {
         });
     }
 
+    // -------------- USER AUTH ----------------
     handleLogIn = (e) => {
         // Gets the email and password from user input
         const email = document.getElementById('txtEmail').value;
@@ -178,16 +187,34 @@ export default class extends Component {
     createUserDB = (email) => {
         // Firebase lags, so once firebase updates create the user's DB
         firebase.auth().onAuthStateChanged(user => {
-            firebase.database().ref('users/' + user.uid).set({
-                name: "placeholder"
-            });
+            var userData = {
+                name: "placeholder",
+                fridge: ""
+            };
+            // Creates userDB and fills it with placehpolder information.
+            var updates = {};
+            updates['/users/' + user.uid] = userData;
+            return firebase.database().ref().update(updates);
         })
+
     }
 
     handleLogOut = (e) => {
         // Calls fire function to sign out
         firebase.auth().signOut()
         console.log(firebase.auth().currentUser)
+    }
+
+    handleLoadFridge = () => {
+        var ref = firebase.database().ref("users/" + this.state.userId);
+        ref.once("value")
+            .then(function (snapshot) {
+                var name = snapshot.child("fridge").val();
+                this.setState((prevState) => {
+                    return { currentIngredients: this.state.userId }
+                })
+                console.log(name)
+            });
     }
 
     componentDidMount = () => {
@@ -208,7 +235,7 @@ export default class extends Component {
 
     render() {
         const ingredients = this.getIngredientsByFoodtypes();
-        //console.log(firebase.auth().currentUser)
+        //console.log(ingredients)
         return (
             <div>
                 <Header />
@@ -218,14 +245,21 @@ export default class extends Component {
                     onKeyPress={this.pressed} />
                 {firebase.auth().currentUser
                     ?
-                    // Log out button
-                    <button
-                        id="btnLogOut"
-                        className="btn btn-secondary"
-                        onClick={this.handleLogOut}
-                    > Log Out
-                    </button>
-                        
+                    // Loads logout button and load fridge button
+                    <div>
+                        <button
+                            id="btnLogOut"
+                            className="btn btn-secondary"
+                            onClick={this.handleLogOut}
+                        > Log Out
+                        </button>
+                        <button
+                            id="btnLoadFridge"
+                            className="btn btn-secondary"
+                            onClick={this.handleLoadFridge}
+                        > Load fridge
+                        </button>
+                    </div>
                     :
                     // Popup container for login
                     <Modal

@@ -34,45 +34,49 @@ export default ({
                 <TextField
                     id="userInput1"
                     onChange={() => searching()}
-                /><br/>
-                    {ingredients.map(([foodtypes, ingredients]) =>
-                    // Checks if that food type is to be displayed
-                    selectedFoodTypes.includes(foodtypes)
-                        ? // If so print the food type and its ingredients
-                        <Fragment key={foodtypes}>
-                            <Button
-                                key={foodtypes}
-                                onClick={() => onHide(foodtypes)}>
-                                    <Typography
-                                        variant="headline"
-                                        style={{ textTransform: 'capitalize bold' }}
+                /><br />
+                {ingredients
+                    ?
+                        ingredients.map(([foodtypes, ingredients]) =>
+                            // Checks if that food type is to be displayed
+                            selectedFoodTypes.includes(foodtypes)
+                                ? // If so print the food type and its ingredients
+                                <Fragment key={foodtypes}>
+                                    <Button
+                                        key={foodtypes}
+                                        onClick={() => onHide(foodtypes)}>
+                                        <Typography
+                                            variant="headline"
+                                            style={{ textTransform: 'capitalize bold' }}
                                         >{foodtypes}
-                                    </Typography>
-                            </Button>
-                            <List component="ul">
-                                {ingredients.map(({ id, name }) =>
-                                    <ListItem button key={id}>
-                                        <ListItemText
-                                            primary={name}
-                                            onClick={() => onSelect(id)} />
-                                    </ListItem>
-                                )}
-                            </List>
-                        </Fragment>
-                        : // If not display the food type so users can show if they want
-                        <Fragment key={foodtypes}>
-                            <Button
-                                key={foodtypes}
-                                onClick={() => onDisplay(foodtypes)}>
-                                    <Typography
-                                        variant="headline"
-                                        style={{ textTransform: 'capitalize bold' }}
+                                        </Typography>
+                                    </Button>
+                                    <List component="ul">
+                                        {ingredients.map(({ id, name }) =>
+                                            <ListItem button key={id}>
+                                                <ListItemText
+                                                    primary={name}
+                                                    onClick={() => onSelect(id)} />
+                                            </ListItem>
+                                        )}
+                                    </List>
+                                </Fragment>
+                                : // If not display the food type so users can show if they want
+                                <Fragment key={foodtypes}>
+                                    <Button
+                                        key={foodtypes}
+                                        onClick={() => onDisplay(foodtypes)}>
+                                        <Typography
+                                            variant="headline"
+                                            style={{ textTransform: 'capitalize bold' }}
                                         >{foodtypes}
-                                    </Typography>
-                            </Button>
-                        <br />
-                        </Fragment>
-                    )}
+                                        </Typography>
+                                    </Button>
+                                    <br />
+                                </Fragment>
+                    )
+                    : <span>No ingredients contain {document.getElementById('userInput1').value}</span>
+                    }
             </Paper>
     </Grid>
          
