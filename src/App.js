@@ -3,7 +3,7 @@ import Header from "./Components/Layouts/Header";
 import Footer from "./Components/Layouts/Footer";
 import Recipes from "./Components/Ingredients/Recipes";
 import Ingredients from "./Components/Ingredients";
-import { ingredients, foodTypes, recipes } from "./store.js";
+import { foodTypes, testerer } from "./store.js";
 import firebase from './firebase.js';
 import Modal from"./Components/Layouts/Modal"
 
@@ -12,12 +12,12 @@ export default class extends Component {
     constructor() {
         super();
         this.state = {
-            //tester,
-            //temp: [],
-                ingredients, // List of ingredients
+            testerer,
+            temp: "",
+            ingredients: [], // List of ingredients
                 foodTypes, // List of foodTypes
-                recipes, // List of recipes
-                currentIngredients: ingredients, // List of currently displaying ingredients
+                recipes: [], // List of recipes
+                currentIngredients: [], // List of currently displaying ingredients
                 selectedFoodTypes: foodTypes, // List of currently displaying foodTypes
                 //ingredient: {}, 
                 foods: [], // Ingredients user wishes to use    
@@ -26,12 +26,13 @@ export default class extends Component {
                 userId: ""
         };
     }
+    
 
     // After enter key is pressed puts user input through validation
     pressed = (event) => {
         if (event.key === 'Enter') {
             // Checks user input after enter is pressed
-            ingredients.map((ing) => 
+            this.state.ingredients.map((ing) => 
                 // Compares each ingredient to the user input checking for match
                 ing.id === document.getElementById('textInput1').value.toLowerCase()
                     ?
@@ -97,7 +98,7 @@ export default class extends Component {
             ?
                 // If not empty display ingredients that includes the user input
                 this.setState((prevState) => {
-                    ingredients.map((ing) =>
+                    this.state.ingredients.map((ing) =>
                         // Check all ingredients
                         ing.id.includes(document.getElementById('userInput1').value.toLowerCase())
                             ?
@@ -117,13 +118,13 @@ export default class extends Component {
             :
                 // If empty display all ingredients
                 this.setState((prevState) => {
-                    return { currentIngredients: ingredients }
+                    return { currentIngredients: prevState.ingredients }
                 })
     }
 
-    // Links recipe details placeholder
+    //Links recipe details placeholder
     handleLinkingRecipes = (recipeName) => {
-        recipes.map((recipe) => {
+        this.state.recipes.map((recipe) => {
             if (recipeName === recipe.name) {
                 window.open(recipe.link)
             }
@@ -233,7 +234,21 @@ export default class extends Component {
                 })
             }
         })
-        /*
+        firebase.database().ref('ingredients').once('value').then( (snapshot) => {
+            this.setState({
+                ingredients: snapshot.val(),
+                currentIngredients: snapshot.val()
+            })
+        })
+        firebase.database().ref('recipes').once('value').then((snapshot) => {
+            
+            this.setState({
+                recipes: snapshot.val(),
+            })
+        })
+       /*
+        var tester = this.state.testerer
+        
         let i, j, z = 0;
         console.log(tester.length);
         for (i = 0; i < tester.length; i++) {
@@ -249,29 +264,32 @@ export default class extends Component {
                     }
                 }
                 namer = namer.charAt(0).toUpperCase() + namer.slice(1);
+                tester[i].ingredients[j].name = ider;
                 var ing = {
                     name: namer,
                     foodTypes: typer,
                     id: ider
                 }
-                this.state.temp.push(ing);
+                //this.state.temp.push(ing);
             }
         }
 
-        console.log(this.state.temp)
-
-
-
-        if (this.state.temp.length === 65) {
-            console.log(JSON.stringify({ ingredients: this.state.temp }));
-        }
-        */
+        console.log(tester)
+        
+        var rec = JSON.parse((JSON.stringify({ recipes: tester })));
+        // Creates userDB and fills it with placehpolder information.
+        var updates = {};
+        updates['recipes'] = tester;
+        firebase.database().ref().update(updates);
+        
+  */
 
     }
 
     render() {
         const ingredients = this.getIngredientsByFoodtypes();
-        //console.log(ingredients)
+        
+        //console.log(this.state.recipes)
         return (
             <div>
                 <Header />
@@ -333,7 +351,9 @@ export default class extends Component {
                     onDisplay={this.handleDisplayFoodTypes}
                     searching={this.handleSearching}
                 />
-                <Footer foodTypes={foodTypes} />
+                {/*
+                    <Footer foodTypes={foodTypes} />
+                */}
                 {this.state.showing
                     // If user wants to display recipes display them
                     ?

@@ -1,8 +1,8 @@
 
 // Types of igredients
-export const foodtypes = ["Meat", "Vegetables", "Starch", "Fruits", "Seasoning"];
+export const foodTypes = ["Meat", "Baking", "Condiments", "Drinks", "Produce", "Misc", "Dairy"];//"Vegetables", "Starch", "Fruits", "Seasoning"];
 
-// Library of recipes
+/* Library of recipes
 export const recipes = [
     {
         ingredientID: ["beef", "stew"],
@@ -15,6 +15,7 @@ export const recipes = [
         link: "https://www.allrecipes.com/recipe/21080/great-garlic-bread/"
     }
 ];
+
 
 // Library of ingredients
 export const ingredients = [
@@ -368,7 +369,8 @@ export const ingredients = [
     }
 ];
 
-export const tester = [
+*/
+export const testerer = [
     {
         name: "Crock Pot Roast",
         "ingredients": [
@@ -931,7 +933,3 @@ export const tester = [
         "imageURL": "http://www.chatelaine.com/wp-content/uploads/2013/05/Curried-chicken-salad.jpg",
         "originalURL": "http://www.chatelaine.com/recipe/stovetop-cooking-method/curried-chicken-salad/"
     }]
-
-
- 
-*/

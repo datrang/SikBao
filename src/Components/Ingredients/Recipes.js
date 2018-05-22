@@ -7,17 +7,19 @@ export default ({ recipes, foods, linkRecipes }) => (
         <List component="ul">
             {foods.map((name) =>
                 // ^ Gets all the ingredients currently selected
-                recipes.map((recipe) =>
+                recipes.map((recipe) => 
                     // Checks each recipe to see if ingredient is in it
-                    recipe.ingredientID.includes(name)
+                    recipe.ingredients.map((individual) =>
+                        individual.name===name
                         ?
                         // If it is print that recipe
                         < ListItem button key={recipe.name}>
                             <ListItemText
                             primary={recipe.name}
-                            onClick={() => linkRecipes(recipe.name)}/>
+                            onClick={() => linkRecipes(recipe.originalURL)}/>
                         </ListItem>
-                        : null // If not then don't
+                        : console.log(name + " " + recipe.ingredients[0 ]) // If not then don't
+                    )
                 )
             )}
         </List>
