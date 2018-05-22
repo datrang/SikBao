@@ -17,7 +17,8 @@ class App extends Component {
                       <Link to="/settings">Settings</Link>
                   </Navigation>
               </Header>
-              <Drawer title="SikBao">
+              <Drawer title={<Link style = {{textDecoration:'none', color: 'black'}}
+              to = "/">SikBao</Link>}>
                   <Navigation>
                       <Link to="/profile">Profile</Link>
                       <Link to="/favorites">Favorites</Link>
