@@ -10,7 +10,6 @@ class App extends Component {
           <Layout>
               <Header title="SikBao" scroll>
                   <Navigation>
-                  /* Top left navigation */
                       <a href="/">Links</a>
                       <a href="/">Link</a>
                       <a href="/">Link</a>
