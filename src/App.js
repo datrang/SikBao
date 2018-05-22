@@ -3,7 +3,7 @@ import Header from "./Components/Layouts/Header";
 import Footer from "./Components/Layouts/Footer";
 import Recipes from "./Components/Ingredients/Recipes";
 import Ingredients from "./Components/Ingredients";
-import { ingredients, foodtypes, recipes } from "./store.js";
+import { ingredients, foodTypes, recipes } from "./store.js";
 import firebase from './firebase.js';
 import Modal from"./Components/Layouts/Modal"
 
@@ -15,10 +15,10 @@ export default class extends Component {
             //tester,
             //temp: [],
                 ingredients, // List of ingredients
-                foodtypes, // List of foodtypes
+                foodTypes, // List of foodTypes
                 recipes, // List of recipes
                 currentIngredients: ingredients, // List of currently displaying ingredients
-                selectedFoodTypes: foodtypes, // List of currently displaying foodtypes
+                selectedFoodTypes: foodTypes, // List of currently displaying foodTypes
                 //ingredient: {}, 
                 foods: [], // Ingredients user wishes to use    
                 showingRecipes: false, // Showing the recipes
@@ -52,11 +52,11 @@ export default class extends Component {
         } else {
             return Object.entries(
                 this.state.currentIngredients.reduce((currentIngredients, ingredient) => {
-                    const { foodtypes } = ingredient;
+                    const { foodTypes } = ingredient;
                     // Sees if the ingredient already has a food type
-                    currentIngredients[foodtypes] = currentIngredients[foodtypes]
+                    currentIngredients[foodTypes] = currentIngredients[foodTypes]
                         // If so adds it to the list of ingredients inside the foodtype
-                        ? [...currentIngredients[foodtypes], ingredient]
+                        ? [...currentIngredients[foodTypes], ingredient]
                         : [ingredient];
                     return currentIngredients;
                 }, {})
@@ -133,9 +133,9 @@ export default class extends Component {
     // Hides food types
     handleHideFoodTypes = (foodType) => {
         if (this.state.selectedFoodTypes.includes(foodType)) {
-            // Makes sure foodtype is in foodtypes before removing
+            // Makes sure foodtype is in foodTypes before removing
             this.setState((prevState) => {
-                // Removes the food type from array of foodtypes to display
+                // Removes the food type from array of foodTypes to display
                 prevState.selectedFoodTypes.splice(prevState.selectedFoodTypes.indexOf(foodType), 1)
                 return { selectedFoodTypes: prevState.selectedFoodTypes }
             })
@@ -333,7 +333,7 @@ export default class extends Component {
                     onDisplay={this.handleDisplayFoodTypes}
                     searching={this.handleSearching}
                 />
-                <Footer foodtypes={foodtypes} />
+                <Footer foodTypes={foodTypes} />
                 {this.state.showing
                     // If user wants to display recipes display them
                     ?
