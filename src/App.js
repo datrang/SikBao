@@ -11,7 +11,9 @@ export default class extends Component {
     // Allows use of functions
     constructor() {
         super();
-            this.state = {
+        this.state = {
+            //tester,
+            //temp: [],
                 ingredients, // List of ingredients
                 foodtypes, // List of foodtypes
                 recipes, // List of recipes
@@ -231,6 +233,40 @@ export default class extends Component {
                 })
             }
         })
+        /*
+        let i, j, z = 0;
+        console.log(tester.length);
+        for (i = 0; i < tester.length; i++) {
+            console.log(tester[i].ingredients.length);
+            for (j = 0; j < tester[i].ingredients.length; j++) {
+                var namer = tester[i].ingredients[j].name;
+                var typer = tester[i].ingredients[j].type;
+                var namer = namer.trim();
+                var ider = namer
+                for (z = 0; z < namer.length; z++) {
+                    if (namer[z] === " ") {
+                        namer = namer.slice(0, z+1) + namer.charAt(z+1).toUpperCase() + namer.slice(z+2);
+                    }
+                }
+                namer = namer.charAt(0).toUpperCase() + namer.slice(1);
+                var ing = {
+                    name: namer,
+                    foodTypes: typer,
+                    id: ider
+                }
+                this.state.temp.push(ing);
+            }
+        }
+
+        console.log(this.state.temp)
+
+
+
+        if (this.state.temp.length === 65) {
+            console.log(JSON.stringify({ ingredients: this.state.temp }));
+        }
+        */
+
     }
 
     render() {

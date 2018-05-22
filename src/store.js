@@ -1,6 +1,6 @@
 
 // Types of igredients
-export const foodtypes = ["Meats", "Vegetables", "Starch", "Fruits", "Seasoning"];
+export const foodtypes = ["Meat", "Vegetables", "Starch", "Fruits", "Seasoning"];
 
 // Library of recipes
 export const recipes = [
@@ -19,17 +19,345 @@ export const recipes = [
 // Library of ingredients
 export const ingredients = [
     {
-        foodtypes: "Starch",
+        "name": "Beef Roast",
+        "foodTypes": "Meat",
+        "id": "beef roast"
+    },
+    {
+        "name": "Brown Gravy Mix",
+        "foodTypes": "Baking",
+        "id": "brown gravy mix"
+    },
+    {
+        "name": "Dried Italian Salad Dressing Mix",
+        "foodTypes": "Condiments",
+        "id": "dried Italian salad dressing mix"
+    },
+    {
+        "name": "Dry Ranch Dressing Mix",
+        "foodTypes": "Condiments",
+        "id": "dry ranch dressing mix"
+    },
+    {
+        "name": "Water",
+        "foodTypes": "Drinks",
+        "id": "water"
+    },
+    {
+        "name": "Asparagus",
+        "foodTypes": "Produce",
+        "id": "asparagus"
+    },
+    {
+        "name": "Olive Oil",
+        "foodTypes": "Condiments",
+        "id": "olive oil"
+    },
+    {
+        "name": "Kosher Salt",
+        "foodTypes": "Baking",
+        "id": "kosher salt"
+    },
+    {
+        "name": "Beef Broth",
+        "foodTypes": "Misc",
+        "id": "beef broth"
+    },
+    {
+        "name": "Dried Green Lentils",
+        "foodTypes": "Misc",
+        "id": "dried green lentils"
+    },
+    {
+        "name": "Basmati Rice",
+        "foodTypes": "Misc",
+        "id": "basmati rice"
+    },
+    {
+        "name": "Curry Powder",
+        "foodTypes": "Condiments",
+        "id": "curry powder"
+    },
+    {
+        "name": "Salt",
+        "foodTypes": "Condiments",
+        "id": "salt"
+    },
+    {
+        "name": "Yeast",
+        "foodTypes": "Baking",
+        "id": "yeast"
+    },
+    {
+        "name": "Flour",
+        "foodTypes": "Baking",
+        "id": "flour"
+    },
+    {
+        "name": "Vegetable Oil",
+        "foodTypes": "Baking",
+        "id": "vegetable oil"
+    },
+    {
+        "name": "Sugar",
+        "foodTypes": "Baking",
+        "id": "sugar"
+    },
+    {
+        "name": "Salt",
+        "foodTypes": "Baking",
+        "id": "salt"
+    },
+    {
+        "name": "Hot Water",
+        "foodTypes": "Misc",
+        "id": "hot water"
+    },
+    {
+        "name": "Pizza Sauce",
+        "foodTypes": "Misc",
+        "id": "pizza sauce"
+    },
+    {
+        "name": "Mozzarella Cheese",
+        "foodTypes": "Dairy",
+        "id": "mozzarella cheese"
+    },
+    {
+        "name": "Acorn Squash",
+        "foodTypes": "Produce",
+        "id": "acorn squash"
+    },
+    {
+        "name": "Boiling Water",
+        "foodTypes": "Drinks",
+        "id": "boiling water"
+    },
+    {
+        "name": "Apples Chopped Into 1.4 Inch Pieces",
+        "foodTypes": "Produce",
+        "id": "apples chopped into 1.4 inch pieces"
+    },
+    {
+        "name": "Dried Cranberries",
+        "foodTypes": "Produce",
+        "id": "dried cranberries"
+    },
+    {
+        "name": "Cinnamon",
+        "foodTypes": "Baking",
+        "id": "cinnamon"
+    },
+    {
+        "name": "Melted Butter",
+        "foodTypes": "Dairy",
+        "id": "melted butter"
+    },
+    {
+        "name": "Plain Flour",
+        "foodTypes": "Baking",
+        "id": "plain flour"
+    },
+    {
+        "name": "Eggs",
+        "foodTypes": "Dairy",
+        "id": "eggs"
+    },
+    {
+        "name": "Milk",
+        "foodTypes": "Dairy",
+        "id": "milk"
+    },
+    {
+        "name": "Vegetable Oil",
+        "foodTypes": "Condiments",
+        "id": "vegetable oil"
+    },
+    {
+        "name": "Raisins",
+        "foodTypes": "Produce",
+        "id": "raisins"
+    },
+    {
+        "name": "Cup Water",
+        "foodTypes": "Drinks",
+        "id": "cup water"
+    },
+    {
+        "name": "Shortening",
+        "foodTypes": "Baking",
+        "id": "shortening"
+    },
+    {
+        "name": "Sugar",
+        "foodTypes": "Baking",
+        "id": "sugar"
+    },
+    {
+        "name": "Flour",
+        "foodTypes": "Baking",
+        "id": "flour"
+    },
+    {
+        "name": "Soda",
+        "foodTypes": "Baking",
+        "id": "soda"
+    },
+    {
+        "name": "Salt",
+        "foodTypes": "Baking",
+        "id": "salt"
+    },
+    {
+        "name": "Cinnamon",
+        "foodTypes": "Baking",
+        "id": "cinnamon"
+    },
+    {
+        "name": "Baking Powder",
+        "foodTypes": "Baking",
+        "id": "baking powder"
+    },
+    {
+        "name": "Cloves",
+        "foodTypes": "Baking",
+        "id": "cloves"
+    },
+    {
+        "name": "Oats",
+        "foodTypes": "Baking",
+        "id": "oats"
+    },
+    {
+        "name": "Chopped Nuts",
+        "foodTypes": "Baking",
+        "id": "chopped nuts"
+    },
+    {
+        "name": "Rolled Oats, (not Instant)",
+        "foodTypes": "Baking",
+        "id": "rolled oats, (not instant)"
+    },
+    {
+        "name": "All-purpose Flour",
+        "foodTypes": "Baking",
+        "id": "all-purpose flour"
+    },
+    {
+        "name": "Grated Orange Rind",
+        "foodTypes": "Produce",
+        "id": "grated orange rind"
+    },
+    {
+        "name": "Salt",
+        "foodTypes": "Baking",
+        "id": "salt"
+    },
+    {
+        "name": "Cold Butter, Cubed",
+        "foodTypes": "Baking",
+        "id": "cold butter, cubed"
+    },
+    {
+        "name": "Packed Brown Sugar",
+        "foodTypes": "Baking",
+        "id": "packed brown sugar"
+    },
+    {
+        "name": "Fresh Blueberries",
+        "foodTypes": "Produce",
+        "id": "fresh blueberries"
+    },
+    {
+        "name": "Granulated Sugar",
+        "foodTypes": "Baking",
+        "id": "granulated sugar"
+    },
+    {
+        "name": "Orange Juice",
+        "foodTypes": "Produce",
+        "id": "orange juice"
+    },
+    {
+        "name": "Cornstarch",
+        "foodTypes": "Baking",
+        "id": "cornstarch"
+    },
+    {
+        "name": "Skinless, Boneless Chicken Breasts, Halved Lengthwise",
+        "foodTypes": "Meat",
+        "id": "skinless, boneless chicken breasts, halved lengthwise"
+    },
+    {
+        "name": "Mayonnaise",
+        "foodTypes": "Baking",
+        "id": "mayonnaise"
+    },
+    {
+        "name": "Lemon Zest",
+        "foodTypes": "Produce",
+        "id": "lemon zest"
+    },
+    {
+        "name": "Lemon Juice",
+        "foodTypes": "Produce",
+        "id": "lemon juice"
+    },
+    {
+        "name": "Curry Powder",
+        "foodTypes": "Baking",
+        "id": "curry powder"
+    },
+    {
+        "name": "Salt",
+        "foodTypes": "Baking",
+        "id": "salt"
+    },
+    {
+        "name": "Ripe Mangoes, Diced",
+        "foodTypes": "Produce",
+        "id": "ripe mangoes, diced"
+    },
+    {
+        "name": "Dried Cranberries",
+        "foodTypes": "Produce",
+        "id": "dried cranberries"
+    },
+    {
+        "name": "Green Onions, Thinly Sliced",
+        "foodTypes": "Produce",
+        "id": "green onions, thinly sliced"
+    },
+    {
+        "name": "Celery Stalk, Finely Chopped",
+        "foodTypes": "Produce",
+        "id": "celery stalk, finely chopped"
+    },
+    {
+        "name": "Boston Lettuce",
+        "foodTypes": "Produce",
+        "id": "Boston lettuce"
+    },
+    {
+        "name": "English Muffins, Toasted",
+        "foodTypes": "Misc",
+        "id": "English muffins, toasted"
+    }
+]
+/*
+export const ingredients = [
+    {
+        foodtypes: "Meat",
         name: "Chicken",
         id: "chicken"
      },
     {
-        foodtypes: "Meats",
+        foodtypes: "Meat",
         name: "Beef",
         id: "beef"
      },
     {
-        foodtypes: "Meats",
+        foodtypes: "Starch",
         name: "Bread",
         id: "bread"
     },
@@ -603,3 +931,7 @@ export const tester = [
         "imageURL": "http://www.chatelaine.com/wp-content/uploads/2013/05/Curried-chicken-salad.jpg",
         "originalURL": "http://www.chatelaine.com/recipe/stovetop-cooking-method/curried-chicken-salad/"
     }]
+
+
+ 
+*/
