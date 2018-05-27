@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-import Header from "./Components/Layouts/Header";
+// import Header from "./Components/Layouts/Header";
 import Footer from "./Components/Layouts/Footer";
 import Recipes from "./Components/Ingredients/Recipes";
 import Ingredients from "./Components/Ingredients";
 import { foodTypes, testerer } from "./store.js";
 import firebase from './firebase.js';
 import Modal from"./Components/Layouts/Modal"
+import './App.css';
+import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
+import Main from './Components/Layouts/main';
+import {Link} from 'react-router-dom';
 
 export default class extends Component {
     // Allows use of functions
@@ -19,20 +23,20 @@ export default class extends Component {
                 recipes: [], // List of recipes
                 currentIngredients: [], // List of currently displaying ingredients
                 selectedFoodTypes: foodTypes, // List of currently displaying foodTypes
-                //ingredient: {}, 
-                foods: [], // Ingredients user wishes to use    
+                //ingredient: {},
+                foods: [], // Ingredients user wishes to use
                 showingRecipes: false, // Showing the recipes
                 authState: false,
                 userId: ""
         };
     }
-    
+
 
     // After enter key is pressed puts user input through validation
     pressed = (event) => {
         if (event.key === 'Enter') {
             // Checks user input after enter is pressed
-            this.state.ingredients.map((ing) => 
+            this.state.ingredients.map((ing) =>
                 // Compares each ingredient to the user input checking for match
                 ing.id === document.getElementById('textInput1').value.toLowerCase()
                     ?
@@ -241,14 +245,14 @@ export default class extends Component {
             })
         })
         firebase.database().ref('recipes').once('value').then((snapshot) => {
-            
+
             this.setState({
                 recipes: snapshot.val(),
             })
         })
        /*
         var tester = this.state.testerer
-        
+
         let i, j, z = 0;
         console.log(tester.length);
         for (i = 0; i < tester.length; i++) {
@@ -275,20 +279,20 @@ export default class extends Component {
         }
 
         console.log(tester)
-        
+
         var rec = JSON.parse((JSON.stringify({ recipes: tester })));
         // Creates userDB and fills it with placehpolder information.
         var updates = {};
         updates['recipes'] = tester;
         firebase.database().ref().update(updates);
-        
+
   */
 
     }
 
     render() {
         const ingredients = this.getIngredientsByFoodtypes();
-        
+
         //console.log(this.state.recipes)
         return (
             <div>
