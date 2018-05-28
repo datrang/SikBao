@@ -374,3 +374,35 @@ export default class extends Component {
         )
     }
 }
+
+
+// render() {
+//   return(
+//     <div className="demo-big-content">
+//         <Layout>
+//         // Header for the top left of the page
+//             <Header className="headerColor" title={<Link style = {{textDecoration:'none', color: 'white'}}
+//             to = "/">SikBao</Link>} scroll>
+//                 <Navigation>
+//                     <Link to="/profile">Profile</Link>
+//                     <Link to="/favorites">Favorites</Link>
+//                     <Link to="/settings">Settings</Link>
+//                 </Navigation>
+//             </Header>
+//             // Header for the top left drop out
+//             <Drawer title={<Link style = {{textDecoration:'none', color: 'black'}}
+//             to = "/">SikBao</Link>}>
+//                 <Navigation>
+//                     <Link to="/profile">Profile</Link>
+//                     <Link to="/favorites">Favorites</Link>
+//                     <Link to="/settings">Settings</Link>
+//                 </Navigation>
+//             </Drawer>
+//             <Content>
+//                 <div className="page-content" />
+//                 <Main/>
+//             </Content>
+//         </Layout>
+//     </div>
+//   );
+// }
