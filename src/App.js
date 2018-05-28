@@ -8,7 +8,7 @@ import firebase from './firebase.js';
 import Modal from"./Components/Layouts/Modal"
 import './App.css';
 import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
-import Main from './Components/Layouts/main';
+import Main from './Components/Layouts/Main';
 import {Link} from 'react-router-dom';
 
 export default class extends Component {

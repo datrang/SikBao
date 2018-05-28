@@ -8,13 +8,16 @@ class Profile extends Component {
         <Grid className = "profileGrid">
           <Cell col = {12}>
             <img
+            // Profile image
               src = "https://www.w3schools.com/howto/img_avatar.png"
               alt = "profilePicture"
               className = "profileImage"
               />
             <div className = "bannerText">
+            // Profile name
               <h1>Michael Lee</h1>
             <hr/>
+            // About text box
             <p>About Me: PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA
             PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA </p>
             </div>
