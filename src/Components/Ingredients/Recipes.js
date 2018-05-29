@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { List } from 'material-ui';
 import { ListItem, ListItemText } from 'material-ui/List';
+
 // Displays recipes based on ingredients selected
 export default ({ recipes, foods, linkRecipes }) => (
     <Fragment>
@@ -16,7 +17,13 @@ export default ({ recipes, foods, linkRecipes }) => (
                         < ListItem button key={recipe.name}>
                             <ListItemText
                             primary={recipe.name}
+                 
+                            secondary = {recipe.steps}
+
                             onClick={() => linkRecipes(recipe.originalURL)}/>
+                             <img src= {recipe.imageURL}  alt="test123" height = "50%" width = "50%" />
+
+         
                         </ListItem>
                         : console.log(name + " " + recipe.ingredients[0 ]) // If not then don't
                     )
@@ -25,3 +32,5 @@ export default ({ recipes, foods, linkRecipes }) => (
         </List>
     </Fragment>
 );
+
+
