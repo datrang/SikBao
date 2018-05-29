@@ -7,7 +7,7 @@ import { foodTypes, testerer } from "./store.js";
 import firebase from './firebase.js';
 import Modal from"./Components/Layouts/Modal"
 import './App.css';
-import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
+import { Layout, Header, Navigation, Drawer, Content, Button } from 'react-mdl';
 import Main from './Components/Layouts/Main';
 import {Link} from 'react-router-dom';
 
@@ -296,7 +296,26 @@ export default class extends Component {
         //console.log(this.state.recipes)
         return (
             <div>
-                <Header />
+                <div className="demo-big-content">
+                <Layout>
+        <Header className="headerColor" title={<Link style = {{textDecoration:'none', color: 'white'}}
+        to = "/">SikBao</Link>} scroll>
+            <Navigation>
+                <Link to="/profile">Profile</Link>
+                <Link to="/favorites">Favorites</Link>
+                <Link to="/settings">Settings</Link>
+            </Navigation>
+        </Header>
+        <Drawer title={<Link style = {{textDecoration:'none', color: 'black'}}
+        to = "/">SikBao</Link>}>
+            <Navigation>
+                <Link to="/profile">Profile</Link>
+                <Link to="/favorites">Favorites</Link>
+                <Link to="/settings">Settings</Link>
+            </Navigation>
+        </Drawer>
+        <Content>
+            <div className="page-content" />
                 <input
                     type="text"
                     id="textInput1"
@@ -305,18 +324,18 @@ export default class extends Component {
                     ?
                     // Loads logout button and load fridge button
                     <div>
-                        <button
+                        <Button raise ripple
                             id="btnLogOut"
                             className="btn btn-secondary"
                             onClick={this.handleLogOut}
                         > Log Out
-                        </button>
-                        <button
+                        </Button>
+                        <Button raise ripple
                             id="btnLoadFridge"
                             className="btn btn-secondary"
                             onClick={this.handleLoadFridge}
                         > Load fridge
-                        </button>
+                        </Button>
                     </div>
                     :
                     // Popup container for login
@@ -328,20 +347,20 @@ export default class extends Component {
                 <input type="checkbox" />
                 {// Button for showing recipes
                 }
-                <button
+                <Button raised ripple
                     name="showRecipes"
                     onClick={this.handleShowRecipes}
                 >
                     Search for Recipes
-                </button>
+                </Button>
                 {// Button for saving ingredients
                 }
-                <button
+                <Button raised ripple
                     name="saveIngredients"
                     onClick={this.handleSavingIngredients}
                 >
                     Save ingredients!
-                </button>
+                </Button>
                 {// Calls the Ingredients from index.js in components/Layout
                  // And sets the props
                 }
@@ -355,6 +374,9 @@ export default class extends Component {
                     onDisplay={this.handleDisplayFoodTypes}
                     searching={this.handleSearching}
                 />
+                </Content>
+            </Layout>
+        </div>
                 {/*
                     <Footer foodTypes={foodTypes} />
                 */}
@@ -371,6 +393,7 @@ export default class extends Component {
                 }
                 <p id="demo"></p>
             </div>
+
         )
     }
 }
