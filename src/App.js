@@ -301,17 +301,17 @@ export default class extends Component {
         <Header className="headerColor" title={<Link style = {{textDecoration:'none', color: 'white'}}
         to = "/">SikBao</Link>} scroll>
             <Navigation>
-                <Link to="/profile">Profile</Link>
-                <Link to="/favorites">Favorites</Link>
-                <Link to="/settings">Settings</Link>
+                <Link to="/Favorites">Favorites</Link>
+                <Link to="/Profile">Profile</Link>
+                <Link to="/Settings">Settings</Link>
             </Navigation>
         </Header>
         <Drawer title={<Link style = {{textDecoration:'none', color: 'black'}}
         to = "/">SikBao</Link>}>
             <Navigation>
-                <Link to="/profile">Profile</Link>
-                <Link to="/favorites">Favorites</Link>
-                <Link to="/settings">Settings</Link>
+                <Link to="/Favorites">Favorites</Link>
+                <Link to="/Profile">Profile</Link>
+                <Link to="/Settings">Settings</Link>
             </Navigation>
         </Drawer>
         <Content>
