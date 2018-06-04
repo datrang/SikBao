@@ -9,6 +9,6 @@ var config = {
     storageBucket: "skibao-40e74.appspot.com",
     messagingSenderId: "882996510356"
 };
-firebase.initializeApp(config);
+firebase.initializeApp(config)
 
 export default firebase

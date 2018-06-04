@@ -1,48 +1,44 @@
 import React, { Component } from "react";
 import Header from "./Components/Layouts/Header";
+import { List } from 'material-ui';
 import Footer from "./Components/Layouts/Footer";
-import Recipes from "./Components/Ingredients/Recipes";
 import Ingredients from "./Components/Ingredients";
-import { foodTypes, testerer } from "./store.js";
+import { foodTypes } from "./store.js";
 import firebase from './firebase.js';
-import Modal from"./Components/Layouts/Modal"
+import Popup from "reactjs-popup";
+import Modal from "./Components/Layouts/Modal";
+import { Recipes, getMatchingRecipes } from "./Components/Ingredients/Recipes"
+import RecipeDisplay from "./Components/Ingredients/RecipeDisplay"
+import { testFireBaseIngredients, testFireBaseRecipes, testFireBaseLogIn, testFireBaseFridge, testMatchingRecipes } from './testUnit';
 
 export default class extends Component {
     // Allows use of functions
     constructor() {
         super();
         this.state = {
-            testerer,
-            temp: "",
+            testFireBaseIngredients, testFireBaseRecipes, testFireBaseLogIn, testFireBaseFridge, testMatchingRecipes,
+            getMatchingRecipes,
             ingredients: [], // List of ingredients
-                foodTypes, // List of foodTypes
-                recipes: [], // List of recipes
-                currentIngredients: [], // List of currently displaying ingredients
-                selectedFoodTypes: foodTypes, // List of currently displaying foodTypes
-                //ingredient: {}, 
-                foods: [], // Ingredients user wishes to use    
-                showingRecipes: false, // Showing the recipes
-                authState: false,
-                userId: ""
+            foodTypes, // List of foodTypes
+            currentIngredients: [], // List of currently displaying ingredients
+            selectedFoodTypes: foodTypes, // List of currently displaying foodTypes
+            //ingredient: {}, 
+            foods: [], // Ingredients user wishes to use    
+            showingRecipes: false, // Showing the recipes
+            authState: false,
+            userId: "",
+            displayedRecipes: []
         };
     }
-    
 
-    // After enter key is pressed puts user input through validation
-    pressed = (event) => {
-        if (event.key === 'Enter') {
-            // Checks user input after enter is pressed
-            this.state.ingredients.map((ing) => 
-                // Compares each ingredient to the user input checking for match
-                ing.id === document.getElementById('textInput1').value.toLowerCase()
-                    ?
-                // If match, update list of ingredients
-                this.setState((prevState) => {
-                    return { foods: [...prevState.foods, ing.name]}
-                })
-                // Else do nothing
-                    : null
-            )
+    componentDidUpdate = (prevProps, prevState) => {
+        if (prevState.foods != this.state.foods) {
+            this.setState((prevState) => {
+                return {
+                    showingRecipes: false,
+                    displayedRecipes: []
+                }
+            })
         }
     }
 
@@ -67,7 +63,6 @@ export default class extends Component {
 
     handleIngredientSelected = id => {
         // If ingredient isn't already in list add it
-        console.log(id)
         if (!this.state.foods.includes(id)) {
             this.setState((prevState) => {
                 return { foods: [...prevState.foods, id] }
@@ -79,16 +74,15 @@ export default class extends Component {
         // Removes ingredient from list
         this.setState((prevState) => {
             prevState.foods.splice(prevState.foods.indexOf(food), 1)
-                return {foods: prevState.foods }
+            return { foods: prevState.foods }
         })
     }
 
-    handleShowRecipes = () => {
-        // Hides and displays the recipes
-        this.setState((prevState) => {
-            return { showing: !prevState.showing }
-        })
-            console.log(this.state.showing)
+    handleIngredientsOwned = foods => {
+        /*for (var i = 0; i < foods.length; i++) {
+            if (document.getElementById())
+        }*/
+        console.log(document.getElementById("ingredientsDisplayed"))
     }
 
     handleSearching = () => {
@@ -96,39 +90,112 @@ export default class extends Component {
         // Checks if input is empty
         document.getElementById('userInput1').value
             ?
-                // If not empty display ingredients that includes the user input
-                this.setState((prevState) => {
-                    this.state.ingredients.map((ing) =>
-                        // Check all ingredients
-                        ing.id.includes(document.getElementById('userInput1').value.toLowerCase())
-                            ?
-                                // If ingredient includes user input add to ingredients to be displayed
-                                hold.push(ing)
-                            :
-                                // Else do nothing
-                                null
-                    )
-                    // Update displayed ingredients
-                    if (hold.length > 0) {
-                        return { currentIngredients: hold }
-                    } else {
-                        return { currentIngredients: null }
-                    }
-                })
+            // If not empty display ingredients that includes the user input
+            this.setState((prevState) => {
+                this.state.ingredients.map((ing) =>
+                    // Check all ingredients
+                    ing.id.includes(document.getElementById('userInput1').value.toLowerCase())
+                        ?
+                        // If ingredient includes user input add to ingredients to be displayed
+                        hold.push(ing)
+                        :
+                        // Else do nothing
+                        null
+                )
+                // Update displayed ingredients
+                if (hold.length > 0) {
+                    return { currentIngredients: hold }
+                } else {
+                    return { currentIngredients: null }
+                }
+            })
             :
-                // If empty display all ingredients
-                this.setState((prevState) => {
-                    return { currentIngredients: prevState.ingredients }
-                })
+            // If empty display all ingredients
+            this.setState((prevState) => {
+                return { currentIngredients: prevState.ingredients }
+            })
+    }
+
+    handleShowingRecipes = () => {
+        //while (hold.length === 0) { }
+        //console.log(getMatchingRecipes(this.state.foods, []))
+        this.setState((prevState) => {
+            return {
+                showingRecipes: !prevState.showingRecipes,
+                displayedRecipes: getMatchingRecipes(prevState.foods, [], this.handleUpdateRecipes)
+            }
+        })
+    }
+
+    handleUpdateRecipes = (newRecipes) => {
+        this.setState((prevState) => {
+            return { displayedRecipes: newRecipes }
+        })
     }
 
     //Links recipe details placeholder
     handleLinkingRecipes = (recipeName) => {
+        //firebase.database.ref('recipes').
         this.state.recipes.map((recipe) => {
             if (recipeName === recipe.name) {
                 window.open(recipe.link)
             }
         })
+        /*
+        firebase.database().ref('/recipes/').once('value').then((snapshot) => {
+            for (var i = 0; i < snapshot.val().length; i++) {
+                if (snapshot.val()[i].name === recipeName) {
+
+                }
+            }
+        })*/
+    }
+
+    handleSavingRecipes = (recipeName) => {
+        if (recipeName) {
+            var data = firebase.database().ref('/users/' + this.state.userId + '/liked');
+            data.on('value', (snapshot) => {
+                if (snapshot.val()) {
+                    if (snapshot.val().includes(recipeName)) {
+                        console.log("Already Liked")
+                    } else {
+                        var updates = {};
+                        var newData = snapshot.val();
+                        newData.push(recipeName)
+                        updates['/users/' + this.state.userId + '/liked'] = newData;
+                        firebase.database().ref().update(updates);
+                    }
+                } else {
+                    var updates = {};
+                    updates['/users/' + this.state.userId + '/liked'] = [recipeName];
+                    firebase.database().ref().update(updates);
+                }
+            })
+        }
+    }
+
+    handleRemovingRecipes = (recipeName) => {
+        console.log(document.getElementById("ingredientsDisplayed"))
+        if (recipeName) {
+            var data = firebase.database().ref('/users/' + this.state.userId + '/disliked');
+                data.on('value', (snapshot) => {
+                if (snapshot.val()) {
+                    if (snapshot.val().includes(recipeName)) {
+                        console.log("Already Disliked")
+                    } else {
+                        var updates = {};
+                        var newData = snapshot.val();
+                        newData.push(recipeName)
+                        updates['/users/' + this.state.userId + '/disliked'] = newData;
+                        firebase.database().ref().update(updates);
+                    }
+                } else {
+                    var updates = {};
+                    updates['/users/' + this.state.userId + '/disliked'] = [recipeName];
+                    firebase.database().ref().update(updates);
+                }
+            })
+        }
     }
 
     // Hides food types
@@ -154,13 +221,16 @@ export default class extends Component {
 
     handleSavingIngredients = (e) => {
         e.preventDefault();
-        // saves user ingredients to their fridge
-        firebase.database().ref('users/' + this.state.userId).set({
-            fridge: this.state.foods
-        });
+        //holdData.fridge = this.state.foods;
+        // Creates userDB and fills it with placehpolder information.
+        if (this.state.foods) {
+            var updates = {};
+            updates['/users/' + this.state.userId + '/fridge'] = this.state.foods;
+            return firebase.database().ref().update(updates);
+        }
     }
 
-    // -------------- USER AUTH ----------------
+    // -------------- USER AUTH ---------------- \\
     handleLogIn = (e) => {
         // Gets the email and password from user input
         const email = document.getElementById('txtEmail').value;
@@ -192,7 +262,8 @@ export default class extends Component {
         firebase.auth().onAuthStateChanged(user => {
             var userData = {
                 name: "placeholder",
-                fridge: ""
+                fridge: "",
+                favRecipes: ""
             };
             // Creates userDB and fills it with placehpolder information.
             var updates = {};
@@ -209,15 +280,15 @@ export default class extends Component {
     }
 
     handleLoadFridge = () => {
-        var ref = firebase.database().ref("users/" + this.state.userId);
-        ref.once("value")
-            .then(function (snapshot) {
-                var name = snapshot.child("fridge").val();
-                this.setState((prevState) => {
-                    return { currentIngredients: this.state.userId }
-                })
-                console.log(name)
-            });
+        // Loads user fridge if there is a user signed in
+        if (this.state.uid != "") {
+            var ref = firebase.database().ref("users/" + this.state.userId + '/fridge');
+            ref.on("value", (snapshot) => {
+                    this.setState((prevState) => {
+                        return { foods: snapshot.val() }
+                    })
+                });
+        }
     }
 
     componentDidMount = () => {
@@ -234,69 +305,69 @@ export default class extends Component {
                 })
             }
         })
-        firebase.database().ref('ingredients').once('value').then( (snapshot) => {
+        // Gets recipes and ingredients from the data base
+        firebase.database().ref('ingredients').once('value').then((snapshot) => {
             this.setState({
                 ingredients: snapshot.val(),
                 currentIngredients: snapshot.val()
             })
         })
-        firebase.database().ref('recipes').once('value').then((snapshot) => {
-            
-            this.setState({
-                recipes: snapshot.val(),
-            })
-        })
-       /*
-        var tester = this.state.testerer
-        
-        let i, j, z = 0;
-        console.log(tester.length);
-        for (i = 0; i < tester.length; i++) {
-            console.log(tester[i].ingredients.length);
-            for (j = 0; j < tester[i].ingredients.length; j++) {
-                var namer = tester[i].ingredients[j].name;
-                var typer = tester[i].ingredients[j].type;
-                var namer = namer.trim();
-                var ider = namer
-                for (z = 0; z < namer.length; z++) {
-                    if (namer[z] === " ") {
-                        namer = namer.slice(0, z+1) + namer.charAt(z+1).toUpperCase() + namer.slice(z+2);
-                    }
-                }
-                namer = namer.charAt(0).toUpperCase() + namer.slice(1);
-                tester[i].ingredients[j].name = ider;
-                var ing = {
-                    name: namer,
-                    foodTypes: typer,
-                    id: ider
-                }
-                //this.state.temp.push(ing);
-            }
-        }
 
-        console.log(tester)
+        if (document.getElementById("ingredientDisplayed")) {
+            this.handleIngredientsOwned(this.state.foods)
+            console.log("gang")
+        }
         
-        var rec = JSON.parse((JSON.stringify({ recipes: tester })));
-        // Creates userDB and fills it with placehpolder information.
-        var updates = {};
-        updates['recipes'] = tester;
-        firebase.database().ref().update(updates);
-        
-  */
+        /*------------UNIT TESTING------------\\
+        console.log(testMatchingRecipes(this.state.foods));
+        console.log(testFireBaseFridge());
+        console.log(testFireBaseIngredients());
+
+        /*
+         var tester = this.state.testerer
+         
+         let i, j, z = 0;
+         console.log(tester.length);
+         for (i = 0; i < tester.length; i++) {
+             console.log(tester[i].ingredients.length);
+             for (j = 0; j < tester[i].ingredients.length; j++) {
+                 var namer = tester[i].ingredients[j].name;
+                 var typer = tester[i].ingredients[j].type;
+                 var namer = namer.trim();
+                 var ider = namer
+                 for (z = 0; z < namer.length; z++) {
+                     if (namer[z] === " ") {
+                         namer = namer.slice(0, z+1) + namer.charAt(z+1).toUpperCase() + namer.slice(z+2);
+                     }
+                 }
+                 namer = namer.charAt(0).toUpperCase() + namer.slice(1);
+                 tester[i].ingredients[j].name = ider;
+                 var ing = {
+                     name: namer,
+                     foodTypes: typer,
+                     id: ider
+                 }
+                 //this.state.temp.push(ing);
+             }
+         }
+ 
+         console.log(tester)
+         
+         var rec = JSON.parse((JSON.stringify({ recipes: tester })));
+         // Creates userDB and fills it with placehpolder information.
+         var updates = {};
+         updates['recipes'] = tester;
+         firebase.database().ref().update(updates);
+         
+   */
 
     }
 
     render() {
         const ingredients = this.getIngredientsByFoodtypes();
-        
-        //console.log(this.state.recipes)
         return (
             <div>
                 <Header />
-                <input
-                    type="text"
-                    id="textInput1"
-                    onKeyPress={this.pressed} />
                 {firebase.auth().currentUser
                     ?
                     // Loads logout button and load fridge button
@@ -321,15 +392,8 @@ export default class extends Component {
                         signUp={this.handleSignUp}
                     />
                 }
-                <input type="checkbox" />
                 {// Button for showing recipes
                 }
-                <button
-                    name="showRecipes"
-                    onClick={this.handleShowRecipes}
-                >
-                    Search for Recipes
-                </button>
                 {// Button for saving ingredients
                 }
                 <button
@@ -339,7 +403,7 @@ export default class extends Component {
                     Save ingredients!
                 </button>
                 {// Calls the Ingredients from index.js in components/Layout
-                 // And sets the props
+                    // And sets the props
                 }
                 <Ingredients
                     ingredients={ingredients}
@@ -354,16 +418,32 @@ export default class extends Component {
                 {/*
                     <Footer foodTypes={foodTypes} />
                 */}
-                {this.state.showing
-                    // If user wants to display recipes display them
+                {this.state.showingRecipes
                     ?
-                    <Recipes
-                        foods={this.state.foods}
-                        recipes={this.state.recipes}
-                        linkRecipes={this.handleLinkingRecipes}
-                    />
+                    this.state.displayedRecipes !== null
+                        ?
+                        document.getElementById("ingredientsDisplayed")
+                            ?
+                            this.handleIngredientsOwned(this.state.foods)
+                            :
+                            <RecipeDisplay
+                                displayedRecipes={this.state.displayedRecipes}
+                                foods={this.state.foods}
+                                saveClick={this.handleSavingRecipes}
+                                removeClick={this.handleRemovingRecipes}
+                                ingredientsOwned={this.handleIngredientsOwned}
+                            //linkRecipes={this.handleLinkingRecipes}
+                            />
+                        :null
+                        :
+                        <button
+                            id="btnShowRecipes"
+                            className="btn btn-secondary"
+                            onClick={this.handleShowingRecipes}
+                        > Display Recipes
+                        </button>
                     // Else don't
-                    : null
+                    
                 }
                 <p id="demo"></p>
             </div>
