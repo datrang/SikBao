@@ -439,18 +439,14 @@ export default class extends Component {
                     ?
                     this.state.displayedRecipes !== null
                         ?
-                        document.getElementById("ingredientsDisplayed")
-                            ?
-                            this.handleIngredientsOwned(this.state.foods)
-                            :
-                            <RecipeDisplay
-                                displayedRecipes={this.state.displayedRecipes}
-                                foods={this.state.foods}
-                                saveClick={this.handleSavingRecipes}
-                                removeClick={this.handleRemovingRecipes}
-                                ingredientsOwned={this.handleIngredientsOwned}
-                            //linkRecipes={this.handleLinkingRecipes}
-                            />
+                        <RecipeDisplay
+                            displayedRecipes={this.state.displayedRecipes}
+                            foods={this.state.foods}
+                            saveClick={this.handleSavingRecipes}
+                            removeClick={this.handleRemovingRecipes}
+                            ingredientsOwned={this.handleIngredientsOwned}
+                        //linkRecipes={this.handleLinkingRecipes}
+                        />
                         :null
                         :
                         <button

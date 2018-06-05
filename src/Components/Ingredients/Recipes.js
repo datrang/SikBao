@@ -101,12 +101,11 @@ export const getMatchingRecipes = (foods, displayedRecipes, userId, handleUpdate
                         var counter = 0;
                         for (var i = 0; i < leng; i++) {
                             if (snapshot.val().includes(displayedRecipes[counter].name)) {
-                                displayedRecipes[counter]["liked"] = false
+                                displayedRecipes[counter]["disliked"] = true;
                                 dislikedRecipes.push(displayedRecipes[counter])
                                 displayedRecipes.splice(i, 1);
                                 console.log(displayedRecipes);
                             } else {
-                                displayedRecipes[counter]["liked"] = true;
                                 counter++;
                             }
                         }
