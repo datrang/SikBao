@@ -40,7 +40,7 @@ export default ({
         {displayedRecipes.map((recipes) =>
             // If it is print that recipe
             <Popup
-                trigger={<button className="button">{recipes.name}</button>}
+                trigger={<button className="button">{recipes.name}{recipes.liked ? null : "This recipe is disliked"}</button>}
                     modal
             >
                 <div className="modal">

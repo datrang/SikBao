@@ -7,9 +7,10 @@ import { foodTypes } from "./store.js";
 import firebase from './firebase.js';
 import Popup from "reactjs-popup";
 import Modal from "./Components/Layouts/Modal";
-import { Recipes, getMatchingRecipes } from "./Components/Ingredients/Recipes"
-import RecipeDisplay from "./Components/Ingredients/RecipeDisplay"
+import { Recipes, getMatchingRecipes } from "./Components/Ingredients/Recipes";
+import RecipeDisplay from "./Components/Ingredients/RecipeDisplay";
 import { testFireBaseIngredients, testFireBaseRecipes, testFireBaseLogIn, testFireBaseFridge, testMatchingRecipes } from './testUnit';
+import './App.css';
 
 export default class extends Component {
     // Allows use of functions
@@ -32,6 +33,7 @@ export default class extends Component {
     }
 
     componentDidUpdate = (prevProps, prevState) => {
+        // If user selected ingredients change, don't display recipes
         if (prevState.foods != this.state.foods) {
             this.setState((prevState) => {
                 return {
@@ -77,14 +79,7 @@ export default class extends Component {
             return { foods: prevState.foods }
         })
     }
-
-    handleIngredientsOwned = foods => {
-        /*for (var i = 0; i < foods.length; i++) {
-            if (document.getElementById())
-        }*/
-        console.log(document.getElementById("ingredientsDisplayed"))
-    }
-
+   
     handleSearching = () => {
         var hold = []
         // Checks if input is empty
@@ -118,11 +113,13 @@ export default class extends Component {
 
     handleShowingRecipes = () => {
         //while (hold.length === 0) { }
-        //console.log(getMatchingRecipes(this.state.foods, []))
+        // If user wants to display recipes
         this.setState((prevState) => {
             return {
+                // Set showing to true
                 showingRecipes: !prevState.showingRecipes,
-                displayedRecipes: getMatchingRecipes(prevState.foods, [], this.handleUpdateRecipes)
+                // Call function that gets recipes
+                displayedRecipes: getMatchingRecipes(prevState.foods, [], prevState.userId, this.handleUpdateRecipes)
             }
         })
     }
@@ -223,7 +220,7 @@ export default class extends Component {
         e.preventDefault();
         //holdData.fridge = this.state.foods;
         // Creates userDB and fills it with placehpolder information.
-        if (this.state.foods) {
+        if (this.state.foods.length > 0) {
             var updates = {};
             updates['/users/' + this.state.userId + '/fridge'] = this.state.foods;
             return firebase.database().ref().update(updates);
@@ -262,8 +259,9 @@ export default class extends Component {
         firebase.auth().onAuthStateChanged(user => {
             var userData = {
                 name: "placeholder",
-                fridge: "",
-                favRecipes: ""
+                fridge: [],
+                favRecipes: [],
+                disliked: []
             };
             // Creates userDB and fills it with placehpolder information.
             var updates = {};
@@ -282,11 +280,14 @@ export default class extends Component {
     handleLoadFridge = () => {
         // Loads user fridge if there is a user signed in
         if (this.state.uid != "") {
+            console.log("gang")
             var ref = firebase.database().ref("users/" + this.state.userId + '/fridge');
             ref.on("value", (snapshot) => {
+                if (snapshot.val()) {
                     this.setState((prevState) => {
                         return { foods: snapshot.val() }
                     })
+                }
                 });
         }
     }
@@ -312,11 +313,6 @@ export default class extends Component {
                 currentIngredients: snapshot.val()
             })
         })
-
-        if (document.getElementById("ingredientDisplayed")) {
-            this.handleIngredientsOwned(this.state.foods)
-            console.log("gang")
-        }
         
         /*------------UNIT TESTING------------\\
         console.log(testMatchingRecipes(this.state.foods));
@@ -365,7 +361,28 @@ export default class extends Component {
 
     render() {
         const ingredients = this.getIngredientsByFoodtypes();
-        return (
+        return (/*
+            <div>
+            <div className="demo-big-content">
+                <Layout>
+                    <Header className="headerColor" title={<Link style={{ textDecoration: 'none', color: 'white' }}
+                        to="/">SikBao</Link>} scroll>
+                        <Navigation>
+                            <Link to="/Favorites">Favorites</Link>
+                            <Link to="/Profile">Profile</Link>
+                            <Link to="/Settings">Settings</Link>
+                        </Navigation>
+                    </Header>
+                    <Drawer title={<Link style={{ textDecoration: 'none', color: 'black' }}
+                        to="/">SikBao</Link>}>
+                        <Navigation>
+                            <Link to="/Favorites">Favorites</Link>
+                            <Link to="/Profile">Profile</Link>
+                            <Link to="/Settings">Settings</Link>
+                        </Navigation>
+                    </Drawer>
+                    </Layout>
+                    </div>*/
             <div>
                 <Header />
                 {firebase.auth().currentUser
@@ -447,6 +464,7 @@ export default class extends Component {
                 }
                 <p id="demo"></p>
             </div>
+               // </div>
         )
     }
 }

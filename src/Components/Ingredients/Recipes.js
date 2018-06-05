@@ -33,7 +33,7 @@ export const Recipes = ( foods, displayedRecipes, linkRecipes ) => (
         //console.log(this.state.showing)
     }
     */
-export const getMatchingRecipes = (foods, displayedRecipes, handleUpdateRecipes) => {
+export const getMatchingRecipes = (foods, displayedRecipes, userId, handleUpdateRecipes) => {
     // all recipes will hold a 2D array
     // containing the recipe name and number of matches
     var allRecipes = [];
@@ -44,7 +44,6 @@ export const getMatchingRecipes = (foods, displayedRecipes, handleUpdateRecipes)
         // Rudimentary sorted search
         // Searchs by number of matches
         firebase.database().ref('/recipes/').once('value').then((snapshot) => {
-            console.log("ok")
             // i goes through each recipe
             for (var i = 0; i < snapshot.val().length; i++) {
                 // j goes through each ingredient in the recipe
@@ -93,9 +92,40 @@ export const getMatchingRecipes = (foods, displayedRecipes, handleUpdateRecipes)
                 // then removes the element so it won't be included in search again
                 allRecipes.splice(mostMatchedIndex, 1);
             }
+            console.log(userId)
             console.log(displayedRecipes)
-            //return displayedRecipes
-            handleUpdateRecipes(displayedRecipes)
+            var dislikedRecipes = [];
+            if (userId) {
+                firebase.database().ref('/users/' + userId + '/disliked').on('value', (snapshot) => {
+                    if (snapshot.val()) {
+                        var counter = 0;
+                        for (var i = 0; i < leng; i++) {
+                            if (snapshot.val().includes(displayedRecipes[counter].name)) {
+                                displayedRecipes[counter]["liked"] = false
+                                dislikedRecipes.push(displayedRecipes[counter])
+                                displayedRecipes.splice(i, 1);
+                                console.log(displayedRecipes);
+                            } else {
+                                displayedRecipes[counter]["liked"] = true;
+                                counter++;
+                            }
+                        }
+                        for (var i = 0; i < dislikedRecipes.length; i++) {
+                            displayedRecipes.push(dislikedRecipes[i]);
+                            console.log(dislikedRecipes)
+                        }
+                        console.log(displayedRecipes)
+                        //return displayedRecipes
+                        handleUpdateRecipes(displayedRecipes)
+                    }else{
+                        //return displayedRecipes
+                        handleUpdateRecipes(displayedRecipes)
+                    }
+                })
+            }else{
+                //return displayedRecipes
+                handleUpdateRecipes(displayedRecipes)
+            }
         })
     }
     // returns a empty array if no foods selected
