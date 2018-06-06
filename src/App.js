@@ -361,7 +361,8 @@ export default class extends Component {
 
     render() {
         const ingredients = this.getIngredientsByFoodtypes();
-        return (/*
+        return (
+        /*
             <div>
             <div className="demo-big-content">
                 <Layout>
@@ -382,7 +383,7 @@ export default class extends Component {
                         </Navigation>
                     </Drawer>
                     </Layout>
-                    </div>*/
+                    </div>  */
             <div>
                 <Header />
                 {firebase.auth().currentUser
