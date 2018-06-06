@@ -1,0 +1,545 @@
+{
+  "ingredients" : [ {
+    "foodTypes" : "Misc",
+    "id" : "English muffins",
+    "name" : "English muffins"
+  }, {
+    "foodTypes" : "Condiments",
+    "id" : "salad dressing",
+    "name" : "salad dressing"
+  }, {
+    "foodTypes" : "Condiments",
+    "id" : "ranch dressing",
+    "name" : "ranch dressing"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "vegetable oil",
+    "name" : "Vegetable Oil"
+  }, {
+    "foodTypes" : "Drinks",
+    "id" : "boiling water",
+    "name" : "Boiling Water"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "baking powder",
+    "name" : "Baking Powder"
+  }, {
+    "foodTypes" : "Dairy",
+    "id" : "melted butter",
+    "name" : "Melted Butter"
+  }, {
+    "foodTypes" : "Misc",
+    "id" : "basmati rice",
+    "name" : "Basmati Rice"
+  }, {
+    "foodTypes" : "Condiments",
+    "id" : "curry powder",
+    "name" : "Curry Powder"
+  }, {
+    "foodTypes" : "Produce",
+    "id" : "green onions",
+    "name" : "green onions"
+  }, {
+    "foodTypes" : "Produce",
+    "id" : "orange juice",
+    "name" : "Orange Juice"
+  }, {
+    "foodTypes" : "Produce",
+    "id" : "acorn squash",
+    "name" : "Acorn Squash"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "curry powder",
+    "name" : "Curry Powder"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "chopped nuts",
+    "name" : "Chopped Nuts"
+  }, {
+    "foodTypes" : "Produce",
+    "id" : "lemon juice",
+    "name" : "Lemon Juice"
+  }, {
+    "foodTypes" : "Misc",
+    "id" : "pizza sauce",
+    "name" : "Pizza Sauce"
+  }, {
+    "foodTypes" : "Produce",
+    "id" : "cranberries",
+    "name" : "cranberries"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "brown sugar",
+    "name" : "brown sugar"
+  }, {
+    "foodTypes" : "Produce",
+    "id" : "blueberries",
+    "name" : "blueberries"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "kosher salt",
+    "name" : "Kosher Salt"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "plain flour",
+    "name" : "Plain Flour"
+  }, {
+    "foodTypes" : "Produce",
+    "id" : "lemon zest",
+    "name" : "Lemon Zest"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "shortening",
+    "name" : "Shortening"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "mayonnaise",
+    "name" : "Mayonnaise"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "cornstarch",
+    "name" : "Cornstarch"
+  }, {
+    "foodTypes" : "Meat",
+    "id" : "beef roast",
+    "name" : "Beef Roast"
+  }, {
+    "foodTypes" : "Misc",
+    "id" : "beef broth",
+    "name" : "Beef Broth"
+  }, {
+    "foodTypes" : "Condiments",
+    "id" : "olive oil",
+    "name" : "Olive Oil"
+  }, {
+    "foodTypes" : "Produce",
+    "id" : "asparagus",
+    "name" : "Asparagus"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "cinnamon",
+    "name" : "Cinnamon"
+  }, {
+    "foodTypes" : "Misc",
+    "id" : "lentils",
+    "name" : "lentils"
+  }, {
+    "foodTypes" : "Produce",
+    "id" : "raisins",
+    "name" : "Raisins"
+  }, {
+    "foodTypes" : "Produce",
+    "id" : "lettuce",
+    "name" : "lettuce"
+  }, {
+    "foodTypes" : "Meat",
+    "id" : "chicken",
+    "name" : "chicken"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "butter",
+    "name" : "butter"
+  }, {
+    "foodTypes" : "Produce",
+    "id" : "mangos",
+    "name" : "mangos"
+  }, {
+    "foodTypes" : "Produce",
+    "id" : "orange",
+    "name" : "orange"
+  }, {
+    "foodTypes" : "Produce",
+    "id" : "apples",
+    "name" : "apples"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "cloves",
+    "name" : "Cloves"
+  }, {
+    "foodTypes" : "Dairy",
+    "id" : "cheese",
+    "name" : "cheese"
+  }, {
+    "foodTypes" : "Produce",
+    "id" : "celery",
+    "name" : "celery"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "gravy",
+    "name" : "gravy"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "sugar",
+    "name" : "Sugar"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "sugar",
+    "name" : "sugar"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "flour",
+    "name" : "Flour"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "yeast",
+    "name" : "Yeast"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "flour",
+    "name" : "flour"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "salt",
+    "name" : "Salt"
+  }, {
+    "foodTypes" : "Dairy",
+    "id" : "eggs",
+    "name" : "Eggs"
+  }, {
+    "foodTypes" : "Condiments",
+    "id" : "salt",
+    "name" : "Salt"
+  }, {
+    "foodTypes" : "Dairy",
+    "id" : "milk",
+    "name" : "Milk"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "oats",
+    "name" : "Oats"
+  }, {
+    "foodTypes" : "Baking",
+    "id" : "soda",
+    "name" : "Soda"
+  } ],
+  "recipes" : [ {
+    "imageURL" : "http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/27/20/8/picVfzLZo.jpg",
+    "ingredients" : [ {
+      "name" : "beef roast",
+      "quantity" : "1",
+      "type" : "Meat"
+    }, {
+      "name" : "brown gravy mix",
+      "quantity" : "1 package",
+      "type" : "Baking"
+    }, {
+      "name" : "dried Italian salad dressing mix",
+      "quantity" : "1 package",
+      "type" : "Condiments"
+    }, {
+      "name" : "dry ranch dressing mix",
+      "quantity" : "1 package",
+      "type" : "Condiments"
+    }, {
+      "name" : "water",
+      "quantity" : "1/2 cup",
+      "type" : "Drinks"
+    } ],
+    "name" : "Crock Pot Roast",
+    "originalURL" : "http://www.food.com/recipe/to-die-for-crock-pot-roast-27208",
+    "steps" : [ "Place beef roast in crock pot.", "Mix the dried mixes together in a bowl and sprinkle over the roast.", "Pour the water around the roast.", "Cook on low for 7-9 hours." ],
+    "timers" : [ 0, 0, 0, 420 ]
+  }, {
+    "imageURL" : "http://img.sndimg.com/food/image/upload/w_266/v1/img/recipes/50/84/7/picMcSyVd.jpg",
+    "ingredients" : [ {
+      "name" : "asparagus",
+      "quantity" : "1 lb",
+      "type" : "Produce"
+    }, {
+      "name" : "olive oil",
+      "quantity" : "1 1/2 tbsp",
+      "type" : "Condiments"
+    }, {
+      "name" : "kosher salt",
+      "quantity" : "1/2 tsp",
+      "type" : "Baking"
+    } ],
+    "name" : "Roasted Asparagus",
+    "originalURL" : "http://www.food.com/recipe/roasted-asparagus-50847",
+    "steps" : [ "Preheat oven to 425�F.", "Cut off the woody bottom part of the asparagus spears and discard.", "With a vegetable peeler, peel off the skin on the bottom 2-3 inches of the spears (this keeps the asparagus from being all.\",string.\", and if you eat asparagus you know what I mean by that).", "Place asparagus on foil-lined baking sheet and drizzle with olive oil.", "Sprinkle with salt.", "With your hands, roll the asparagus around until they are evenly coated with oil and salt.", "Roast for 10-15 minutes, depending on the thickness of your stalks and how tender you like them.", "They should be tender when pierced with the tip of a knife.", "The tips of the spears will get very brown but watch them to prevent burning.", "They are great plain, but sometimes I serve them with a light vinaigrette if we need something acidic to balance out our meal." ],
+    "timers" : [ 0, 0, 0, 0, 0, 0, 10, 0, 0, 0 ]
+  }, {
+    "imageURL" : "http://dagzhsfg97k4.cloudfront.net/wp-content/uploads/2012/05/lentils3.jpg",
+    "ingredients" : [ {
+      "name" : "beef broth",
+      "quantity" : "1 quart",
+      "type" : "Misc"
+    }, {
+      "name" : "dried green lentils",
+      "quantity" : "1 cup",
+      "type" : "Misc"
+    }, {
+      "name" : "basmati rice",
+      "quantity" : "1/2 cup",
+      "type" : "Misc"
+    }, {
+      "name" : "curry powder",
+      "quantity" : "1 tsp",
+      "type" : "Condiments"
+    }, {
+      "name" : "salt",
+      "quantity" : "1 tsp",
+      "type" : "Condiments"
+    } ],
+    "name" : "Curried Lentils and Rice",
+    "steps" : [ "Bring broth to a low boil.", "Add curry powder and salt.", "Cook lentils for 20 minutes.", "Add rice and simmer for 20 minutes.", "Enjoy!" ],
+    "timers" : [ 0, 0, 20, 20, 0 ]
+  }, {
+    "imageURL" : "http://upload.wikimedia.org/wikipedia/commons/c/c7/Spinach_pizza.jpg",
+    "ingredients" : [ {
+      "name" : "yeast",
+      "quantity" : "5 teaspoons",
+      "type" : "Baking"
+    }, {
+      "name" : "flour",
+      "quantity" : "5 cups",
+      "type" : "Baking"
+    }, {
+      "name" : "vegetable oil",
+      "quantity" : "4 tablespoons",
+      "type" : "Baking"
+    }, {
+      "name" : "sugar",
+      "quantity" : "2 tablespoons",
+      "type" : "Baking"
+    }, {
+      "name" : "salt",
+      "quantity" : "2 teaspoons",
+      "type" : "Baking"
+    }, {
+      "name" : "hot water",
+      "quantity" : "2 cups",
+      "type" : "Misc"
+    }, {
+      "name" : "pizza sauce",
+      "quantity" : "1/4 cup",
+      "type" : "Misc"
+    }, {
+      "name" : "mozzarella cheese",
+      "quantity" : "3/4 cup",
+      "type" : "Dairy"
+    } ],
+    "name" : "Big Night Pizza",
+    "steps" : [ "Add hot water to yeast in a large bowl and let sit for 15 minutes.", "Mix in oil, sugar, salt, and flour and let sit for 1 hour.", "Knead the dough and spread onto a pan.", "Spread pizza sauce and sprinkle cheese.", "Add any optional toppings as you wish.", "Bake at 400 deg Fahrenheit for 15 minutes.", "Enjoy!" ],
+    "timers" : [ 15, 60, 0, 0, 0, 15, 0 ]
+  }, {
+    "imageURL" : "http://elanaspantry.com/wp-content/uploads/2008/10/acorn_squash_with_cranberry.jpg",
+    "ingredients" : [ {
+      "name" : "acorn squash",
+      "quantity" : "2",
+      "type" : "Produce"
+    }, {
+      "name" : "boiling water",
+      "quantity" : "1",
+      "type" : "Drinks"
+    }, {
+      "name" : "apples chopped into 1.4 inch pieces",
+      "quantity" : "2",
+      "type" : "Produce"
+    }, {
+      "name" : "dried cranberries",
+      "quantity" : "1/2 cup",
+      "type" : "Produce"
+    }, {
+      "name" : "cinnamon",
+      "quantity" : "1 teaspoon",
+      "type" : "Baking"
+    }, {
+      "name" : "melted butter",
+      "quantity" : "2 tablespoons",
+      "type" : "Dairy"
+    } ],
+    "name" : "Cranberry and Apple Stuffed Acorn Squash Recipe",
+    "originalURL" : "",
+    "steps" : [ "Cut squash in half, remove seeds.", "Place squash in baking dish, cut-side down.", "Pour 1/4-inch water into dish.", "Bake for 30 minutes at 350 degrees F.", "In large bowl, combine remaining ingredients.", "Remove squash from oven, fill with mix.", "Bake for 30-40 more minutes, until squash tender.", "Enjoy!" ],
+    "timers" : [ 0, 0, 0, 30, 0, 0, 30, 0 ]
+  }, {
+    "imageURL" : "http://upload.wikimedia.org/wikipedia/commons/f/f9/Yorkshire_Pudding.jpg",
+    "ingredients" : [ {
+      "name" : "plain flour",
+      "quantity" : "200g",
+      "type" : "Baking"
+    }, {
+      "name" : "eggs",
+      "quantity" : "3",
+      "type" : "Dairy"
+    }, {
+      "name" : "milk",
+      "quantity" : "300ml",
+      "type" : "Dairy"
+    }, {
+      "name" : "vegetable oil",
+      "quantity" : "3 tbsp",
+      "type" : "Condiments"
+    } ],
+    "name" : "Mic's Yorkshire Puds",
+    "originalURL" : "http://upload.wikimedia.org/wikipedia/commons/f/f9/Yorkshire_Pudding.jpg",
+    "steps" : [ "Put the flour and some seasoning into a large bowl.", "Stir in eggs, one at a time.", "Whisk in milk until you have a smooth batter.", "Chill in the fridge for at least 30 minutes.", "Heat oven to 220C/gas mark 7.", "Pour the oil into the holes of a 8-hole muffin tin.", "Heat tin in the oven for 5 minutes.", "Ladle the batter mix into the tin.", "Bake for 30 minutes until well browned and risen." ],
+    "timers" : [ 0, 0, 0, 30, 0, 0, 5, 0, 30 ]
+  }, {
+    "imageURL" : "http://s3.amazonaws.com/gmi-digital-library/65caecf7-a8f7-4a09-8513-2659cf92871e.jpg",
+    "ingredients" : [ {
+      "name" : "raisins",
+      "quantity" : "1 cup",
+      "type" : "Produce"
+    }, {
+      "name" : "cup water",
+      "quantity" : "1",
+      "type" : "Drinks"
+    }, {
+      "name" : "shortening",
+      "quantity" : "3/4 cup",
+      "type" : "Baking"
+    }, {
+      "name" : "sugar",
+      "quantity" : "1 1/2 cups",
+      "type" : "Baking"
+    }, {
+      "name" : "flour",
+      "quantity" : "2 1/2 cups",
+      "type" : "Baking"
+    }, {
+      "name" : "soda",
+      "quantity" : "1 tsp.",
+      "type" : "Baking"
+    }, {
+      "name" : "salt",
+      "quantity" : "1 tsp.",
+      "type" : "Baking"
+    }, {
+      "name" : "cinnamon",
+      "quantity" : "1 tsp.",
+      "type" : "Baking"
+    }, {
+      "name" : "baking powder",
+      "quantity" : "1/2 tsp.",
+      "type" : "Baking"
+    }, {
+      "name" : "cloves",
+      "quantity" : "1/2 tsp.",
+      "type" : "Baking"
+    }, {
+      "name" : "oats",
+      "quantity" : "2 cups",
+      "type" : "Baking"
+    }, {
+      "name" : "chopped nuts",
+      "quantity" : "1/2 cup",
+      "type" : "Baking"
+    } ],
+    "name" : "Old-Fashioned Oatmeal Cookies",
+    "originalURL" : "#",
+    "steps" : [ "Simmer raisins and water over medium heat until raisins are plump, about 15 minutes.", "Drain raisins, reserving the liquid.", "Add enough water to reserved liquid to measure 1/2 cup.", "Heat oven to 400�.", "Mix thoroughly shortening, sugar, eggs and vanilla.", "Stir in reserved liquid.", "Blend in remaining ingredients.", "Drop dough by rounded teaspoonfuls about 2 inches apart onto ungreased baking sheet.", "Bake 8 to 10 minutes or until light brown.", "About 6 1/2 dozen cookies." ],
+    "timers" : [ 15, 0, 0, 0, 0, 0, 0, 0, 8, 0 ]
+  }, {
+    "imageURL" : "http://www.canadianliving.com/img/photos/biz/blueberry-oatmeal-squares5801359401371.jpg",
+    "ingredients" : [ {
+      "name" : "rolled oats, (not instant)",
+      "quantity" : "2-1/2 cups",
+      "type" : "Baking"
+    }, {
+      "name" : "all-purpose flour",
+      "quantity" : "1-1/4 cups",
+      "type" : "Baking"
+    }, {
+      "name" : "grated orange rind",
+      "quantity" : "1 tbsp",
+      "type" : "Produce"
+    }, {
+      "name" : "salt",
+      "quantity" : "1/4 tsp",
+      "type" : "Baking"
+    }, {
+      "name" : "cold butter, cubed",
+      "quantity" : "1 cup",
+      "type" : "Baking"
+    }, {
+      "name" : "packed brown sugar",
+      "quantity" : "3/4 cup",
+      "type" : "Baking"
+    }, {
+      "name" : "fresh blueberries",
+      "quantity" : "3 cups",
+      "type" : "Produce"
+    }, {
+      "name" : "granulated sugar",
+      "quantity" : "1/2 cup",
+      "type" : "Baking"
+    }, {
+      "name" : "orange juice",
+      "quantity" : "1/3 cup",
+      "type" : "Produce"
+    }, {
+      "name" : "cornstarch",
+      "quantity" : "4 tsp",
+      "type" : "Baking"
+    } ],
+    "name" : "Blueberry Oatmeal Squares",
+    "originalURL" : "http://www.canadianliving.com/food/blueberry_oatmeal_squares.php",
+    "steps" : [ "Filling: In saucepan, bring blueberries, sugar and orange juice to boil; reduce heat and simmer until tender, about 10 minutes.", "Whisk cornstarch with 2 tbsp (25 mL) water; whisk into blueberries and boil, stirring, until thickened, about 1 minute.", "Place plastic wrap directly on surface; refrigerate until cooled, about 1 hour.", "In large bowl, whisk together oats, flour, sugar, orange rind and salt ; with pastry blender, cut in butter until in coarse crumbs.", "Press half into 8-inch (2 L) square parchment paper�lined metal cake pan; spread with blueberry filling.", "Bake in centre of 350�F oven until light golden, about 45 minutes.", "Let cool on rack before cutting into squares.", "(Make-ahead: Cover and refrigerate for up to 2 days or overwrap with heavy-duty foil and freeze for up to 2 weeks.)" ],
+    "timers" : [ 10, 1, 60, 0, 0, 45, 0, 0 ]
+  }, {
+    "imageURL" : "http://www.chatelaine.com/wp-content/uploads/2013/05/Curried-chicken-salad.jpg",
+    "ingredients" : [ {
+      "name" : "skinless, boneless chicken breasts, halved lengthwise",
+      "quantity" : "3",
+      "type" : "Meat"
+    }, {
+      "name" : "mayonnaise",
+      "quantity" : "1/2 cup",
+      "type" : "Baking"
+    }, {
+      "name" : "lemon zest",
+      "quantity" : "1 tbsp",
+      "type" : "Produce"
+    }, {
+      "name" : "lemon juice",
+      "quantity" : "1 tbsp ",
+      "type" : "Produce"
+    }, {
+      "name" : "curry powder",
+      "quantity" : "1 1/2 tsp",
+      "type" : "Baking"
+    }, {
+      "name" : "salt",
+      "quantity" : "1/4 tsp",
+      "type" : "Baking"
+    }, {
+      "name" : "ripe mangoes, diced",
+      "quantity" : "2",
+      "type" : "Produce"
+    }, {
+      "name" : "dried cranberries",
+      "quantity" : "1/4 cup",
+      "type" : "Produce"
+    }, {
+      "name" : "green onions, thinly sliced",
+      "quantity" : "2",
+      "type" : "Produce"
+    }, {
+      "name" : "celery stalk, finely chopped",
+      "quantity" : "1",
+      "type" : "Produce"
+    }, {
+      "name" : "Boston lettuce",
+      "quantity" : "6 leaves",
+      "type" : "Produce"
+    }, {
+      "name" : "English muffins, toasted",
+      "quantity" : "6",
+      "type" : "Misc"
+    } ],
+    "name" : "Curried chicken salad",
+    "originalURL" : "http://www.chatelaine.com/recipe/stovetop-cooking-method/curried-chicken-salad/",
+    "steps" : [ "ARRANGE chicken in a single layer in a large pot.", "Add water to just cover.", "Bring to a boil over medium-high.", "Flip chicken, reduce heat to medium and simmer until cooked, about 6 more min.", "Cool.", "STIR mayo with lemon zest, juice, curry and salt in large bowl.", "Using 2 forks, shred chicken, then stir into mayo mixture with mango, cranberries, green onions and celery.", "Divide among muffins with lettuce leaves", "Sandwich with tops" ],
+    "timers" : [ 0, 0, 0, 6, 0, 0, 0, 0, 0 ]
+  } ],
+  "users" : {
+    "NqBpa04FnOOmPmWRBfZmPstMHk73" : {
+      "disliked" : [ "Curried chicken salad", "Crock Pot Roast" ],
+      "fridge" : [ "beef roast", "chicken", "English muffins" ],
+      "liked" : [ "Curried chicken salad", "Crock Pot Roast" ],
+      "name" : "placeholder"
+    }
+  }
+}
