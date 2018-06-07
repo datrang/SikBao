@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Header from "./Components/Layouts/Header";
+import Main from './Components/Layouts/Main';
+import { Link } from 'react-router-dom'
+import { Layout, Header, Navigation, Drawer, Content, Button } from 'react-mdl';
 import { List } from 'material-ui';
 import Footer from "./Components/Layouts/Footer";
 import Ingredients from "./Components/Ingredients";
@@ -9,7 +11,7 @@ import Popup from "reactjs-popup";
 import Modal from "./Components/Layouts/Modal";
 import { Recipes, getMatchingRecipes } from "./Components/Ingredients/Recipes";
 import RecipeDisplay from "./Components/Ingredients/RecipeDisplay";
-import { testFireBaseIngredients, testFireBaseRecipes, testFireBaseLogIn, testFireBaseFridge, testMatchingRecipes } from './testUnit';
+//import { testFireBaseIngredients, testFireBaseRecipes, testFireBaseLogIn, testFireBaseFridge, testMatchingRecipes } from './testUnit';
 import './App.css';
 
 export default class extends Component {
@@ -17,7 +19,7 @@ export default class extends Component {
     constructor() {
         super();
         this.state = {
-            testFireBaseIngredients, testFireBaseRecipes, testFireBaseLogIn, testFireBaseFridge, testMatchingRecipes,
+            //testFireBaseIngredients, testFireBaseRecipes, testFireBaseLogIn, testFireBaseFridge, testMatchingRecipes,
             getMatchingRecipes,
             ingredients: [], // List of ingredients
             foodTypes, // List of foodTypes
@@ -28,6 +30,7 @@ export default class extends Component {
             showingRecipes: false, // Showing the recipes
             authState: false,
             userId: "",
+            newUser: false,
             displayedRecipes: []
         };
     }
@@ -253,9 +256,12 @@ export default class extends Component {
             .then(this.createUserDB(email))
             .catch(e => console.log(e.message));
     }
-
+    
     createUserDB = (email) => {
-        // Firebase lags, so once firebase updates create the user's DB
+        this.setState((prevState) => {
+            return { newUser: true };
+        })
+        /* Firebase lags, so once firebase updates create the user's DB
         firebase.auth().onAuthStateChanged(user => {
             var userData = {
                 name: "placeholder",
@@ -267,7 +273,7 @@ export default class extends Component {
             var updates = {};
             updates['/users/' + user.uid] = userData;
             return firebase.database().ref().update(updates);
-        })
+        })*/
 
     }
 
@@ -297,14 +303,34 @@ export default class extends Component {
         firebase.auth().onAuthStateChanged((user) => {
             // Grabs UID of user if there one
             if (user) {
-                this.setState((prevState) => {
-                    return { userId: user.uid }
-                })
+                if (this.state.newUser) {
+                    var userData = {
+                        name: "placeholder",
+                        fridge: [],
+                        favRecipes: [],
+                        disliked: []
+                    };
+                    // Creates userDB and fills it with placehpolder information.
+                    var updates = {};
+                    updates['/users/' + user.uid] = userData;
+                    firebase.database().ref().update(updates);
+                    this.setState((prevState) => {
+                        return {
+                            userId: user.uid,
+                            newUser: false,
+                        }
+                    })
+                } else {
+                    this.setState((prevState) => {
+                        return { userId: user.uid }
+                    })
+                }
             } else {
                 this.setState((prevState) => {
                     return { userId: "" }
                 })
             }
+
         })
         // Gets recipes and ingredients from the data base
         firebase.database().ref('ingredients').once('value').then((snapshot) => {
@@ -361,30 +387,28 @@ export default class extends Component {
 
     render() {
         const ingredients = this.getIngredientsByFoodtypes();
-        return (/*
+        return (
             <div>
-            <div className="demo-big-content">
-                <Layout>
-                    <Header className="headerColor" title={<Link style={{ textDecoration: 'none', color: 'white' }}
-                        to="/">SikBao</Link>} scroll>
-                        <Navigation>
-                            <Link to="/Favorites">Favorites</Link>
-                            <Link to="/Profile">Profile</Link>
-                            <Link to="/Settings">Settings</Link>
-                        </Navigation>
-                    </Header>
-                    <Drawer title={<Link style={{ textDecoration: 'none', color: 'black' }}
-                        to="/">SikBao</Link>}>
-                        <Navigation>
-                            <Link to="/Favorites">Favorites</Link>
-                            <Link to="/Profile">Profile</Link>
-                            <Link to="/Settings">Settings</Link>
-                        </Navigation>
-                    </Drawer>
-                    </Layout>
-                    </div>*/
-            <div>
-                <Header />
+                <div className="work">
+                    <Layout>
+                        <Header className="headerColor" title={<Link style={{ textDecoration: 'none', color: 'white' }}
+                            to="/">SikBao</Link>} scroll>
+                            <Navigation>
+                                <Link to="/Favorites">Favorites</Link>
+                                <Link to="/Profile">Profile</Link>
+                                <Link to="/Settings">Settings</Link>
+                            </Navigation>
+                        </Header>
+                        <Drawer title={<Link style={{ textDecoration: 'none', color: 'black' }}
+                            to="/">SikBao</Link>}>
+                            <Navigation>
+                                <Link to="/Favorites">Favorites</Link>
+                                <Link to="/Profile">Profile</Link>
+                                <Link to="/Settings">Settings</Link>
+                            </Navigation>
+                        </Drawer>
+                        <Content>
+            <div className="page-content" />
                 {firebase.auth().currentUser
                     ?
                     // Loads logout button and load fridge button
@@ -408,10 +432,6 @@ export default class extends Component {
                         logIn={this.handleLogIn}
                         signUp={this.handleSignUp}
                     />
-                }
-                {// Button for showing recipes
-                }
-                {// Button for saving ingredients
                 }
                 <button
                     name="saveIngredients"
@@ -459,8 +479,10 @@ export default class extends Component {
                     
                 }
                 <p id="demo"></p>
-            </div>
-               // </div>
+                        </Content>
+                    </Layout>
+                </div>
+                </div>
         )
     }
 }
