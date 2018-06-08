@@ -21,9 +21,6 @@ class Favorites extends Component {
             disliked: [],
             deleting: false
         };
-        this.handleDeletingChange = this.handleDeletingChange.bind(this);
-        this.handleRemovingDislike = this.handleRemovingDislike.bind(this);
-        this.handleRemovingLike = this.handleRemovingLike.bind(this);
     }
     componentDidMount = () => {
         if (this.state.userId !== this.props.location.state.userId) {
