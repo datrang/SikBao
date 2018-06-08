@@ -28,9 +28,9 @@
 } */
 
 .headerColor {
-	background: #6190E8;  /* fallback for old browsers */
-	background: -webkit-linear-gradient(to right, #A7BFE8, #6190E8);  /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to right, #A7BFE8, #6190E8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: #103D5D;  /* fallback for old browsers */
+	/* background: -webkit-linear-gradient(to right, #A7BFE8, #6190E8);  Chrome 10-25, Safari 5.1-6 */
+	/* background: linear-gradient(to right, #A7BFE8, #6190E8); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 
@@ -76,4 +76,38 @@ height: 100%;
   font-size: 20px;
   color: white;
   padding: 1em;
+}
+
+.logout_button {
+  background-color: transparent;
+  color: white;
+  border: 0;
+}
+
+.fridge_button {
+  border-radius: 2px;
+  min-width: 88px;
+  background-color: #103D5D;
+  cursor: pointer;
+  border: 0;
+  min-width: 90px;
+  margin : 10px;
+  margin-bottom: 0;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  padding: 10px 6px;
+}
+
+.recipe_display_button {
+  background-color: #103D5D;
+  cursor: pointer;
+  border: 0;
+  min-width: 90px;
+  margin : 10px;
+  margin-bottom: 0;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  padding: 10px 6px;
 }

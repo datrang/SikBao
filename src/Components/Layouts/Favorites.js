@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import firebase from '../../firebase.js';
+import { ListItem, ListItemText } from 'material-ui/List';
 import Popup from 'reactjs-popup';
+import './Layout.css';
 
 class Favorites extends Component {
     constructor(props) {
@@ -41,9 +43,9 @@ class Favorites extends Component {
         console.log(this.state.liked + this.state.disliked)
         return (
             <div>
-                <h1>Liked</h1>
+                <h2>Liked</h2>
                 {this.state.liked.map((recipes) => <Popup
-                    trigger={<button className="button">{recipes.name}</button>}
+                    trigger={<ListItem button className = "list">{recipes.name}</ListItem>}
                     modal
                 >
                     <div className="modal">
@@ -61,7 +63,7 @@ class Favorites extends Component {
                 )}
                 <h2>Disliked</h2>
                 {this.state.disliked.map((recipes) =>
-                    <span>{recipes.name} <br /></span>
+                    <ListItem className = "list">{recipes.name} </ListItem>
                 )}
             </div>
         );
