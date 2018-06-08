@@ -28,8 +28,9 @@ export default ({
     <Grid container>
         <Grid item sm>
             <Paper style={styles.Paper} >
+                <h4 className = 'search_name'>Search</h4>
                 <div className = 'search'>
-                  <TextField
+                        <TextField
                         id="userInput1"
                         placeHolder = "Search"
                         onChange={() => searching()}
