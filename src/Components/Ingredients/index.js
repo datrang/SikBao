@@ -3,17 +3,14 @@ import { Grid, Paper, Typography, List, TextField } from 'material-ui';
 import { ListItem, ListItemText } from 'material-ui/List';
 import Button from "material-ui/Button";
 import blue from 'material-ui/colors/red';
+import './index.css'
 
 const styles = {
     Paper: {
         padding: 20,
-        marginTop: 10,
-        marginBottom: 10,
+        margin: 10,
         height: 500,
         overflowY: 'auto'
-    },
-    inputStyle: {
-        color: blue
     }
 };
 
@@ -31,10 +28,13 @@ export default ({
     <Grid container>
         <Grid item sm>
             <Paper style={styles.Paper} >
-                <TextField
-                    id="userInput1"
-                    onChange={() => searching()}
-                /><br />
+                <div className = 'search'>
+                  <TextField
+                        id="userInput1"
+                        placeHolder = "Search"
+                        onChange={() => searching()}
+                    /> 
+                    </div>
                 {ingredients
                     ?
                     ingredients.map(([foodtypes, ingredients]) =>
@@ -112,7 +112,7 @@ export default ({
                             variant="subheading"
                             style={{ marginTop: 20 }}
                         >
-                            Please input or select an ingredient on the left side.
+                            Please search or select an ingredient on the left side.
                     </Typography>
                     </Fragment>
                 }

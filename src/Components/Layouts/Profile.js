@@ -28,8 +28,7 @@ class Profile extends Component {
                             <h1>{this.state.userId}</h1>
                             <hr />
                             // About text box
-                            <p>About Me: PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA
-            PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA </p>
+                            <p>About Me: Profile Information</p>
                         </div>
                     </Cell>
                 </Grid>

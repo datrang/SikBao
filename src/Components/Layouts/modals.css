@@ -1,0 +1,47 @@
+.email_input {
+  font-size: 14px;
+  width: 35%;
+  padding : 10px 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 0;
+}
+
+.password_input {
+  font-size: 14px;
+  width: 35%;
+  padding : 10px 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 0;
+}
+
+.login_button {
+  background-color: transparent;
+  text-decoration: none;
+  border: 0;
+  font-size: 14px;
+  color: white;
+  padding: 16px 12px;
+}
+
+.enter_button {
+  background-color: #103D5D;
+  cursor: pointer;
+  border: 0;
+  min-width: 90px;
+  margin : 10px;
+  margin-bottom: 0;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  padding: 10px 6px;
+}
+
+.prompt {
+  background-color: #103D5D;
+  margin: 0;
+  color: #fff;
+  font-weight: 300;
+  padding: 10px;
+}

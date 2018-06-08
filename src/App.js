@@ -2,7 +2,7 @@ import aMain from './Components/Layouts/Main'
 import React, { Component } from "react";
 import { Link, Route, Switch, Redirect } from 'react-router-dom'
 import { Layout, Header, Navigation, Drawer, Content, Button } from 'react-mdl';
-import { List } from 'material-ui';
+import { Grid, Paper, List } from 'material-ui';
 import Footer from "./Components/Layouts/Footer";
 import Ingredients from "./Components/Ingredients";
 import { foodTypes } from "./store.js";
@@ -406,6 +406,10 @@ export default class extends Component {
                                             state: { userId: this.state.userId}
                                         }}>Profile</Link>
                                         <Link to="/Settings">Settings</Link>
+                                        <button
+                                            className="logout_button"
+                                            onClick={this.handleLogOut}
+                                                >Log Out</button>
                                     </Navigation>
                                     :
                                     <Navigation>
@@ -445,30 +449,22 @@ export default class extends Component {
                                             // Loads logout button and load fridge button
                                             <div>
                                                 <button
-                                                    id="btnLogOut"
-                                                    className="btn btn-secondary"
-                                                    onClick={this.handleLogOut}
-                                                > Log Out
-                                    </button>
-                                                <button
+                                                    className = "fridge_button"
                                                     id="btnLoadFridge"
-                                                    className="btn btn-secondary"
                                                     onClick={this.handleLoadFridge}
                                                 > Load fridge
-                                    </button>
+                                                </button>
                                                 <button
+                                                    className = "fridge_button"
                                                     name="saveIngredients"
                                                     onClick={this.handleSavingIngredients}
                                                 >
-                                                    Save ingredients!
-                                    </button>
+                                                    Save Fridge
+                                                 </button>
                                             </div>
                                             :
-                                            // Popup container for login
-                                            <Modal
-                                                logIn={this.handleLogIn}
-                                                signUp={this.handleSignUp}
-                                            />
+                                            <div>
+                                            </div>
                                         }
                                         {   // Calls the Ingredients from index.js in components/Layout
                                             // And sets the props
@@ -500,16 +496,24 @@ export default class extends Component {
                                                     : null
                                                 :
                                                 // If recipes aren't supposed to be showing, display button to show recipes
-                                                <button
-                                                    id="btnShowRecipes"
-                                                    className="btn btn-secondary"
-                                                    onClick={this.handleShowingRecipes}
-                                                > Display Recipes
-                                    </button>
+                                                <Grid item sm>
+                                                    <Paper style = {{
+                                                        padding: 20,
+                                                        margin: 10,
+                                                        height: 230,
+                                                        overflowY: 'auto'
+                                                    }}>
+                                                        <button
+                                                            id="btnShowRecipes"
+                                                            className="recipe_display_button"
+                                                            onClick={this.handleShowingRecipes}
+                                                            > Display Recipes
+                                                        </button>
+                                                    </Paper>
+                                                </Grid>
                                             // Else don't
 
                                         }
-
                                         <p id="demo"></p>
                                     </div>
                                 } />
