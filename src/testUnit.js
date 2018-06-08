@@ -1,3 +1,6 @@
+/*
+EXTERMELY BASIC UNIT TESTS
+*/
 import React, { Component } from "react";
 import Header from "./Components/Layouts/Header";
 import Footer from "./Components/Layouts/Footer";

@@ -34,6 +34,7 @@ export const Recipes = ( foods, displayedRecipes, linkRecipes ) => (
     }
     */
 export const getMatchingRecipes = (foods, displayedRecipes, userId, handleUpdateRecipes) => {
+    console.log('gang')
     // all recipes will hold a 2D array
     // containing the recipe name and number of matches
     var allRecipes = [];
@@ -93,22 +94,24 @@ export const getMatchingRecipes = (foods, displayedRecipes, userId, handleUpdate
                 allRecipes.splice(mostMatchedIndex, 1);
             }
             console.log(userId)
-            console.log(displayedRecipes)
             var dislikedRecipes = [];
             if (userId) {
+                // Checks if any of the recipes to be displayed are disliked
                 firebase.database().ref('/users/' + userId + '/disliked').on('value', (snapshot) => {
                     if (snapshot.val()) {
                         var counter = 0;
+                        // If a recipe is disliked splice it out and put it into the dislikedRecipes array
                         for (var i = 0; i < leng; i++) {
                             if (snapshot.val().includes(displayedRecipes[counter].name)) {
                                 displayedRecipes[counter]["disliked"] = true;
                                 dislikedRecipes.push(displayedRecipes[counter])
-                                displayedRecipes.splice(i, 1);
+                                displayedRecipes.splice(counter, 1);
                                 console.log(displayedRecipes);
                             } else {
                                 counter++;
                             }
                         }
+                        // Adds all the disliked recipes to the end of the array
                         for (var i = 0; i < dislikedRecipes.length; i++) {
                             displayedRecipes.push(dislikedRecipes[i]);
                             console.log(dislikedRecipes)
