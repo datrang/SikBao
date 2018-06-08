@@ -1,3 +1,6 @@
+/*
+EXTERMELY BASIC UNIT TESTS
+*/
 import React, { Component } from "react";
 import Header from "./Components/Layouts/Header";
 import Footer from "./Components/Layouts/Footer";
@@ -70,7 +73,7 @@ export function testFireBaseLogIn(user) {
 
 //var testing = (function () { return { getMatchingRecipes: function () { getMatchingRecipes(); } } })
 
-/*export function testFireBaseFridge() {
+export function testFireBaseFridge() {
     // Unit test set up
     let testUserId = "testing"
     let testFridge = ["sdf_DSF324214dsf", "fssd,ert234,12we", "", "   "]
@@ -105,7 +108,7 @@ export function testFireBaseLogIn(user) {
     })
     // Return whether test true or false
     return rVar
-}*/
+}
 
 export function testMatchingRecipes(foo) {
     /*var testFoods = foo;

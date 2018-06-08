@@ -13,18 +13,16 @@ const styles = {
     defaultText: {
     },
     btnDislikeButton: {
-        background: "red", /* Green background */
-        border: "#00FF00", /* Green border */
-        color: "white", /* White text */
-        //padding: 10px 24px; /* Some padding */
-        cursor: "pointer", /* Pointer/hand icon */
+        background: "red", // Red background 
+        border: "#00FF00", // Green border
+        color: "white", // White text
+        cursor: "pointer" // Pointer/hand icon
     },
     btnLikeButton: {
-        background: "#4CAF50", /* Green background */
-        border: "#00FF00", /* Green border */
-        color: "white", /* White text */
-        //padding: 10px 24px; /* Some padding */
-        cursor: "pointer", /* Pointer/hand icon */
+        background: "#4CAF50", // Green background
+        border: "#00FF00", // Green border
+        color: "white", // White text
+        cursor: "pointer" // Pointer/hand icon
     }
 }
 let haveIngredient = false;
@@ -40,7 +38,7 @@ export default ({
         {displayedRecipes.map((recipes) =>
             // If it is print that recipe
             <Popup
-                trigger={<button className="button">{recipes.name}{recipes.disliked ? "This recipe is disliked" : null}</button>}
+                trigger={<button className="button">{recipes.name}{recipes.disliked ? " This recipe is disliked" : null}</button>}
                     modal
             >
                 <div className="modal">

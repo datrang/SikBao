@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Main from './Components/Layouts/Main';
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import { Layout, Header, Navigation, Drawer, Content, Button } from 'react-mdl';
 import { List } from 'material-ui';
 import Footer from "./Components/Layouts/Footer";
@@ -8,7 +7,7 @@ import Ingredients from "./Components/Ingredients";
 import { foodTypes } from "./store.js";
 import firebase from './firebase.js';
 import Popup from "reactjs-popup";
-import Modal from "./Components/Layouts/Modal";
+import { Profile, Settings, Favorites, Main, Modal } from "./Components/Layouts/Index";
 import { Recipes, getMatchingRecipes } from "./Components/Ingredients/Recipes";
 import RecipeDisplay from "./Components/Ingredients/RecipeDisplay";
 //import { testFireBaseIngredients, testFireBaseRecipes, testFireBaseLogIn, testFireBaseFridge, testMatchingRecipes } from './testUnit';
@@ -25,7 +24,6 @@ export default class extends Component {
             foodTypes, // List of foodTypes
             currentIngredients: [], // List of currently displaying ingredients
             selectedFoodTypes: foodTypes, // List of currently displaying foodTypes
-            //ingredient: {}, 
             foods: [], // Ingredients user wishes to use    
             showingRecipes: false, // Showing the recipes
             authState: false,
@@ -127,6 +125,7 @@ export default class extends Component {
         })
     }
 
+    //Updates the displayed recipes with recipes gotten from getMatchingRecipes in Recipes.js
     handleUpdateRecipes = (newRecipes) => {
         this.setState((prevState) => {
             return { displayedRecipes: newRecipes }
@@ -150,15 +149,18 @@ export default class extends Component {
             }
         })*/
     }
-
+    // Saves recipes to user db
     handleSavingRecipes = (recipeName) => {
         if (recipeName) {
             var data = firebase.database().ref('/users/' + this.state.userId + '/liked');
             data.on('value', (snapshot) => {
+                // Checks if there are already any liked recipes
                 if (snapshot.val()) {
+                    // If so check if recipe selected is already liked
                     if (snapshot.val().includes(recipeName)) {
                         console.log("Already Liked")
                     } else {
+                        // If not already disliked update array containing liked recipes with new recipe
                         var updates = {};
                         var newData = snapshot.val();
                         newData.push(recipeName)
@@ -166,6 +168,7 @@ export default class extends Component {
                         firebase.database().ref().update(updates);
                     }
                 } else {
+                    // Create array contating liked recipe
                     var updates = {};
                     updates['/users/' + this.state.userId + '/liked'] = [recipeName];
                     firebase.database().ref().update(updates);
@@ -173,29 +176,34 @@ export default class extends Component {
             })
         }
     }
-
+    // Saves disliked recipes to user db
     handleRemovingRecipes = (recipeName) => {
-        console.log(document.getElementById("ingredientsDisplayed"))
         if (recipeName) {
             var data = firebase.database().ref('/users/' + this.state.userId + '/disliked');
-                data.on('value', (snapshot) => {
+            data.on('value', (snapshot) => {
+                // Checks if there are already any disliked recipes
                 if (snapshot.val()) {
+                    // If so check if recipe selected is already disliked
                     if (snapshot.val().includes(recipeName)) {
                         console.log("Already Disliked")
                     } else {
+                        // If not already disliked update array containing disliked recipes with new recipe
                         var updates = {};
                         var newData = snapshot.val();
                         newData.push(recipeName)
                         updates['/users/' + this.state.userId + '/disliked'] = newData;
+                        console.log("fsafdsfds")
                         firebase.database().ref().update(updates);
                     }
                 } else {
+                    // Create array contating disliked recipe
                     var updates = {};
                     updates['/users/' + this.state.userId + '/disliked'] = [recipeName];
                     firebase.database().ref().update(updates);
                 }
             })
         }
+        console.log("fsa")
     }
 
     // Hides food types
@@ -258,23 +266,10 @@ export default class extends Component {
     }
     
     createUserDB = (email) => {
+        // Sets new user to true, then creates DB in componentDidMount
         this.setState((prevState) => {
             return { newUser: true };
         })
-        /* Firebase lags, so once firebase updates create the user's DB
-        firebase.auth().onAuthStateChanged(user => {
-            var userData = {
-                name: "placeholder",
-                fridge: [],
-                favRecipes: [],
-                disliked: []
-            };
-            // Creates userDB and fills it with placehpolder information.
-            var updates = {};
-            updates['/users/' + user.uid] = userData;
-            return firebase.database().ref().update(updates);
-        })*/
-
     }
 
     handleLogOut = (e) => {
@@ -301,8 +296,8 @@ export default class extends Component {
     componentDidMount = () => {
         // Incase firebase takes longer than the render
         firebase.auth().onAuthStateChanged((user) => {
-            // Grabs UID of user if there one
             if (user) {
+                // If this user is a new user, create a DB for it
                 if (this.state.newUser) {
                     var userData = {
                         name: "placeholder",
@@ -320,11 +315,13 @@ export default class extends Component {
                             newUser: false,
                         }
                     })
+            // Grabs UID of user if there one
                 } else {
                     this.setState((prevState) => {
                         return { userId: user.uid }
                     })
                 }
+            // Grabs UID of user if there one
             } else {
                 this.setState((prevState) => {
                     return { userId: "" }
@@ -389,100 +386,121 @@ export default class extends Component {
         const ingredients = this.getIngredientsByFoodtypes();
         return (
             <div>
-                <div className="work">
+                <div >
                     <Layout>
+                        {//Header
+                        }
                         <Header className="headerColor" title={<Link style={{ textDecoration: 'none', color: 'white' }}
                             to="/">SikBao</Link>} scroll>
-                            <Navigation>
-                                <Link to="/Favorites">Favorites</Link>
-                                <Link to="/Profile">Profile</Link>
-                                <Link to="/Settings">Settings</Link>
-                            </Navigation>
+                                {// Button links to different pages
+                                    firebase.auth().currentUser
+                                    ?
+                                    <Navigation>
+                                        <Link to="/Favorites">Favorites</Link>
+                                        <Link to="/Profile">Profile</Link>
+                                        <Link to="/Settings">Settings</Link>
+                                    </Navigation>
+                                    :
+                                    <Navigation>
+                                        <Modal
+                                            logIn={this.handleLogIn}
+                                            signUp={this.handleSignUp}
+                                        />
+                                    </Navigation>
+                                    }
                         </Header>
-                        <Drawer title={<Link style={{ textDecoration: 'none', color: 'black' }}
-                            to="/">SikBao</Link>}>
-                            <Navigation>
-                                <Link to="/Favorites">Favorites</Link>
-                                <Link to="/Profile">Profile</Link>
-                                <Link to="/Settings">Settings</Link>
-                            </Navigation>
-                        </Drawer>
+                        {
+                            firebase.auth().currentUser
+                                ?
+                                <Drawer title={<Link style={{ textDecoration: 'none', color: 'black' }}
+                                    to="/">SikBao</Link>}>
+                                    <Navigation>
+                                        {// Button links to different pages
+                                        }
+                                        <Link to="/Favorites">Favorites</Link>
+                                        <Link to="/Profile">Profile</Link>
+                                        <Link to="/Settings">Settings</Link>
+                                    </Navigation>
+                                </Drawer>
+                                :
+                                console.log(firebase.auth().currentUser)
+                                }
                         <Content>
-            <div className="page-content" />
-                {firebase.auth().currentUser
-                    ?
-                    // Loads logout button and load fridge button
-                    <div>
-                        <button
-                            id="btnLogOut"
-                            className="btn btn-secondary"
-                            onClick={this.handleLogOut}
-                        > Log Out
-                        </button>
-                        <button
-                            id="btnLoadFridge"
-                            className="btn btn-secondary"
-                            onClick={this.handleLoadFridge}
-                        > Load fridge
-                        </button>
-                    </div>
-                    :
-                    // Popup container for login
-                    <Modal
-                        logIn={this.handleLogIn}
-                        signUp={this.handleSignUp}
-                    />
-                }
-                <button
-                    name="saveIngredients"
-                    onClick={this.handleSavingIngredients}
-                >
-                    Save ingredients!
-                </button>
-                {// Calls the Ingredients from index.js in components/Layout
-                    // And sets the props
-                }
-                <Ingredients
-                    ingredients={ingredients}
-                    selectedFoodTypes={this.state.selectedFoodTypes}
-                    foods={this.state.foods}
-                    onSelect={this.handleIngredientSelected}
-                    onRemoval={this.handleRemoveIngredient}
-                    onHide={this.handleHideFoodTypes}
-                    onDisplay={this.handleDisplayFoodTypes}
-                    searching={this.handleSearching}
-                />
-                {/*
-                    <Footer foodTypes={foodTypes} />
-                */}
-                {this.state.showingRecipes
-                    ?
-                    this.state.displayedRecipes !== null
-                        ?
-                        <RecipeDisplay
-                            displayedRecipes={this.state.displayedRecipes}
-                            foods={this.state.foods}
-                            saveClick={this.handleSavingRecipes}
-                            removeClick={this.handleRemovingRecipes}
-                            ingredientsOwned={this.handleIngredientsOwned}
-                        //linkRecipes={this.handleLinkingRecipes}
-                        />
-                        :null
-                        :
-                        <button
-                            id="btnShowRecipes"
-                            className="btn btn-secondary"
-                            onClick={this.handleShowingRecipes}
-                        > Display Recipes
-                        </button>
-                    // Else don't
-                    
-                }
-                <p id="demo"></p>
+                            <div className="page-content" />
+                            {firebase.auth().currentUser
+                                ?
+                                // Loads logout button and load fridge button
+                                <div>
+                                    <button
+                                        id="btnLogOut"
+                                        className="btn btn-secondary"
+                                        onClick={this.handleLogOut}
+                                    > Log Out
+                                    </button>
+                                    <button
+                                        id="btnLoadFridge"
+                                        className="btn btn-secondary"
+                                        onClick={this.handleLoadFridge}
+                                    > Load fridge
+                                    </button>
+                                    <button
+                                        name="saveIngredients"
+                                        onClick={this.handleSavingIngredients}
+                                    >
+                                        Save ingredients!
+                                    </button>
+                                </div>
+                                :
+                                // Popup container for login
+                                <Modal
+                                    logIn={this.handleLogIn}
+                                    signUp={this.handleSignUp}
+                                />
+                            }
+                            {// Calls the Ingredients from index.js in components/Layout
+                                // And sets the props
+                            }
+                            <Ingredients
+                                ingredients={ingredients}
+                                selectedFoodTypes={this.state.selectedFoodTypes}
+                                foods={this.state.foods}
+                                onSelect={this.handleIngredientSelected}
+                                onRemoval={this.handleRemoveIngredient}
+                                onHide={this.handleHideFoodTypes}
+                                onDisplay={this.handleDisplayFoodTypes}
+                                searching={this.handleSearching}
+                            />
+                            {// Checks if user wants to show recipes
+                                this.state.showingRecipes
+                                    ?
+                                    // checks if there are any recipes to display
+                                    this.state.displayedRecipes !== null
+                                        ? // Displays recipes
+                                        <RecipeDisplay
+                                            displayedRecipes={this.state.displayedRecipes}
+                                            foods={this.state.foods}
+                                            saveClick={this.handleSavingRecipes}
+                                            removeClick={this.handleRemovingRecipes}
+                                            ingredientsOwned={this.handleIngredientsOwned}
+                                        //linkRecipes={this.handleLinkingRecipes}
+                                        />
+                                        : null
+                                    :
+                                    // If recipes aren't supposed to be showing, display button to show recipes
+                                    <button
+                                        id="btnShowRecipes"
+                                        className="btn btn-secondary"
+                                        onClick={this.handleShowingRecipes}
+                                    > Display Recipes
+                                    </button>
+                                // Else don't
+
+                            }
+                            <p id="demo"></p>
                         </Content>
                     </Layout>
                 </div>
-                </div>
+            </div>
         )
     }
 }
