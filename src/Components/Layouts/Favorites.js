@@ -1,6 +1,16 @@
 import React, { Component } from 'react'
 import firebase from '../../firebase.js';
 import Popup from 'reactjs-popup';
+import { Grid, Cell } from 'react-mdl';
+
+const styles = {
+    remove: {
+        background: "red", // Red background 
+        border: "#00FF00", // Green border
+        color: "white", // White text
+        cursor: "pointer" // Pointer/hand icon
+    }
+}
 
 class Favorites extends Component {
     constructor(props) {
@@ -8,8 +18,12 @@ class Favorites extends Component {
         this.state = {
             userId: '',
             liked: [],
-            disliked: []
+            disliked: [],
+            deleting: false
         };
+        this.handleDeletingChange = this.handleDeletingChange.bind(this);
+        this.handleRemovingDislike = this.handleRemovingDislike.bind(this);
+        this.handleRemovingLike = this.handleRemovingLike.bind(this);
     }
     componentDidMount = () => {
         if (this.state.userId !== this.props.location.state.userId) {
@@ -37,33 +51,129 @@ class Favorites extends Component {
             })
         }
     }
+
+    handleRemovingLike = (recipeName) => {
+        var newLiked = this.state.liked;
+        newLiked.splice(recipeName, 1);
+        var newLikedDB = [];
+        for (var i = 0; i < newLiked.length; i++) {
+            newLikedDB.push(newLiked[i].name);
+        }
+        var updates = {};
+        updates['/users/' + this.state.userId + '/liked'] = newLikedDB;
+        firebase.database().ref().update(updates);
+        this.setState((prevState) => {
+            return { liked: newLiked }
+        })
+    }
+
+    handleRemovingDislike = (recipeName) => {
+        var newDisliked = this.state.disliked;
+        newDisliked.splice(recipeName, 1);
+        var newDislikedDB = [];
+        for (var i = 0; i < newDisliked.length; i++) {
+            newDislikedDB.push(newDisliked[i].name);
+        }
+        var updates = {};
+        updates['/users/' + this.state.userId + '/disliked'] = newDislikedDB;
+        firebase.database().ref().update(updates);
+        this.setState((prevState) => {
+            return { disliked: newDisliked }
+        })
+    }
+
+    handleDeletingChange = () => {
+        this.setState((prevState) => {
+            return { deleting: !prevState.deleting }
+        })
+    }
+
     render() {
-        console.log(this.state.liked + this.state.disliked)
+        console.log(this.state.liked)
         return (
-            <div>
-                <h1>Liked</h1>
-                {this.state.liked.map((recipes) => <Popup
-                    trigger={<button className="button">{recipes.name}</button>}
-                    modal
-                >
-                    <div className="modal">
-                        <div className="btnGroupButton">
-                        </div>
-                        <h1>Steps</h1>
-                        <ol>
-                            {recipes.steps.map((eachStep) =>
-                                <li>{eachStep}</li>
-                            )}
-                        </ol>
-                        
-                    </div>
-                </Popup>
-                )}
-                <h2>Disliked</h2>
-                {this.state.disliked.map((recipes) =>
-                    <span>{recipes.name} <br /></span>
-                )}
-            </div>
+            this.state.deleting
+                ?
+                <div>
+                    <button
+                        id="deletingButton"
+                        onClick={this.handleDeletingChange}
+                    >Checkmark Icon</button>
+                    <h1>Liked</h1>
+                    {this.state.liked.map((recipes) =>
+                        <button
+                            style={styles.remove}
+                            id={recipes.name}
+                            onClick={() => this.handleRemovingLike(recipes.name)}
+                        > {recipes.name}
+                        </button>
+                    )}
+                    <h2>Disliked</h2>
+                    {this.state.disliked.map((recipes) =>
+                        <button
+                            style={styles.remove}
+                            id={recipes.name}
+                            onClick={() => this.handleRemovingDislike(recipes.name)}
+                        > {recipes.name}
+                        </button>
+                    )}
+                </div>
+                :
+                <div>
+                    <button
+                        id="deletingButton"
+                        onClick={this.handleDeletingChange}
+                    >Trashcan Icon</button>
+                    <h1>Liked</h1>
+                    {this.state.liked.map((recipes) =>
+                        <Popup
+                            trigger={<button className="button">{recipes.name}</button>}
+                            modal
+                        >
+                            <div className="modal">
+                                <h1>Steps</h1>
+                                <ol>
+                                    {recipes.steps.map((eachStep) =>
+                                        <li>{eachStep}</li>
+                                    )}
+                                </ol>
+                                <ul>
+                                    <Grid className="demo-grid-1">
+                                        {recipes.ingredients.map((ingredients) =>
+                                            <Cell col={4}> <li>{ingredients.name}
+                                                <br />
+                                                Quantity:{ingredients.quantity}</li></Cell>
+                                        )}
+                                    </Grid>
+                                </ul>
+                            </div>
+                        </Popup>
+                    )}
+                    <h2>Disliked</h2>
+                    {this.state.disliked.map((recipes) =>
+                        <Popup
+                            trigger={<button className="button">{recipes.name}</button>}
+                            modal
+                        >
+                            <div className="modal">
+                                <h1>Steps</h1>
+                                <ol>
+                                    {recipes.steps.map((eachStep) =>
+                                        <li>{eachStep}</li>
+                                    )}
+                                </ol>
+                                <ul>
+                                    <Grid className="demo-grid-1">
+                                        {recipes.ingredients.map((ingredients) =>
+                                            <Cell col={4}> <li>{ingredients.name}
+                                                <br />
+                                                Quantity:{ingredients.quantity}</li></Cell>
+                                        )}
+                                    </Grid>
+                                </ul>
+                            </div>
+                        </Popup>
+                    )}
+                </div>
         );
     }
 }

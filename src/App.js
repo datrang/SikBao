@@ -1,14 +1,12 @@
-import aMain from './Components/Layouts/Main'
 import React, { Component } from "react";
 import { Link, Route, Switch, Redirect } from 'react-router-dom'
 import { Layout, Header, Navigation, Drawer, Content, Button } from 'react-mdl';
 import { List } from 'material-ui';
-import Footer from "./Components/Layouts/Footer";
 import Ingredients from "./Components/Ingredients";
 import { foodTypes } from "./store.js";
 import firebase from './firebase.js';
 import Popup from "reactjs-popup";
-import { Profile, Settings, Favorites, Main, Modal } from "./Components/Layouts/Index";
+import { Profile, Settings, Favorites, Modal } from "./Components/Layouts/Index";
 import { Recipes, getMatchingRecipes } from "./Components/Ingredients/Recipes";
 import RecipeDisplay from "./Components/Ingredients/RecipeDisplay";
 //import { testFireBaseIngredients, testFireBaseRecipes, testFireBaseLogIn, testFireBaseFridge, testMatchingRecipes } from './testUnit';
@@ -141,14 +139,6 @@ export default class extends Component {
                 window.open(recipe.link)
             }
         })
-        /*
-        firebase.database().ref('/recipes/').once('value').then((snapshot) => {
-            for (var i = 0; i < snapshot.val().length; i++) {
-                if (snapshot.val()[i].name === recipeName) {
-
-                }
-            }
-        })*/
     }
     // Saves recipes to user db
     handleSavingRecipes = (recipeName) => {
@@ -387,8 +377,8 @@ export default class extends Component {
         const ingredients = this.getIngredientsByFoodtypes();
         return (
             <div>
-                <div className="test">
-                    <Layout>
+                <div className="demo-big-content">
+                    <Layout fixedHeader>
                         {//Header
                         }
                         <Header className="headerColor" title={<Link style={{ textDecoration: 'none', color: 'white' }}
