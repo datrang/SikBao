@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import firebase from '../../firebase.js';
+import { ListItem, ListItemText } from 'material-ui/List';
 import Popup from 'reactjs-popup';
+import './Layout.css'
 import { Grid, Cell } from 'react-mdl';
 
 const styles = {

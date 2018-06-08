@@ -1,0 +1,20 @@
+.recipe_list {
+    margin : 10px;
+}
+
+.recipe_display{
+    overflow-y: auto;
+    max-height: 800px;
+}
+
+.perference_button{
+    background-color: #FA6900;
+    border: 0;
+    min-width: 90px;
+    margin : 10px;
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: 14px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+    padding: 10px 6px;
+}
