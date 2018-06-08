@@ -5,3 +5,29 @@
 h1 {
     margin: 0px;
 }
+
+.remove_button {
+    background-color:red;
+    cursor: pointer;
+    border: 0;
+    min-width: 90px;
+    margin : 10px;
+    margin-bottom: 0;
+    color: #fff;
+    font-size: 14px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+    padding: 10px 6px;
+}
+
+.normal_button {
+    background-color: Green;
+    cursor: pointer;
+    border: 0;
+    min-width: 90px;
+    margin : 10px;
+    margin-bottom: 0;
+    color: #fff;
+    font-size: 14px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+    padding: 10px 6px;
+}

@@ -27,19 +27,29 @@ class Favorites extends Component {
     componentDidMount = () => {
         if (this.state.userId !== this.props.location.state.userId) {
             firebase.database().ref('/users/' + this.props.location.state.userId).once('value').then((snapshot) => {
-                let likedDB = snapshot.val().liked;
-                let dislikedDB = snapshot.val().disliked;
+                let likedDB = [];
+                if(snapshot.val().liked){
+                    likedDB = snapshot.val().liked;
+                }
+                let dislikedDB = [];
+                if(snapshot.val().disliked){
+                    dislikedDB = snapshot.val().disliked;
+                }
                 firebase.database().ref('/recipes').once('value').then((snapshot) => {
                     var dislikedHold = [];
                     var likedHold = [];
                     for (var i = 0; i < snapshot.val().length; i++) {
+                        if(dislikedDB){
                         if (dislikedDB.includes(snapshot.val()[i].name)) {
                             console.log('gang')
                             dislikedHold.push(snapshot.val()[i])
                         }
+                    }
+                    if(likedDB){
                         if (likedDB.includes(snapshot.val()[i].name)) {
                             likedHold.push(snapshot.val()[i])
                         }
+                    }
                     }
                     this.setState({
                         liked: likedHold,
@@ -94,38 +104,40 @@ class Favorites extends Component {
                 ?
                 <div>
                     <button
+                        className = "normal_button"
                         id="deletingButton"
                         onClick={this.handleDeletingChange}
-                    >Checkmark Icon</button>
-                    <h1>Liked</h1>
+                    >Normal Mode Toggle</button>
+                    <h2>Favorite</h2>
                     {this.state.liked.map((recipes) =>
-                        <button
+                        <ListItem button
                             style={styles.remove}
                             id={recipes.name}
                             onClick={() => this.handleRemovingLike(recipes.name)}
                         > {recipes.name}
-                        </button>
+                        </ListItem>
                     )}
                     <h2>Disliked</h2>
                     {this.state.disliked.map((recipes) =>
-                        <button
+                        <ListItem button
                             style={styles.remove}
                             id={recipes.name}
                             onClick={() => this.handleRemovingDislike(recipes.name)}
                         > {recipes.name}
-                        </button>
+                        </ListItem>
                     )}
                 </div>
                 :
                 <div>
                     <button
+                        className = 'remove_button'
                         id="deletingButton"
                         onClick={this.handleDeletingChange}
-                    >Trashcan Icon</button>
-                    <h1>Liked</h1>
+                    >Remove Mode Toggle</button>
+                    <h2>Favorite</h2>
                     {this.state.liked.map((recipes) =>
                         <Popup
-                            trigger={<button className="button">{recipes.name}</button>}
+                            trigger={<ListItem button className="button">{recipes.name}</ListItem>}
                             modal
                         >
                             <div className="modal">
@@ -150,7 +162,7 @@ class Favorites extends Component {
                     <h2>Disliked</h2>
                     {this.state.disliked.map((recipes) =>
                         <Popup
-                            trigger={<button className="button">{recipes.name}</button>}
+                            trigger={<ListItem button className="button">{recipes.name}</ListItem>}
                             modal
                         >
                             <div className="modal">
