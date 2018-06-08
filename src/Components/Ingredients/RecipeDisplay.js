@@ -9,7 +9,7 @@ import './RecipeDisplay.css';
 
 const styles = {
     greenText: {
-        color: "#00FF00"
+        color: "#00FF00",
     },
     defaultText: {
     },

@@ -1,14 +1,12 @@
-import aMain from './Components/Layouts/Main'
 import React, { Component } from "react";
 import { Link, Route, Switch, Redirect } from 'react-router-dom'
 import { Layout, Header, Navigation, Drawer, Content, Button } from 'react-mdl';
 import { Grid, Paper, List } from 'material-ui';
-import Footer from "./Components/Layouts/Footer";
 import Ingredients from "./Components/Ingredients";
 import { foodTypes } from "./store.js";
 import firebase from './firebase.js';
 import Popup from "reactjs-popup";
-import { Profile, Settings, Favorites, Main, Modal } from "./Components/Layouts/Index";
+import { Profile, Settings, Favorites, Modal } from "./Components/Layouts/Index";
 import { Recipes, getMatchingRecipes } from "./Components/Ingredients/Recipes";
 import RecipeDisplay from "./Components/Ingredients/RecipeDisplay";
 //import { testFireBaseIngredients, testFireBaseRecipes, testFireBaseLogIn, testFireBaseFridge, testMatchingRecipes } from './testUnit';
@@ -81,7 +79,7 @@ export default class extends Component {
             return { foods: [...prevState.foods] }
         })
     }
-   
+
     handleSearching = () => {
         var hold = []
         // Checks if input is empty
@@ -141,14 +139,6 @@ export default class extends Component {
                 window.open(recipe.link)
             }
         })
-        /*
-        firebase.database().ref('/recipes/').once('value').then((snapshot) => {
-            for (var i = 0; i < snapshot.val().length; i++) {
-                if (snapshot.val()[i].name === recipeName) {
-
-                }
-            }
-        })*/
     }
     // Saves recipes to user db
     handleSavingRecipes = (recipeName) => {
@@ -265,7 +255,7 @@ export default class extends Component {
             .then(this.createUserDB(email))
             .catch(e => console.log(e.message));
     }
-    
+
     createUserDB = (email) => {
         // Sets new user to true, then creates DB in componentDidMount
         this.setState((prevState) => {
@@ -290,7 +280,7 @@ export default class extends Component {
                         return { foods: snapshot.val() }
                     })
                 }
-                });
+            });
         }
     }
 
@@ -316,13 +306,13 @@ export default class extends Component {
                             newUser: false,
                         }
                     })
-            // Grabs UID of user if there one
+                    // Grabs UID of user if there one
                 } else {
                     this.setState((prevState) => {
                         return { userId: user.uid }
                     })
                 }
-            // Grabs UID of user if there one
+                // Grabs UID of user if there one
             } else {
                 this.setState((prevState) => {
                     return { userId: "" }
@@ -337,7 +327,7 @@ export default class extends Component {
                 currentIngredients: snapshot.val()
             })
         })
-        
+
         /*------------UNIT TESTING------------\\
         console.log(testMatchingRecipes(this.state.foods));
         console.log(testFireBaseFridge());
@@ -383,12 +373,12 @@ export default class extends Component {
 
     }
 
-    render() {
+    /*render() {
         const ingredients = this.getIngredientsByFoodtypes();
         return (
             <div>
-                <div className="test">
-                    <Layout>
+                <div className="demo-big-content">
+                    <Layout fixedHeader>
                         {//Header
                         }
                         <Header className="headerColor" title={<Link style={{ textDecoration: 'none', color: 'white' }}
@@ -524,4 +514,148 @@ export default class extends Component {
             </div>
         )
     }
-}
+}*/
+
+
+    render() {
+        const ingredients = this.getIngredientsByFoodtypes();
+        return (
+            <div>
+                <div className="test">
+                    <Layout>
+                        {//Header
+                        }
+                        <Header className="headerColor" title={<Link style={{ textDecoration: 'none', color: 'white' }}
+                            to="/">SikBao</Link>} scroll>
+                            {// Button links to different pages
+                                firebase.auth().currentUser
+                                    ?
+                                    <Navigation>
+                                        <Link to={{
+                                            pathname: "/Favorites",
+                                            state: { userId: this.state.userId }
+                                        }}>Favorites/Disliked</Link>
+                                        <Link to={{
+                                            pathname: "/Profile",
+                                            state: { userId: this.state.userId }
+                                        }}>Profile</Link>
+                                        <Link to="/Settings">Settings</Link>
+                                        <button
+                                            className="logout_button"
+                                            onClick={this.handleLogOut}
+                                        >Log Out</button>
+                                    </Navigation>
+                                    :
+                                    <Navigation>
+                                        <Modal
+                                            logIn={this.handleLogIn}
+                                            signUp={this.handleSignUp}
+                                        />
+                                    </Navigation>
+                            }
+                        </Header>
+                        {
+                            firebase.auth().currentUser
+                                ?
+                                <Drawer title={<Link style={{ textDecoration: 'none', color: 'black' }}
+                                    to="/">SikBao</Link>}>
+                                    <Navigation>
+                                        {// Button links to different pages
+                                        }
+                                        <Link to="/Favorites">Favorites</Link>
+                                        <Link to="/Profile">Profile</Link>
+                                        <Link to="/Settings">Settings</Link>
+                                    </Navigation>
+                                </Drawer>
+                                :
+                                console.log(firebase.auth().currentUser)
+                        }
+                        <Content>
+                            <div className="page-content" />
+                            <Switch>
+                                <Route path='/Favorites' component={Favorites} />
+                                <Route path='/Profile' component={Profile} />
+                                <Route path='/Settings' component={Settings} />
+                                <Route exact path='/' render={() =>
+                                    <div>
+                                        {firebase.auth().currentUser
+                                            ?
+                                            // Loads logout button and load fridge button
+                                            <div>
+                                                <button
+                                                    className="fridge_button"
+                                                    id="btnLoadFridge"
+                                                    onClick={this.handleLoadFridge}
+                                                > Load fridge
+                                                </button>
+                                                <button
+                                                    className="fridge_button"
+                                                    name="saveIngredients"
+                                                    onClick={this.handleSavingIngredients}
+                                                >
+                                                    Save Fridge
+                                                 </button>
+                                            </div>
+                                            :
+                                            <div>
+                                            </div>
+                                        }
+                                        {   // Calls the Ingredients from index.js in components/Layout
+                                            // And sets the props
+                                        }
+                                        <Ingredients
+                                            ingredients={ingredients}
+                                            selectedFoodTypes={this.state.selectedFoodTypes}
+                                            foods={this.state.foods}
+                                            onSelect={this.handleIngredientSelected}
+                                            onRemoval={this.handleRemoveIngredient}
+                                            onHide={this.handleHideFoodTypes}
+                                            onDisplay={this.handleDisplayFoodTypes}
+                                            searching={this.handleSearching}
+                                        />
+                                        {// Checks if user wants to show recipes
+                                            this.state.showingRecipes
+                                                ?
+                                                // checks if there are any recipes to display
+                                                this.state.displayedRecipes !== null
+                                                    ? // Displays recipes
+                                                    <RecipeDisplay
+                                                        displayedRecipes={this.state.displayedRecipes}
+                                                        foods={this.state.foods}
+                                                        saveClick={this.handleSavingRecipes}
+                                                        removeClick={this.handleRemovingRecipes}
+                                                        ingredientsOwned={this.handleIngredientsOwned}
+                                                    //linkRecipes={this.handleLinkingRecipes}
+                                                    />
+                                                    : null
+                                                :
+                                                // If recipes aren't supposed to be showing, display button to show recipes
+                                                <Grid item sm>
+                                                    <Paper style={{
+                                                        padding: 20,
+                                                        margin: 10,
+                                                        height: 230,
+                                                        overflowY: 'auto'
+                                                    }}>
+                                                        <button
+                                                            id="btnShowRecipes"
+                                                            className="recipe_display_button"
+                                                            onClick={this.handleShowingRecipes}
+                                                        > Display Recipes
+                                                        </button>
+                                                    </Paper>
+                                                </Grid>
+                                            // Else don't
+
+                                        }
+                                        <p id="demo"></p>
+                                    </div>
+                                } />
+                            </Switch>
+                        </Content>
+                    </Layout>
+                </div>
+            </div>
+        )
+    }
+};

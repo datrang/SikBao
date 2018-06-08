@@ -6,33 +6,6 @@ import firebase from '../../firebase.js';
 import Ingredients from "../../Components/Ingredients";
 // Displays recipes based on ingredients selected
 
-export const Recipes = ( foods, displayedRecipes, linkRecipes ) => (
-    <div>
-        {console.log(displayedRecipes)}
-        <List component="ul">
-            {displayedRecipes.map((recipes) =>
-                // If it is print that recipe
-                console.log("sdf")
-            )}
-        </List>
-    </div>
-    
-);
-
-    /*
-    handleShowRecipes = () => {
-        // Hides and displays the recipes
-        firebase.database().ref('/recipes/').once('value').then((snapshot) => {
-            this.setState((prevState) => {
-                return {
-                    showing: !prevState.showing,
-                    displayedRecipes: getMatchingRecipes(snapshot.val(), prevState.foods)
-                }
-            })
-        })
-        //console.log(this.state.showing)
-    }
-    */
 export const getMatchingRecipes = (foods, displayedRecipes, userId, handleUpdateRecipes) => {
     console.log('gang')
     // all recipes will hold a 2D array
