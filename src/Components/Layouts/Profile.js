@@ -2,6 +2,17 @@ import React, { Component } from 'react'
 import { Grid, Cell } from 'react-mdl'
 
 class Profile extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { userId: '' };
+    }
+    componentDidMount = () => {
+        if (this.state.userId !== this.props.location.state.userId) {
+            this.setState((prevState) => {
+                return { userId: this.props.location.state.userId }
+            })
+        }
+    }
     render() {
         return (
             <div style={{ width: '100%', margin: 'auto' }}>
@@ -14,8 +25,7 @@ class Profile extends Component {
                             className="profileImage"
                         />
                         <div className="bannerText">
-                            // Profile name
-                            <h1>Michael Lee</h1>
+                            <h1>{this.state.userId}</h1>
                             <hr />
                             // About text box
                             <p>About Me: PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA PANDA

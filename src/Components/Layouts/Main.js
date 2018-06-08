@@ -1,13 +1,12 @@
-import React, { Component } from 'react'
+import { React, Component } from 'react'
+import { Switch, Route } from 'react-router-dom';
+import { Profile, Settings, Favorites, Main, Modal } from "./Index";
+import App from '../../App.js';
 
-class Home extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Home page</h1>
-            </div>
-        );
-    }
-}
-
-export default Home;
+const aMain = () => (
+    <Switch>
+        <Route exact path='/' component={App} />
+        <Route path='/Profile' component={Profile} />
+        <Route path='/' Settings component={Settings} />
+    </Switch>
+    )
